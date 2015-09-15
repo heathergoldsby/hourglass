@@ -1,0 +1,40 @@
+import os ;
+local HOME = [ os.environ HOME ] ;
+
+use-project /libea : ../ealib/libea ;
+
+
+exe stripes_multi :
+    src/stripes_multi.cpp
+    /libea//libea
+    /libea//libea_runner
+    : <include>./include <link>static
+    ;
+
+install dist : stripes_multi : <location>$(HOME)/bin ;
+
+
+
+exe square :
+src/square.cpp
+/libea//libea
+/libea//libea_runner
+: <include>./include <link>static
+;
+
+install dist : square : <location>$(HOME)/bin ;
+
+
+
+exe french_flag :
+src/french_flag.cpp
+/libea//libea
+/libea//libea_runner
+: <include>./include <link>static
+;
+
+install dist : french_flag : <location>$(HOME)/bin ;
+
+
+
+

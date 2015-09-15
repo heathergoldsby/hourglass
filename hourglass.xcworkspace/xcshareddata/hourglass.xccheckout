@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>875F384A-10D8-4F15-AD8F-57F02071BB65</string>
+	<key>IDESourceControlProjectName</key>
+	<string>hourglass</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>043FE3BFA590E887486C533E25FAC8FA804D8996</key>
+		<string>https://github.com/heathergoldsby/hourglass.git</string>
+		<key>F4E43731183036190F477CF4C99425A6516F08D2</key>
+		<string>github.com:dknoester/ealib.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>hourglass.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>043FE3BFA590E887486C533E25FAC8FA804D8996</key>
+		<string>..</string>
+		<key>F4E43731183036190F477CF4C99425A6516F08D2</key>
+		<string>../../ealib</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/heathergoldsby/hourglass.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>043FE3BFA590E887486C533E25FAC8FA804D8996</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F4E43731183036190F477CF4C99425A6516F08D2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ealib</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>043FE3BFA590E887486C533E25FAC8FA804D8996</string>
+			<key>IDESourceControlWCCName</key>
+			<string>hourglass</string>
+		</dict>
+	</array>
+</dict>
+</plist>
