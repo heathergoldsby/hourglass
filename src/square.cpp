@@ -16,7 +16,7 @@
 using namespace ealib;
 
 #include "stripes.h"
-//#include "movie.h"
+#include "movie.h"
 #include "subpopulation_propagule.h"
 
 
@@ -62,10 +62,7 @@ struct lifecycle : public default_lifecycle {
         append_isa<if_not_equal>(ea);
         append_isa<jump_head>(ea);
         append_isa<is_neighbor_matrix>(ea);
-        
-        
         append_isa<is_origin>(ea);
-        
         append_isa<get_xy>(ea);
         append_isa<on_edge_matrix>(ea);
         
@@ -172,7 +169,7 @@ public:
     }
     
     virtual void gather_tools() {
-        //        add_tool<ealib::analysis::movie_for_competitions>(this);
+        add_tool<ealib::analysis::movie_square>(this);
         add_tool<get_dominant>(this);
     }
     

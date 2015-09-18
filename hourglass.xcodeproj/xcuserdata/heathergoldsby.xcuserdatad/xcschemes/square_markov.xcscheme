@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4873BC151BA891F9001F2D47"
-               BuildableName = "french_flag"
-               BlueprintName = "french_flag"
+               BlueprintIdentifier = "4873BC211BA9AA11001F2D47"
+               BuildableName = "square_markov"
+               BlueprintName = "square_markov"
                ReferencedContainer = "container:hourglass.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4873BC151BA891F9001F2D47"
-            BuildableName = "french_flag"
-            BlueprintName = "french_flag"
+            BlueprintIdentifier = "4873BC211BA9AA11001F2D47"
+            BuildableName = "square_markov"
+            BlueprintName = "square_markov"
             ReferencedContainer = "container:hourglass.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,9 +52,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4873BC151BA891F9001F2D47"
-            BuildableName = "french_flag"
-            BlueprintName = "french_flag"
+            BlueprintIdentifier = "4873BC211BA9AA11001F2D47"
+            BuildableName = "square_markov"
+            BlueprintName = "square_markov"
             ReferencedContainer = "container:hourglass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4873BC151BA891F9001F2D47"
-            BuildableName = "french_flag"
-            BlueprintName = "french_flag"
+            BlueprintIdentifier = "4873BC211BA9AA11001F2D47"
+            BuildableName = "square_markov"
+            BlueprintName = "square_markov"
             ReferencedContainer = "container:hourglass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

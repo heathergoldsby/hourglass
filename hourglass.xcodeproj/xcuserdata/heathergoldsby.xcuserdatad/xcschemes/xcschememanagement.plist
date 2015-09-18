@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>19</integer>
 		</dict>
+		<key>square_markov.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
 		<key>stripes_multi.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -148,6 +153,11 @@
 			<true/>
 		</dict>
 		<key>4873BC151BA891F9001F2D47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4873BC211BA9AA11001F2D47</key>
 		<dict>
 			<key>primary</key>
 			<true/>
