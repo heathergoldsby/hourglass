@@ -1,4 +1,4 @@
-/* markov_square.cpp
+/* markov_french_flag.cpp
  *
  * This file is part of EALib.
  *
@@ -29,7 +29,7 @@ using namespace std;
 
 /*! Sample fitness function for Markov networks.
  */
-struct square_fitness : fitness_function<unary_fitness<double>, constantS, stochasticS> {
+struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, stochasticS> {
     template <typename Individual, typename RNG, typename EA>
     double operator()(Individual& ind, RNG& rng, EA& ea) {
         
@@ -68,9 +68,10 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         // World update... this is where growth may occur.
         // Run agents for X updates
         
-
+        // setup inputs...
+        std::vector<int> inputs (10,0);
         
-        // Inputs: (0) x, (1) y,
+        // Inputs: (0) x, (1) y, // currently 1,1... they may not need them?
         // (2) north color, (3) north color,
         // (4) east color, (5) east color,
         // (6) south color, (7) south color,
@@ -103,15 +104,20 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 // set the input states...
                 int agent_x = floor(xy / max_x);
                 int agent_y = xy % max_x;
-
-                //(as[p]).clear();
-
+                typename EA::phenotype_type me = as[p];
+                
+                (as[p]).clear();
+                
+                (as[p]).input(0) = 1;
+                (as[p]).input(1) = 1;
+                inputs[0];
+                inputs[1];
                 typename EA::phenotype_type neighbor;
-
+                
                 
                 // north neighbor
                 int north = (agent_y - 1) * max_x + agent_x;
-            
+                
                 if (agent_y > 0) {
                     neighbor = as[agent_pos[north]];
                     (as[p]).input(2) = neighbor.output(0);
@@ -129,7 +135,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 
                 // south neighbor
                 int south = (agent_y + 1) * max_x + agent_x;
-
+                
                 if (agent_y < (max_x - 2)) {
                     neighbor = as[agent_pos[south]];
                     (as[p]).input(6) = neighbor.output(0);
@@ -138,27 +144,19 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 
                 // west neighbor
                 int west = agent_y * max_x + agent_x - 1;
-
+                
                 if (agent_x > 0) {
                     neighbor = as[agent_pos[west]];
                     (as[p]).input(8) = neighbor.output(0);
                     (as[p]).input(9) = neighbor.output(1);
-
+                    
                 }
-
+                
                 // update 4 times.
-                for (int i = 0; i<5; ++i) {
-                    if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
-                        (as[p]).input(0) = 1;
-                    }
-                    
-                    if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
-                         (as[p]).input(1) = 1;
-                    }
-                    
+                for (int i = 0; i<4; ++i) {
                     (as[p]).update();
                 }
-
+                
                 
             }
             
@@ -174,46 +172,28 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
             for (int y=0; y < max_y; ++y) {
                 int xy = y * max_x + x; // the agent position...
                 int p = agent_pos[xy];
-            
+                
                 if (p == -1) {
                     continue;
                 }
                 
-                if (x == 0 || x == max_x || y == 0 || y == max_y) {
-                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(0) == 0)){
-                        ++f;
-                    }
-                } else if (x == 1 || x == (max_x - 1) || y == 1 || y == (max_y -1)) {
-                    if  (((as[p]).output(0) == 1) &&  ((as[p]).output(0) == 1)) {
-                        ++f;
-                    }
-                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(0) == 1)) {
+                if ((x < (floor(max_x) / 3 )) && (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0))){
+                    // blue 10
+                    ++f;
+                } else if (((x > (floor(max_x) / 3))  && (x < floor(max_x) / 3 * 2))  &&
+                           (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1))){
+                    // white 11
+                    ++f;
+                } else if ((((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) ) {
+                    // red 01
                     ++f;
                 }
-
             }
         }
-
+        
         
         as.clear();
         
-        
-        /* blinky bits. Currently... there aren't any...
-    
-                // x and y bits -- should this vary per brain update? YES!
-                if ((rng().uniform_integer(max_x)) < agent_x) {
-                    as[p]->states[0] = 0;
-                } else {
-                    as[p]->states[0] = 1;
-                }
-                
-                if ((rng().uniform_integer(max_y)) < agent_y) {
-                    as[p]->states[1] = 0;
-                } else {
-                    as[p]->states[1] = 1;
-                }
-         
-*/
         
         // and return some measure of fitness:
         // ponder gamma transform
@@ -223,7 +203,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
 
 // Evolutionary algorithm definition.
 typedef markov_network_evolution
-< square_fitness
+< french_flag_fitness
 , recombination::asexual
 , generational_models::moran_process< >
 > ea_type;
@@ -246,9 +226,9 @@ public:
     
     
     virtual void gather_tools() {
-//        add_tool<analysis::dominant_genetic_graph>(this);
-//        add_tool<analysis::dominant_causal_graph>(this);
-//        add_tool<analysis::dominant_reduced_graph>(this);
+        add_tool<analysis::dominant_genetic_graph>(this);
+        add_tool<analysis::dominant_causal_graph>(this);
+        add_tool<analysis::dominant_reduced_graph>(this);
     }
     
     virtual void gather_events(EA& ea) {

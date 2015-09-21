@@ -37,4 +37,24 @@ install dist : french_flag : <location>$(HOME)/bin ;
 
 
 
+exe french_flag_markov :
+src/french_flag_markov.cpp
+/libea//libea
+/libea//libea_runner
+: <include>./include <link>static
+;
+
+install dist : french_flag_markov : <location>$(HOME)/bin ;
+
+
+exe square_markov :
+src/square_markov.cpp
+/libea//libea
+/libea//libea_runner
+: <include>./include <link>static
+;
+
+install dist : square_markov : <location>$(HOME)/bin ;
+
+
 
