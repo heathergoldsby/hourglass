@@ -45,9 +45,6 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         // and make a few copies:
         vector<typename EA::phenotype_type> as(grid_size, N); // my agents or networks
         
-        
-        
-        
         vector<int> agent_pos (grid_size, -1);
         vector<int> exec_order (grid_size);
         double f=0.0;
@@ -83,7 +80,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         // (5) reproduce
         
         // for this grid, 0,0 is upper left.
-        for(int t=0;t<100;t++){
+        for(int t=0;t<25;t++){
             
             // Must randomize agent execution order...
             std::random_shuffle ( exec_order.begin(), exec_order.end() );
@@ -104,16 +101,12 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 int agent_x = floor(xy / max_x);
                 int agent_y = xy % max_x;
 
-                //(as[p]).clear();
-
-                typename EA::phenotype_type neighbor;
-
                 
                 // north neighbor
                 int north = (agent_y - 1) * max_x + agent_x;
             
                 if (agent_y > 0) {
-                    neighbor = as[agent_pos[north]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[north]];
                     (as[p]).input(2) = neighbor.output(0);
                     (as[p]).input(3) = neighbor.output(1);
                 }
@@ -122,7 +115,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 // east neighbor
                 int east = agent_y * max_x + agent_x + 1;
                 if (agent_x < (max_x - 2)) {
-                    neighbor = as[agent_pos[east]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[east]];
                     (as[p]).input(4) = neighbor.output(0);
                     (as[p]).input(5) = neighbor.output(1);
                 }
@@ -131,7 +124,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 int south = (agent_y + 1) * max_x + agent_x;
 
                 if (agent_y < (max_x - 2)) {
-                    neighbor = as[agent_pos[south]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[south]];
                     (as[p]).input(6) = neighbor.output(0);
                     (as[p]).input(7) = neighbor.output(1);
                 }
@@ -140,7 +133,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 int west = agent_y * max_x + agent_x - 1;
 
                 if (agent_x > 0) {
-                    neighbor = as[agent_pos[west]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[west]];
                     (as[p]).input(8) = neighbor.output(0);
                     (as[p]).input(9) = neighbor.output(1);
 
@@ -158,14 +151,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     
                     (as[p]).update();
                 }
-
-                
             }
-            
-            
-            
-            
-            
         }
         
         
@@ -194,26 +180,6 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
             }
         }
 
-        
-        as.clear();
-        
-        
-        /* blinky bits. Currently... there aren't any...
-    
-                // x and y bits -- should this vary per brain update? YES!
-                if ((rng().uniform_integer(max_x)) < agent_x) {
-                    as[p]->states[0] = 0;
-                } else {
-                    as[p]->states[0] = 1;
-                }
-                
-                if ((rng().uniform_integer(max_y)) < agent_y) {
-                    as[p]->states[1] = 0;
-                } else {
-                    as[p]->states[1] = 1;
-                }
-         
-*/
         
         // and return some measure of fitness:
         // ponder gamma transform

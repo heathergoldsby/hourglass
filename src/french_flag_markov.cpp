@@ -84,7 +84,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         // (5) reproduce
         
         // for this grid, 0,0 is upper left.
-        for(int t=0;t<100;t++){
+        for(int t=0;t<25;t++){
             
             // Must randomize agent execution order...
             std::random_shuffle ( exec_order.begin(), exec_order.end() );
@@ -104,22 +104,20 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 // set the input states...
                 int agent_x = floor(xy / max_x);
                 int agent_y = xy % max_x;
-                typename EA::phenotype_type me = as[p];
                 
-                (as[p]).clear();
-                
+                // x and y coord.
                 (as[p]).input(0) = 1;
                 (as[p]).input(1) = 1;
-                inputs[0];
-                inputs[1];
-                typename EA::phenotype_type neighbor;
+
+                // copy...
+                
                 
                 
                 // north neighbor
                 int north = (agent_y - 1) * max_x + agent_x;
                 
                 if (agent_y > 0) {
-                    neighbor = as[agent_pos[north]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[north]];
                     (as[p]).input(2) = neighbor.output(0);
                     (as[p]).input(3) = neighbor.output(1);
                 }
@@ -128,7 +126,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 // east neighbor
                 int east = agent_y * max_x + agent_x + 1;
                 if (agent_x < (max_x - 2)) {
-                    neighbor = as[agent_pos[east]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[east]];
                     (as[p]).input(4) = neighbor.output(0);
                     (as[p]).input(5) = neighbor.output(1);
                 }
@@ -137,7 +135,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 int south = (agent_y + 1) * max_x + agent_x;
                 
                 if (agent_y < (max_x - 2)) {
-                    neighbor = as[agent_pos[south]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[south]];
                     (as[p]).input(6) = neighbor.output(0);
                     (as[p]).input(7) = neighbor.output(1);
                 }
@@ -146,7 +144,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 int west = agent_y * max_x + agent_x - 1;
                 
                 if (agent_x > 0) {
-                    neighbor = as[agent_pos[west]];
+                    typename EA::phenotype_type& neighbor = as[agent_pos[west]];
                     (as[p]).input(8) = neighbor.output(0);
                     (as[p]).input(9) = neighbor.output(1);
                     
@@ -157,12 +155,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                     (as[p]).update();
                 }
                 
-                
             }
-            
-            
-            
-            
             
         }
         
@@ -190,9 +183,6 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 }
             }
         }
-        
-        
-        as.clear();
         
         
         // and return some measure of fitness:
