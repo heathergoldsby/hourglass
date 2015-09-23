@@ -36,40 +36,42 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         int max_x = 6; // change to config params later...
         int max_y = 6;
         int grid_size = max_x * max_y;
+        vector<int> agent_pos (grid_size, -1);
+        vector<int> exec_order (grid_size);
+        double f=0.0;
+        
         
         // Must create a WHOLE bunch of markov networks here...
         
         // get the "prototype" phenotype (markov network):
         typename EA::phenotype_type &N = ealib::phenotype(ind, ea);
         
-        // and make a few copies:
-        vector<typename EA::phenotype_type> as(grid_size, N); // my agents or networks
+        // start with one agent...
+        vector<typename EA::phenotype_type> as; //
+        as.push_back(N); //grid_size, N); // my agents or networks
+        agent_pos[0] = 0;
+        as[0].reset(rng.seed());
         
         
         
-        
-        vector<int> agent_pos (grid_size, -1);
-        vector<int> exec_order (grid_size);
-        double f=0.0;
-        
+
         for (int i=0; i<grid_size; ++i) {
             exec_order[i] = i;
         }
         
         
-        /* For right now, there isn't a growth process -- just a FULL grid */
+        /* For right now, there isn't a growth process -- just a FULL grid
         for(int i=0;i<grid_size;i++) {
             agent_pos[i] = i;
             // probably want to reset the RNG for the markov network:
             as[i].reset(rng.seed());
         }
+         */
         
         
         // World update... this is where growth may occur.
         // Run agents for X updates
         
-        // setup inputs...
-        std::vector<int> inputs (10,0);
         
         // Inputs: (0) x, (1) y, // currently 1,1... they may not need them?
         // (2) north color, (3) north color,
@@ -97,7 +99,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 int p = agent_pos[exec_order[j]];
                 
                 // no agent exists
-                if (xy == -1) {
+                if (p == -1) {
                     continue;
                 }
                 
@@ -115,39 +117,60 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 
                 // north neighbor
                 int north = (agent_y - 1) * max_x + agent_x;
-                
                 if (agent_y > 0) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[north]];
-                    (as[p]).input(2) = neighbor.output(0);
-                    (as[p]).input(3) = neighbor.output(1);
+                    if (agent_pos[north] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[north]];
+                        (as[p]).input(2) = neighbor.output(0);
+                        (as[p]).input(3) = neighbor.output(1);
+                    }
                 }
-                
                 
                 // east neighbor
                 int east = agent_y * max_x + agent_x + 1;
                 if (agent_x < (max_x - 2)) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[east]];
-                    (as[p]).input(4) = neighbor.output(0);
-                    (as[p]).input(5) = neighbor.output(1);
+                    if (agent_pos[east] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[east]];
+                        (as[p]).input(4) = neighbor.output(0);
+                        (as[p]).input(5) = neighbor.output(1);
+                    }
                 }
                 
                 // south neighbor
                 int south = (agent_y + 1) * max_x + agent_x;
-                
                 if (agent_y < (max_x - 2)) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[south]];
-                    (as[p]).input(6) = neighbor.output(0);
-                    (as[p]).input(7) = neighbor.output(1);
+                    if (agent_pos[south] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[south]];
+                        (as[p]).input(6) = neighbor.output(0);
+                        (as[p]).input(7) = neighbor.output(1);
+                    }
                 }
                 
                 // west neighbor
                 int west = agent_y * max_x + agent_x - 1;
-                
                 if (agent_x > 0) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[west]];
-                    (as[p]).input(8) = neighbor.output(0);
-                    (as[p]).input(9) = neighbor.output(1);
+                    if (agent_pos[west] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[west]];
+                        (as[p]).input(8) = neighbor.output(0);
+                        (as[p]).input(9) = neighbor.output(1);
+                    }
+                }
+                
+                // reproduce
+                if (as[p].output(5)) {
                     
+                    if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
+                        as.push_back(N); // Add a new agent.
+                        agent_pos[north] = (as.size() -1); // This agent is at the end...
+                    } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 2))) {  // 01 east
+                        as.push_back(N); // Add a new agent.
+                        agent_pos[east] = (as.size() -1); // This agent is at the end...
+                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_x - 2))) { // 11 south
+                        as.push_back(N); // Add a new agent.
+                        agent_pos[south] = (as.size() -1); // This agent is at the end...
+                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 0) && (agent_x > 0)) { // 10 west
+                        as.push_back(N); // Add a new agent.
+                        agent_pos[west] = (as.size() -1); // This agent is at the end...
+                    }
                 }
                 
                 // update 4 times.
@@ -173,7 +196,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 if ((x < (floor(max_x) / 3 )) && (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0))){
                     // blue 10
                     ++f;
-                } else if (((x > (floor(max_x) / 3))  && (x < floor(max_x) / 3 * 2))  &&
+                } else if (((x > (floor(max_x) / 3))  && ((x < floor(max_x) / 3 * 2)-1))  &&
                            (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1))){
                     // white 11
                     ++f;

@@ -122,7 +122,6 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 
                 // south neighbor
                 int south = (agent_y + 1) * max_x + agent_x;
-
                 if (agent_y < (max_x - 2)) {
                     typename EA::phenotype_type& neighbor = as[agent_pos[south]];
                     (as[p]).input(6) = neighbor.output(0);
@@ -131,12 +130,16 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 
                 // west neighbor
                 int west = agent_y * max_x + agent_x - 1;
-
                 if (agent_x > 0) {
                     typename EA::phenotype_type& neighbor = as[agent_pos[west]];
                     (as[p]).input(8) = neighbor.output(0);
                     (as[p]).input(9) = neighbor.output(1);
 
+                }
+                
+                // edge detection.
+                if ((agent_x == 0) || (agent_y == 0) || (agent_x = (max_x-1)) || (agent_y == (max_y-1))) {
+                    as[p].input(10) = 1;
                 }
 
                 // update 4 times.
@@ -165,15 +168,15 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     continue;
                 }
                 
-                if (x == 0 || x == max_x || y == 0 || y == max_y) {
-                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(0) == 0)){
+                if (x == 0 || x == (max_x-1) || y == 0 || y == (max_y-1)) {
+                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                         ++f;
                     }
-                } else if (x == 1 || x == (max_x - 1) || y == 1 || y == (max_y -1)) {
-                    if  (((as[p]).output(0) == 1) &&  ((as[p]).output(0) == 1)) {
+                } else if (x == 1 || x == (max_x-2) || y == 1 || y == (max_y-2)) {
+                    if  (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) {
                         ++f;
                     }
-                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(0) == 1)) {
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
                     ++f;
                 }
 

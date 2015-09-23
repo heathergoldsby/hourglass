@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>20</integer>
 		</dict>
+		<key>french_flag_markov.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
 		<key>square.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -193,6 +198,11 @@
 			<true/>
 		</dict>
 		<key>48DEB45419376501002F8846</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48E1BFCA1BB2EB9B00FA0BA3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

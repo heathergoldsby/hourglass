@@ -12,6 +12,8 @@
 		4873BC1F1BA89204001F2D47 /* french_flag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4873BC141BA891D2001F2D47 /* french_flag.cpp */; };
 		4873BC251BA9AA11001F2D47 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		4873BC2B1BA9AA31001F2D47 /* square_markov.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4873BC201BA9A893001F2D47 /* square_markov.cpp */; };
+		48E1BFCE1BB2EB9B00FA0BA3 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		48E1BFD41BB2EBA600FA0BA3 /* french_flag_markov.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48A7233B1BB0805C00FB2C5E /* french_flag_markov.cpp */; };
 		48E57B5F1B98C4F100E630CC /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		48E57B651B98C4FD00E630CC /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E57B5A1B98C40900E630CC /* square.cpp */; };
 		48FF4C9319379E49001F0183 /* stripes_multi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48AC8AB11937639900DA6945 /* stripes_multi.cpp */; };
@@ -28,6 +30,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		4873BC261BA9AA11001F2D47 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		48E1BFCF1BB2EB9B00FA0BA3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -71,6 +82,7 @@
 		48A1E129183F8ED70023C478 /* stripes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stripes.h; sourceTree = "<group>"; };
 		48A7233B1BB0805C00FB2C5E /* french_flag_markov.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = french_flag_markov.cpp; sourceTree = "<group>"; };
 		48AC8AB11937639900DA6945 /* stripes_multi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stripes_multi.cpp; sourceTree = "<group>"; };
+		48E1BFD31BB2EB9B00FA0BA3 /* french_flag_markov */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = french_flag_markov; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E57B5A1B98C40900E630CC /* square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = square.cpp; sourceTree = "<group>"; };
 		48E57B641B98C4F100E630CC /* square */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = square; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FF4C9219379E17001F0183 /* stripes_multi */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = stripes_multi; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +102,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4873BC251BA9AA11001F2D47 /* libea.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48E1BFCD1BB2EB9B00FA0BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48E1BFCE1BB2EB9B00FA0BA3 /* libea.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +151,7 @@
 				48E57B641B98C4F100E630CC /* square */,
 				4873BC1E1BA891F9001F2D47 /* french_flag */,
 				4873BC2A1BA9AA11001F2D47 /* square_markov */,
+				48E1BFD31BB2EB9B00FA0BA3 /* french_flag_markov */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,6 +226,23 @@
 			productReference = 4873BC2A1BA9AA11001F2D47 /* square_markov */;
 			productType = "com.apple.product-type.tool";
 		};
+		48E1BFCA1BB2EB9B00FA0BA3 /* french_flag_markov */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48E1BFD01BB2EB9B00FA0BA3 /* Build configuration list for PBXNativeTarget "french_flag_markov" */;
+			buildPhases = (
+				48E1BFCB1BB2EB9B00FA0BA3 /* Sources */,
+				48E1BFCD1BB2EB9B00FA0BA3 /* Frameworks */,
+				48E1BFCF1BB2EB9B00FA0BA3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = french_flag_markov;
+			productName = ealife;
+			productReference = 48E1BFD31BB2EB9B00FA0BA3 /* french_flag_markov */;
+			productType = "com.apple.product-type.tool";
+		};
 		48E57B5B1B98C4F100E630CC /* square */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48E57B611B98C4F100E630CC /* Build configuration list for PBXNativeTarget "square" */;
@@ -264,6 +302,7 @@
 				48E57B5B1B98C4F100E630CC /* square */,
 				4873BC151BA891F9001F2D47 /* french_flag */,
 				4873BC211BA9AA11001F2D47 /* square_markov */,
+				48E1BFCA1BB2EB9B00FA0BA3 /* french_flag_markov */,
 			);
 		};
 /* End PBXProject section */
@@ -282,6 +321,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4873BC2B1BA9AA31001F2D47 /* square_markov.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48E1BFCB1BB2EB9B00FA0BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48E1BFD41BB2EBA600FA0BA3 /* french_flag_markov.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +414,28 @@
 			};
 			name = Release;
 		};
+		48E1BFD11BB2EB9B00FA0BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = french_flag_markov;
+			};
+			name = Debug;
+		};
+		48E1BFD21BB2EB9B00FA0BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = french_flag_markov;
+			};
+			name = Release;
+		};
 		48E57B621B98C4F100E630CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -437,6 +506,15 @@
 			buildConfigurations = (
 				4873BC281BA9AA11001F2D47 /* Debug */,
 				4873BC291BA9AA11001F2D47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48E1BFD01BB2EB9B00FA0BA3 /* Build configuration list for PBXNativeTarget "french_flag_markov" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48E1BFD11BB2EB9B00FA0BA3 /* Debug */,
+				48E1BFD21BB2EB9B00FA0BA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

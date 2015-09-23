@@ -249,7 +249,7 @@ void eval_french_flag(EA& ea) {
                 if (lt == "not") {
                     ++tmp_fit;
                 }
-            } else if ((x > (floor(max_x/3.0)) && x > (2* floor(max_x/3.0)))) {
+            } else if ((x > (floor(max_x/3.0)) && x > ((2* floor(max_x/3.0))-1))) {
                 if (lt == "nand") {
                     ++tmp_fit;
                 }
@@ -286,7 +286,7 @@ struct french_flag : public fitness_function<unary_fitness<double>, nonstationar
                     if (lt == "not") {
                         ++tmp_fit;
                     }
-                } else if ((x > (floor(max_x/3.0)) && x > (2* floor(max_x/3.0)))) {
+                } else if ((x > (floor(max_x/3.0)) && x > ((2* floor(max_x/3.0))-1))) {
                     if (lt == "nand") {
                         ++tmp_fit;
                     }
