@@ -159,17 +159,25 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 if (as[p].output(5)) {
                     
                     if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
-                        as.push_back(N); // Add a new agent.
-                        agent_pos[north] = (as.size() -1); // This agent is at the end...
+                        if (agent_pos[north] == -1){
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[north] = (as.size() -1); // This agent is at the end...
+                        }
                     } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 2))) {  // 01 east
-                        as.push_back(N); // Add a new agent.
-                        agent_pos[east] = (as.size() -1); // This agent is at the end...
+                        if (agent_pos[east] == -1) {
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[east] = (as.size() -1); // This agent is at the end...
+                        }
                     } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_x - 2))) { // 11 south
-                        as.push_back(N); // Add a new agent.
-                        agent_pos[south] = (as.size() -1); // This agent is at the end...
+                        if (agent_pos[south] == -1){
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[south] = (as.size() -1); // This agent is at the end...
+                        }
                     } else if ((as[p].output(2) == 1) && (as[p].output(3)== 0) && (agent_x > 0)) { // 10 west
-                        as.push_back(N); // Add a new agent.
-                        agent_pos[west] = (as.size() -1); // This agent is at the end...
+                        if (agent_pos[west] == -1){
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[west] = (as.size() -1); // This agent is at the end...
+                        }
                     }
                 }
                 
