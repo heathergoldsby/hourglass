@@ -22,6 +22,7 @@
 #include <ea/fitness_function.h>
 #include <ea/cmdline_interface.h>
 #include <ea/datafiles/fitness.h>
+#include "markov_movie.h"
 using namespace ealib;
 using namespace mkv;
 using namespace std;
@@ -215,9 +216,11 @@ public:
     
     
     virtual void gather_tools() {
-//        add_tool<analysis::dominant_genetic_graph>(this);
-//        add_tool<analysis::dominant_causal_graph>(this);
-//        add_tool<analysis::dominant_reduced_graph>(this);
+        add_tool<analysis::dominant_genetic_graph>(this);
+        add_tool<analysis::dominant_causal_graph>(this);
+        add_tool<analysis::dominant_reduced_graph>(this);
+        
+        add_tool<ealib::analysis::movie_markov>(this);
     }
     
     virtual void gather_events(EA& ea) {

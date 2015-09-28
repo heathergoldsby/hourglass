@@ -22,6 +22,7 @@
 #include <ea/fitness_function.h>
 #include <ea/cmdline_interface.h>
 #include <ea/datafiles/fitness.h>
+#include "markov_movie.h"
 using namespace ealib;
 using namespace mkv;
 using namespace std;
@@ -58,15 +59,6 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         for (int i=0; i<grid_size; ++i) {
             exec_order[i] = i;
         }
-        
-        
-        /* For right now, there isn't a growth process -- just a FULL grid
-        for(int i=0;i<grid_size;i++) {
-            agent_pos[i] = i;
-            // probably want to reset the RNG for the markov network:
-            as[i].reset(rng.seed());
-        }
-         */
         
         
         // World update... this is where growth may occur.
@@ -110,8 +102,6 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 // x and y coord.
                 (as[p]).input(0) = 1;
                 (as[p]).input(1) = 1;
-
-                // copy...
                 
                 
                 
@@ -250,6 +240,9 @@ public:
         add_tool<analysis::dominant_genetic_graph>(this);
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
+        
+        add_tool<ealib::analysis::movie_markov_growth>(this);
+
     }
     
     virtual void gather_events(EA& ea) {

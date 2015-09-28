@@ -14,6 +14,7 @@
 namespace ealib {
     namespace analysis {
         
+        
         /* Run through each multicell... 
          - reset it
          - run for competition period
