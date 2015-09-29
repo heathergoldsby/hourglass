@@ -217,7 +217,7 @@ namespace ealib {
             // (5) reproduce
             
             // for this grid, 0,0 is upper left.
-            for(int t=0;t<25;t++){
+            for(int t=0;t<100;t++){
                 
                 // Must randomize agent execution order...
                 std::random_shuffle ( exec_order.begin(), exec_order.end() );
