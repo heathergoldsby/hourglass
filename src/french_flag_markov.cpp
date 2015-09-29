@@ -191,16 +191,21 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                     continue;
                 }
                 
-                if ((x < (floor(max_x) / 3 )) && (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1))){
+                if (x < (floor(max_x) / 3 )) {
+                    if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                     // blue 10
                     ++f;
-                } else if (((x > (floor(max_x) / 3))  && ((x < floor(max_x) / 3 * 2)-1))  &&
-                           (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0))){
+                    }
+                } else if ((x > (floor(max_x) / 3))  && (x < ((floor(max_x) / 3 * 2)-1))) {
+                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     // white 11
                     ++f;
-                } else if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
+                    }
+                } else if (x > ((floor(max_x) / 3 * 2)-1)) {
+                    if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
                     // red 01
                     ++f;
+                    }
                 }
             }
         }
