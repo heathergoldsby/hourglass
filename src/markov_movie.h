@@ -155,16 +155,17 @@ namespace ealib {
         
         
         LIBEA_ANALYSIS_TOOL(movie_markov_growth) {
-            double max_fit;
+            double max_fit = 0;
             typename EA::individual_type best;
             
             // recalc all fitness values
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
                 
                 recalculate_fitness(*i, ea);
-                double tmp_fit = static_cast<double>(ealib::fitness(*i,ea));
+                double tmp_fit = static_cast<int>(ealib::fitness(*i,ea));
                 if (tmp_fit > max_fit) {
                     best = *i;
+                    max_fit = tmp_fit;
                 }
             }
             
@@ -317,6 +318,7 @@ namespace ealib {
                 } // exec order
                 
                 
+                df.write(t);
                 // output time point for movie...
                 for (int x=0; x < max_x; ++x) {
                     for (int y=0; y < max_y; ++y) {
@@ -328,6 +330,8 @@ namespace ealib {
                             continue;
                         }
                         
+                        int o_zero = as[p].output(0);
+                        int o_one = as[p].output(1);
                         
                         if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)) {
                             df.write("0");

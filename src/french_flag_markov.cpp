@@ -78,7 +78,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         // (5) reproduce
         
         // for this grid, 0,0 is upper left.
-        for(int t=0;t<25;t++){
+        for(int t=0;t<100;t++){
             
             // Must randomize agent execution order...
             std::random_shuffle ( exec_order.begin(), exec_order.end() );
@@ -191,14 +191,14 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                     continue;
                 }
                 
-                if ((x < (floor(max_x) / 3 )) && (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0))){
+                if ((x < (floor(max_x) / 3 )) && (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1))){
                     // blue 10
                     ++f;
                 } else if (((x > (floor(max_x) / 3))  && ((x < floor(max_x) / 3 * 2)-1))  &&
-                           (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1))){
+                           (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0))){
                     // white 11
                     ++f;
-                } else if ((((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) ) {
+                } else if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
                     // red 01
                     ++f;
                 }
