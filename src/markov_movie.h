@@ -8,6 +8,7 @@
 #include <ea/datafile.h>
 #include <ea/line_of_descent.h>
 #include <ea/analysis.h>
+#include "hourglass.h"
 using namespace std;
 
 namespace ealib {
@@ -27,8 +28,8 @@ namespace ealib {
                 }
             }
 
-            int max_x = 6; // change to config params later...
-            int max_y = 6;
+            int max_x = get<X_SIZE>(ea,10);
+            int max_y = get<Y_SIZE>(ea,10);
             int grid_size = max_x * max_y;
             
             // Must create a WHOLE bunch of markov networks here...
@@ -46,6 +47,11 @@ namespace ealib {
             for (int i=0; i<grid_size; ++i) {
                 exec_order[i] = i;
             }
+            
+            datafile df("movie.dat");
+            df.write(max_x);
+            df.write(max_y);
+            df.endl();
             
             
             /* For right now, there isn't a growth process -- just a FULL grid */
@@ -74,7 +80,9 @@ namespace ealib {
             // (5) reproduce
             
             // for this grid, 0,0 is upper left.
-            for(int t=0;t<25;t++){
+            int world_updates = get<WORLD_UPDATES>(ea,10);
+            int brain_updates = get<BRAIN_UPDATES>(ea,10);
+            for(int t=0;t<world_updates;t++){
                 
                 // Must randomize agent execution order...
                 std::random_shuffle ( exec_order.begin(), exec_order.end() );
@@ -136,8 +144,8 @@ namespace ealib {
                         as[p].input(10) = 1;
                     }
                     
-                    // update 4 times.
-                    for (int i = 0; i<5; ++i) {
+                    // update brain_updates times.
+                    for (int i = 0; i<brain_updates; ++i) {
                         if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
                             (as[p]).input(0) = 1;
                         }
@@ -148,7 +156,39 @@ namespace ealib {
                         
                         (as[p]).update();
                     }
+                    
+                    
                 }
+                
+                df.write(t);
+                // output time point for movie...
+                for (int x=0; x < max_x; ++x) {
+                    for (int y=0; y < max_y; ++y) {
+                        int xy = y * max_x + x; // the agent position...
+                        int p = agent_pos[xy];
+                        
+                        if (p == -1) {
+                            df.write("-1");
+                            continue;
+                        }
+                        
+                        int o_zero = as[p].output(0);
+                        int o_one = as[p].output(1);
+                        
+                        if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)) {
+                            df.write("0");
+                        } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
+                            df.write("1");
+                        } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)) {
+                            df.write("2");
+                        } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) {
+                            df.write("3");
+                        }
+                        
+                    }
+                }
+                df.endl();
+
             
         }
         }
@@ -170,8 +210,8 @@ namespace ealib {
             }
             
             // For the best create a movie...
-            int max_x = 6; // change to config params later...
-            int max_y = 6;
+            int max_x = get<X_SIZE>(ea,10);
+            int max_y = get<Y_SIZE>(ea,10);
             int grid_size = max_x * max_y;
             vector<int> agent_pos (grid_size, -1);
             vector<int> exec_order (grid_size);
@@ -217,7 +257,9 @@ namespace ealib {
             // (5) reproduce
             
             // for this grid, 0,0 is upper left.
-            for(int t=0;t<100;t++){
+            int world_updates = get<WORLD_UPDATES>(ea,10);
+            int brain_updates = get<BRAIN_UPDATES>(ea,10);
+            for(int t=0;t<world_updates;t++){
                 
                 // Must randomize agent execution order...
                 std::random_shuffle ( exec_order.begin(), exec_order.end() );
@@ -310,8 +352,16 @@ namespace ealib {
                         }
                     }
                     
-                    // update 4 times.
-                    for (int i = 0; i<4; ++i) {
+                    // update brain_updates times.
+                    for (int i = 0; i<brain_updates; ++i) {
+                        if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
+                            (as[p]).input(0) = 1;
+                        }
+                        
+                        if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
+                            (as[p]).input(1) = 1;
+                        }
+                        
                         (as[p]).update();
                     }
                     

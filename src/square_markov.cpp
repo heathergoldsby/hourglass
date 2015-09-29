@@ -23,6 +23,7 @@
 #include <ea/cmdline_interface.h>
 #include <ea/datafiles/fitness.h>
 #include "markov_movie.h"
+#include "hourglass.h"
 using namespace ealib;
 using namespace mkv;
 using namespace std;
@@ -34,8 +35,8 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
     template <typename Individual, typename RNG, typename EA>
     double operator()(Individual& ind, RNG& rng, EA& ea) {
         
-        int max_x = 6; // change to config params later...
-        int max_y = 6;
+        int max_x = get<X_SIZE>(ea,10); 
+        int max_y = get<Y_SIZE>(ea,10);
         int grid_size = max_x * max_y;
         
         // Must create a WHOLE bunch of markov networks here...
@@ -81,7 +82,9 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         // (5) reproduce
         
         // for this grid, 0,0 is upper left.
-        for(int t=0;t<25;t++){
+        int world_updates = get<WORLD_UPDATES>(ea,10);
+        int brain_updates = get<BRAIN_UPDATES>(ea,10);
+        for(int t=0;t<world_updates;t++){
             
             // Must randomize agent execution order...
             std::random_shuffle ( exec_order.begin(), exec_order.end() );
@@ -143,8 +146,8 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     as[p].input(10) = 1;
                 }
 
-                // update 4 times.
-                for (int i = 0; i<5; ++i) {
+                // update brain_updates times.
+                for (int i = 0; i<brain_updates; ++i) {
                     if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
                         (as[p]).input(0) = 1;
                     }
@@ -212,6 +215,12 @@ public:
         add_option<RUN_EPOCHS>(this);
         add_option<RNG_SEED>(this);
         add_option<RECORDING_PERIOD>(this);
+        add_option<X_SIZE>(this);
+        add_option<Y_SIZE>(this);
+        add_option<BRAIN_UPDATES>(this);
+        add_option<WORLD_UPDATES>(this);
+        
+        
     }
     
     
