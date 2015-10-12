@@ -178,10 +178,14 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 for (int i = 0; i<brain_updates; ++i) {
                     if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
                         (as[p]).input(0) = 1;
+                    } else {
+                        (as[p]).input(0) = 0;
                     }
                     
                     if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
                         (as[p]).input(1) = 1;
+                    } else {
+                        (as[p]).input(1) = 0;
                     }
                     
                     (as[p]).update();
@@ -225,7 +229,13 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         
         // and return some measure of fitness:
         // ponder gamma transform
-        return f;
+        
+        double fit_max = grid_size;
+        double fit_min = 0;
+        
+        double rescaled_fit = pow(((f-fit_min) / (fit_max - fit_min)), (get<FIT_GAMMA>(ea)));
+        
+        return rescaled_fit;
     }
 };
 
@@ -255,6 +265,8 @@ public:
         add_option<Y_SIZE>(this);
         add_option<BRAIN_UPDATES>(this);
         add_option<WORLD_UPDATES>(this);
+        add_option<FIT_GAMMA>(this);
+
     }
     
     
