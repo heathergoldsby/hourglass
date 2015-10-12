@@ -233,7 +233,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         double fit_max = grid_size;
         double fit_min = 0;
         
-        double rescaled_fit = pow(((f-fit_min) / (fit_max - fit_min)), (get<FIT_GAMMA>(ea)));
+        double rescaled_fit = pow((100*((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea)));
         
         return rescaled_fit;
     }
