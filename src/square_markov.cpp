@@ -198,7 +198,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         double fit_max = grid_size;
         double fit_min = 0;
         
-        double rescaled_fit = pow((100*((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea)));
+        double rescaled_fit = 100*pow((((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea))) + 1;
 
         
         
