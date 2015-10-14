@@ -82,6 +82,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         // (5) reproduce
         
         // for this grid, 0,0 is upper left.
+        // for this grid, 0,0 is upper left.
         int world_updates = get<WORLD_UPDATES>(ea,10);
         int brain_updates = get<BRAIN_UPDATES>(ea,10);
         for(int t=0;t<world_updates;t++){
@@ -97,55 +98,86 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 int p = agent_pos[exec_order[j]];
                 
                 // no agent exists
-                if (xy == -1) {
+                if (p == -1) {
                     continue;
                 }
                 
                 // set the input states...
                 int agent_x = floor(xy / max_x);
                 int agent_y = xy % max_x;
-
+                
+                // x and y coord.
+                (as[p]).input(0) = 1;
+                (as[p]).input(1) = 1;
+                
+                
                 
                 // north neighbor
                 int north = (agent_y - 1) * max_x + agent_x;
-            
                 if (agent_y > 0) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[north]];
-                    (as[p]).input(2) = neighbor.output(0);
-                    (as[p]).input(3) = neighbor.output(1);
+                    if (agent_pos[north] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[north]];
+                        (as[p]).input(2) = neighbor.output(0);
+                        (as[p]).input(3) = neighbor.output(1);
+                    }
                 }
-                
                 
                 // east neighbor
                 int east = agent_y * max_x + agent_x + 1;
                 if (agent_x < (max_x - 2)) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[east]];
-                    (as[p]).input(4) = neighbor.output(0);
-                    (as[p]).input(5) = neighbor.output(1);
+                    if (agent_pos[east] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[east]];
+                        (as[p]).input(4) = neighbor.output(0);
+                        (as[p]).input(5) = neighbor.output(1);
+                    }
                 }
                 
                 // south neighbor
                 int south = (agent_y + 1) * max_x + agent_x;
                 if (agent_y < (max_x - 2)) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[south]];
-                    (as[p]).input(6) = neighbor.output(0);
-                    (as[p]).input(7) = neighbor.output(1);
+                    if (agent_pos[south] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[south]];
+                        (as[p]).input(6) = neighbor.output(0);
+                        (as[p]).input(7) = neighbor.output(1);
+                    }
                 }
                 
                 // west neighbor
                 int west = agent_y * max_x + agent_x - 1;
                 if (agent_x > 0) {
-                    typename EA::phenotype_type& neighbor = as[agent_pos[west]];
-                    (as[p]).input(8) = neighbor.output(0);
-                    (as[p]).input(9) = neighbor.output(1);
-
+                    if (agent_pos[west] != -1) {
+                        typename EA::phenotype_type& neighbor = as[agent_pos[west]];
+                        (as[p]).input(8) = neighbor.output(0);
+                        (as[p]).input(9) = neighbor.output(1);
+                    }
                 }
                 
-                // edge detection.
-                if ((agent_x == 0) || (agent_y == 0) || (agent_x = (max_x-1)) || (agent_y == (max_y-1))) {
-                    as[p].input(10) = 1;
+                // reproduce
+                if (as[p].output(5)) {
+                    
+                    if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
+                        if (agent_pos[north] == -1){
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[north] = (as.size() -1); // This agent is at the end...
+                        }
+                    } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 2))) {  // 01 east
+                        if (agent_pos[east] == -1) {
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[east] = (as.size() -1); // This agent is at the end...
+                        }
+                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 2))) { // 11 south
+                        if (agent_pos[south] == -1){
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[south] = (as.size() -1); // This agent is at the end...
+                        }
+                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 0) && (agent_x > 0)) { // 10 west
+                        if (agent_pos[west] == -1){
+                            as.push_back(N); // Add a new agent.
+                            agent_pos[west] = (as.size() -1); // This agent is at the end...
+                        }
+                    }
                 }
-
+                
                 // update brain_updates times.
                 for (int i = 0; i<brain_updates; ++i) {
                     if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
@@ -162,10 +194,15 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     
                     (as[p]).update();
                 }
-
+                
+                
             }
+            
         }
         
+        double f1 = 1.0;
+        double f2 = 1.0;
+        double f3 = 1.0;
         
         // Compute fitness.
         for (int x=0; x < max_x; ++x) {
@@ -179,14 +216,14 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 
                 if (x == 0 || x == (max_x-1) || y == 0 || y == (max_y-1)) {
                     if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-                        ++f;
+                        ++f1;
                     }
                 } else if (x == 1 || x == (max_x-2) || y == 1 || y == (max_y-2)) {
                     if  (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) {
-                        ++f;
+                        ++f2;
                     }
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
-                    ++f;
+                    ++f3;
                 }
 
             }
@@ -195,14 +232,16 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         
         // and return some measure of fitness:
         // ponder gamma transform
-        double fit_max = grid_size;
-        double fit_min = 0;
+//        double fit_max = grid_size;
+//        double fit_min = 0;
         
-        double rescaled_fit = 100*pow((((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea))) + 1;
+//        double rescaled_fit = 100*pow((((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea))) + 1;
+        
+        f = f1 * f2 * f3;
 
         
         
-        return rescaled_fit;
+        return f;
     }
 };
 

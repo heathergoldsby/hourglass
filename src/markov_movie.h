@@ -339,7 +339,7 @@ namespace ealib {
                                 as.push_back(N); // Add a new agent.
                                 agent_pos[east] = (as.size() -1); // This agent is at the end...
                             }
-                        } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_x - 2))) { // 11 south
+                        } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 2))) { // 11 south
                             if (agent_pos[south] == -1){
                                 as.push_back(N); // Add a new agent.
                                 agent_pos[south] = (as.size() -1); // This agent is at the end...
