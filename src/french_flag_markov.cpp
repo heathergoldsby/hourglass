@@ -161,7 +161,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                             as.push_back(N); // Add a new agent.
                             agent_pos[east] = (as.size() -1); // This agent is at the end...
                         }
-                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_x - 2))) { // 11 south
+                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 2))) { // 11 south
                         if (agent_pos[south] == -1){
                             as.push_back(N); // Add a new agent.
                             agent_pos[south] = (as.size() -1); // This agent is at the end...
@@ -196,7 +196,9 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
             
         }
         
-        
+        double f1 = 1.0;
+        double f2 = 1.0;
+        double f3 = 1.0;
         // Compute fitness.
         for (int x=0; x < max_x; ++x) {
             for (int y=0; y < max_y; ++y) {
@@ -210,17 +212,17 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 if (x < (floor(max_x) / 3 )) {
                     if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                     // blue 10
-                    ++f;
+                    ++f1;
                     }
                 } else if ((x > (floor(max_x) / 3))  && (x < ((floor(max_x) / 3 * 2)-1))) {
                     if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     // white 11
-                    ++f;
+                    ++f2;
                     }
                 } else if (x > ((floor(max_x) / 3 * 2)-1)) {
                     if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
                     // red 01
-                    ++f;
+                    ++f3;
                     }
                 }
             }
@@ -230,12 +232,14 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         // and return some measure of fitness:
         // ponder gamma transform
         
-        double fit_max = grid_size;
-        double fit_min = 0;
+//        double fit_max = grid_size;
+//        double fit_min = 0;
         
-        double rescaled_fit = 100*pow((((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea))) + 1;
+//        double rescaled_fit = 100*pow((((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea))) + 1;
         
-        return rescaled_fit;
+//        return rescaled_fit;
+        f = f1 * f2 * f3;
+        return f; 
     }
 };
 
