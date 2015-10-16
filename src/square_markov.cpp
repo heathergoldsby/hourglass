@@ -160,12 +160,12 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                             as.push_back(N); // Add a new agent.
                             agent_pos[north] = (as.size() -1); // This agent is at the end...
                         }
-                    } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 2))) {  // 01 east
+                    } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 1))) {  // 01 east
                         if (agent_pos[east] == -1) {
                             as.push_back(N); // Add a new agent.
                             agent_pos[east] = (as.size() -1); // This agent is at the end...
                         }
-                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 2))) { // 11 south
+                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 1))) { // 11 south
                         if (agent_pos[south] == -1){
                             as.push_back(N); // Add a new agent.
                             agent_pos[south] = (as.size() -1); // This agent is at the end...
