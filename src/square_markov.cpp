@@ -214,6 +214,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     continue;
                 }
                 
+                // wrong ff... maybe? strange nested issues...
                 if (x == 0 || x == (max_x-1) || y == 0 || y == (max_y-1)) {
                     if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                         ++f1;
@@ -281,7 +282,7 @@ public:
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
         
-        add_tool<ealib::analysis::movie_markov>(this);
+        add_tool<ealib::analysis::movie_markov_growth>(this);
     }
     
     virtual void gather_events(EA& ea) {
