@@ -204,21 +204,24 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         double f3 = 1.0;
         
         // Compute fitness.
-        for (int x=0; x < max_x; ++x) {
-            for (int y=0; y < max_y; ++y) {
-                int xy = y * max_x + x; // the agent position...
-                int p = agent_pos[xy];
+        for (int xy = 0; xy<grid_size; xy++) {
             
-                if (p == -1) {
-                    continue;
-                }
-                
+            // set the input states...
+            int agent_x = floor(xy / max_x);
+            int agent_y = xy % max_x;
+            
+            int p = agent_pos[xy];
+            
+            if (p == -1) {
+                continue;
+            }
+            
                 // wrong ff... maybe? strange nested issues...
-                if (x == 0 || x == (max_x-1) || y == 0 || y == (max_y-1)) {
+                if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
                     if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                         ++f1;
                     }
-                } else if (x == 1 || x == (max_x-2) || y == 1 || y == (max_y-2)) {
+                } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
                     if  (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) {
                         ++f2;
                     }
@@ -226,7 +229,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     ++f3;
                 }
 
-            }
+            
         }
 
         
