@@ -35,45 +35,45 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
     template <typename Individual, typename RNG, typename EA>
     double operator()(Individual& ind, RNG& rng, EA& ea) {
         
-        int max_x = get<X_SIZE>(ea,10); 
+        int max_x = get<X_SIZE>(ea,10);
         int max_y = get<Y_SIZE>(ea,10);
         int grid_size = max_x * max_y;
-        
-        // Must create a WHOLE bunch of markov networks here...
-        
-        // get the "prototype" phenotype (markov network):
-        typename EA::phenotype_type &N = ealib::phenotype(ind, ea);
-        
-        // and make a few copies:
-        vector<typename EA::phenotype_type> as(grid_size, N); // my agents or networks
-        
         vector<int> agent_pos (grid_size, -1);
         vector<int> exec_order (grid_size);
         double f=0.0;
         
+                
+        // get the "prototype" phenotype (markov network):
+        typename EA::phenotype_type &N = ealib::phenotype(ind, ea);
+        
+        // start with one agent...
+        vector<typename EA::phenotype_type> as; //
+        as.push_back(N); //grid_size, N); // my agents or networks
+        agent_pos[0] = 0;
+        as[0].reset(rng.seed());
+        
+        
+        
+        
         for (int i=0; i<grid_size; ++i) {
             exec_order[i] = i;
         }
-        
-        
-        /* For right now, there isn't a growth process -- just a FULL grid */
-        for(int i=0;i<grid_size;i++) {
-            agent_pos[i] = i;
-            // probably want to reset the RNG for the markov network:
-            as[i].reset(rng.seed());
-        }
-        
+
         
         // World update... this is where growth may occur.
         // Run agents for X updates
         
 
         
-        // Inputs: (0) x, (1) y,
-        // (2) north color, (3) north color,
-        // (4) east color, (5) east color,
-        // (6) south color, (7) south color,
-        // (8) west color, (9) west color
+        // Inputs:
+        // (0) north color, (1) north color,
+        // (2) east color, (3) east color,
+        // (4) south color, (5) south color,
+        // (6) west color, (7) west color
+        
+        // (8) and (9) x
+        // (10) and (11) y
+        
         
         // Outputs:
         // (0) color, (1) color
@@ -105,11 +105,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 // set the input states...
                 int agent_x = floor(xy / max_x);
                 int agent_y = xy % max_x;
-                
-                // x and y coord.
-                (as[p]).input(0) = 1;
-                (as[p]).input(1) = 1;
-                
+            
                 
                 
                 // north neighbor
@@ -117,8 +113,8 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 if (agent_y > 0) {
                     if (agent_pos[north] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[north]];
-                        (as[p]).input(2) = neighbor.output(0);
-                        (as[p]).input(3) = neighbor.output(1);
+                        (as[p]).input(0) = neighbor.output(0);
+                        (as[p]).input(1) = neighbor.output(1);
                     }
                 }
                 
@@ -127,8 +123,8 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 if (agent_x < (max_x - 2)) {
                     if (agent_pos[east] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[east]];
-                        (as[p]).input(4) = neighbor.output(0);
-                        (as[p]).input(5) = neighbor.output(1);
+                        (as[p]).input(2) = neighbor.output(0);
+                        (as[p]).input(3) = neighbor.output(1);
                     }
                 }
                 
@@ -137,8 +133,8 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 if (agent_y < (max_x - 2)) {
                     if (agent_pos[south] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[south]];
-                        (as[p]).input(6) = neighbor.output(0);
-                        (as[p]).input(7) = neighbor.output(1);
+                        (as[p]).input(4) = neighbor.output(0);
+                        (as[p]).input(5) = neighbor.output(1);
                     }
                 }
                 
@@ -147,13 +143,16 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 if (agent_x > 0) {
                     if (agent_pos[west] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[west]];
-                        (as[p]).input(8) = neighbor.output(0);
-                        (as[p]).input(9) = neighbor.output(1);
+                        (as[p]).input(6) = neighbor.output(0);
+                        (as[p]).input(7) = neighbor.output(1);
                     }
                 }
                 
                 // reproduce
                 if (as[p].output(5)) {
+                    
+                    int d1 = as[p].output(2);
+                    int d2 = as[p].output(3);
                     
                     if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
                         if (agent_pos[north] == -1){
@@ -181,15 +180,15 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 // update brain_updates times.
                 for (int i = 0; i<brain_updates; ++i) {
                     if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
-                        (as[p]).input(0) = 1;
+                        (as[p]).input(8) = 1;
                     } else {
-                        (as[p]).input(0) = 0;
+                        (as[p]).input(8) = 0;
                     }
                     
                     if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
-                        (as[p]).input(1) = 1;
+                        (as[p]).input(10) = 1;
                     } else {
-                        (as[p]).input(1) = 0;
+                        (as[p]).input(10) = 0;
                     }
                     
                     (as[p]).update();

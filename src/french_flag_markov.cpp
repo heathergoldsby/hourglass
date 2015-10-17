@@ -42,9 +42,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         vector<int> exec_order (grid_size);
         double f=0.0;
         
-        
-        // Must create a WHOLE bunch of markov networks here...
-        
+                
         // get the "prototype" phenotype (markov network):
         typename EA::phenotype_type &N = ealib::phenotype(ind, ea);
         
@@ -66,11 +64,15 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         // Run agents for X updates
         
         
-        // Inputs: (0) x, (1) y, // currently 1,1... they may not need them?
-        // (2) north color, (3) north color,
-        // (4) east color, (5) east color,
-        // (6) south color, (7) south color,
-        // (8) west color, (9) west color
+        // Inputs:
+        // (0) north color, (1) north color,
+        // (2) east color, (3) east color,
+        // (4) south color, (5) south color,
+        // (6) west color, (7) west color
+        
+        // (8) and (9) x
+        // (10) and (11) y
+        
         
         // Outputs:
         // (0) color, (1) color
@@ -78,6 +80,7 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
         // (4) move
         // (5) reproduce
         
+        // for this grid, 0,0 is upper left.
         // for this grid, 0,0 is upper left.
         int world_updates = get<WORLD_UPDATES>(ea,10);
         int brain_updates = get<BRAIN_UPDATES>(ea,10);
@@ -98,13 +101,13 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                     continue;
                 }
                 
+                if (xy == 63) {
+                    int z = 12;
+                }
+                
                 // set the input states...
                 int agent_x = floor(xy / max_x);
                 int agent_y = xy % max_x;
-                
-                // x and y coord.
-                (as[p]).input(0) = 1;
-                (as[p]).input(1) = 1;
                 
                 
                 
@@ -113,8 +116,8 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 if (agent_y > 0) {
                     if (agent_pos[north] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[north]];
-                        (as[p]).input(2) = neighbor.output(0);
-                        (as[p]).input(3) = neighbor.output(1);
+                        (as[p]).input(0) = neighbor.output(0);
+                        (as[p]).input(1) = neighbor.output(1);
                     }
                 }
                 
@@ -123,8 +126,8 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 if (agent_x < (max_x - 2)) {
                     if (agent_pos[east] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[east]];
-                        (as[p]).input(4) = neighbor.output(0);
-                        (as[p]).input(5) = neighbor.output(1);
+                        (as[p]).input(2) = neighbor.output(0);
+                        (as[p]).input(3) = neighbor.output(1);
                     }
                 }
                 
@@ -133,8 +136,8 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 if (agent_y < (max_x - 2)) {
                     if (agent_pos[south] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[south]];
-                        (as[p]).input(6) = neighbor.output(0);
-                        (as[p]).input(7) = neighbor.output(1);
+                        (as[p]).input(4) = neighbor.output(0);
+                        (as[p]).input(5) = neighbor.output(1);
                     }
                 }
                 
@@ -143,8 +146,8 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 if (agent_x > 0) {
                     if (agent_pos[west] != -1) {
                         typename EA::phenotype_type& neighbor = as[agent_pos[west]];
-                        (as[p]).input(8) = neighbor.output(0);
-                        (as[p]).input(9) = neighbor.output(1);
+                        (as[p]).input(6) = neighbor.output(0);
+                        (as[p]).input(7) = neighbor.output(1);
                     }
                 }
                 
@@ -177,56 +180,96 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 // update brain_updates times.
                 for (int i = 0; i<brain_updates; ++i) {
                     if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
-                        (as[p]).input(0) = 1;
+                        (as[p]).input(8) = 1;
                     } else {
-                        (as[p]).input(0) = 0;
+                        (as[p]).input(8) = 0;
                     }
                     
                     if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
-                        (as[p]).input(1) = 1;
+                        (as[p]).input(10) = 1;
                     } else {
-                        (as[p]).input(1) = 0;
+                        (as[p]).input(10) = 0;
                     }
                     
                     (as[p]).update();
                 }
-
+                
                 
             }
             
         }
+
         
         double f1 = 1.0;
         double f2 = 1.0;
         double f3 = 1.0;
         // Compute fitness.
-        for (int x=0; x < max_x; ++x) {
-            for (int y=0; y < max_y; ++y) {
-                int xy = y * max_x + x; // the agent position...
-                int p = agent_pos[xy];
-                
-                if (p == -1) {
-                    continue;
-                }
-                
-                if (x < (floor(max_x) / 3 )) {
-                    if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+        for (int xy = 0; xy<grid_size; xy++) {
+            
+            // set the input states...
+            int agent_x = floor(xy / max_x);
+            int agent_y = xy % max_x;
+            
+            int p = agent_pos[xy];
+            
+            if (p == -1) {
+                continue;
+            }
+            
+            if (agent_x < (floor(max_x) / 3 )) {
+                if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                     // blue 10
                     ++f1;
-                    }
-                } else if ((x > (floor(max_x) / 3))  && (x < ((floor(max_x) / 3 * 2)-1))) {
-                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                }
+            } else if ((agent_x >= (floor(max_x) / 3))  && (agent_x < ((floor(max_x) / 3 * 2)))) {
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     // white 11
                     ++f2;
-                    }
-                } else if (x > ((floor(max_x) / 3 * 2)-1)) {
-                    if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
+                }
+            } else if (agent_x >= ((floor(max_x) / 3 * 2))) {
+                if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
                     // red 01
                     ++f3;
-                    }
                 }
             }
-        }
+        
+    }
+
+//    
+//    
+//    
+//
+//        for (int x=0; x < max_x; ++x) {
+//            for (int y=0; y < max_y; ++y) {
+//                int xy = y * max_x + x; // the agent position...
+//                int p = agent_pos[xy];
+//                
+//                
+//                if (xy == 63) {
+//                    int z = 0;
+//                }
+//                if (p == -1) {
+//                    continue;
+//                }
+//                
+//                if (x < (floor(max_x) / 3 )) {
+//                    if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+//                    // blue 10
+//                    ++f1;
+//                    }
+//                } else if ((x >= (floor(max_x) / 3))  && (x < ((floor(max_x) / 3 * 2)))) {
+//                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+//                    // white 11
+//                    ++f2;
+//                    }
+//                } else if (x >= ((floor(max_x) / 3 * 2))) {
+//                    if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
+//                    // red 01
+//                    ++f3;
+//                    }
+//                }
+//            }
+//        }
         
         
         // and return some measure of fitness:
