@@ -379,6 +379,7 @@ namespace ealib {
                     int p = agent_pos[xy];
                     
                     if (p == -1) {
+                        df.write("-1");
                         continue;
                     }
                         
