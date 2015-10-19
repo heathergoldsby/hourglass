@@ -148,6 +148,23 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     }
                 }
                 
+                
+                // Give them the solution... check that it works
+                
+                // For a minute, give them the solution...
+                if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
+                    as[p].input(8) = 1;
+                    as[p].input(9) = 0;
+                } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
+                    as[p].input(8) = 1;
+                    as[p].input(9) = 1;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
+                    as[p].input(8) = 0;
+                    as[p].input(9) = 1;
+                }
+                
+
+                
                 // reproduce
                 if (as[p].output(5)) {
                     
@@ -177,19 +194,20 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     }
                 }
                 
+                
                 // update brain_updates times.
                 for (int i = 0; i<brain_updates; ++i) {
-                    if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
-                        (as[p]).input(8) = 1;
-                    } else {
-                        (as[p]).input(8) = 0;
-                    }
-                    
-                    if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
-                        (as[p]).input(10) = 1;
-                    } else {
-                        (as[p]).input(10) = 0;
-                    }
+//                    if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
+//                        (as[p]).input(8) = 1;
+//                    } else {
+//                        (as[p]).input(8) = 0;
+//                    }
+//                    
+//                    if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
+//                        (as[p]).input(10) = 1;
+//                    } else {
+//                        (as[p]).input(10) = 0;
+//                    }
                     
                     (as[p]).update();
                 }
@@ -216,18 +234,18 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 continue;
             }
             
-                // wrong ff... maybe? strange nested issues...
-                if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
-                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-                        ++f1;
-                    }
-                } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
-                    if  (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) {
-                        ++f2;
-                    }
-                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
-                    ++f3;
+            // wrong ff... maybe? strange nested issues...
+            if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f1;
                 }
+            } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
+                if  (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) {
+                    ++f2;
+                }
+            } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
+                ++f3;
+            }
 
             
         }
