@@ -163,6 +163,12 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                     as[p].input(9) = 1;
                 }
                 
+                // origin
+                if (agent_x == 0 and agent_y == 0) {
+                    as[p].input(12) = 1;
+                } else {
+                    as[p].input(12) = 0;
+                }
 
                 
                 // reproduce
@@ -302,7 +308,7 @@ public:
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
         
-        add_tool<ealib::analysis::movie_markov_growth>(this);
+        add_tool<ealib::analysis::movie_markov_square_growth>(this);
     }
     
     virtual void gather_events(EA& ea) {
