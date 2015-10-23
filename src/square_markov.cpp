@@ -82,8 +82,10 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         // (4) south color, (5) south color,
         // (6) west color, (7) west color
         // (8) origin
+        // (9) edge
         
-        // (9 - ??)  x and y
+        
+        // (10 - ??)  x and y
         
         
         // Outputs:
@@ -174,18 +176,7 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
 //                    as[p].input(9) = 1;
 //                }
                 
-                // Give them their coordinates...
-                
-                vector<bool> xcoor(9);
-                vector<bool> ycoor(9);
-                
-                ealib::algorithm::int2range(agent_x, xcoor.begin());
-                ealib::algorithm::int2range(agent_y, ycoor.begin());
-                
-                
-                
-                
-                
+
                 
                 // origin
                 if (agent_x == 0 and agent_y == 0) {
@@ -193,7 +184,30 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 } else {
                     as[p].input(8) = 0;
                 }
-
+                
+                
+                // edge
+                if ((agent_x == 0) or (agent_y == 0) or (agent_x == (max_x -1)) or (agent_y == (max_y -1))) {
+                    as[p].input(9) = 1;
+                } else {
+                    as[p].input(9) = 0;
+                }
+                
+                // Give them their coordinates...
+                
+                int bsize = 10;
+                vector<bool> xcoor(bsize);
+                vector<bool> ycoor(bsize);
+                
+                ealib::algorithm::int2range(agent_x, xcoor.begin());
+                ealib::algorithm::int2range(agent_y, ycoor.begin());
+                
+                int cur_input = 10;
+                for (int i = 0; i < bsize; ++i) {
+                    as[p].input(cur_input) = xcoor[i];
+                    as[p].input(cur_input + bsize) = ycoor[i];
+                    ++cur_input;
+                }
                 
                 // reproduce
                 if (as[p].output(5)) {
@@ -313,8 +327,6 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         fx = f1_11 * f2_10 * f3_01;
         fs(fx);
         
-        //f = f1 * f2 * f3;
-
         f = boost::accumulators::max(fs);
         
         return f;
