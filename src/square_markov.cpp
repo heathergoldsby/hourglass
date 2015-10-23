@@ -17,21 +17,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include <boost/accumulators/accumulators.hpp>
+#include <boost/accumulators/statistics/stats.hpp>
+#include <boost/accumulators/statistics/mean.hpp>
+#include <boost/accumulators/statistics/max.hpp>
+
 #include <ea/mkv/markov_network_evolution.h>
 #include <ea/generational_models/moran_process.h>
 #include <ea/fitness_function.h>
 #include <ea/cmdline_interface.h>
 #include <ea/datafiles/fitness.h>
+#include <ea/algorithm.h>
 #include "markov_movie.h"
 #include "hourglass.h"
 using namespace ealib;
 using namespace mkv;
 using namespace std;
+using namespace boost::accumulators;
+
 
 
 /*! Sample fitness function for Markov networks.
  */
 struct square_fitness : fitness_function<unary_fitness<double>, constantS, stochasticS> {
+    
+
     template <typename Individual, typename RNG, typename EA>
     double operator()(Individual& ind, RNG& rng, EA& ea) {
         
@@ -70,9 +81,9 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         // (2) east color, (3) east color,
         // (4) south color, (5) south color,
         // (6) west color, (7) west color
+        // (8) origin
         
-        // (8) and (9) x
-        // (10) and (11) y
+        // (9 - ??)  x and y
         
         
         // Outputs:
@@ -149,25 +160,38 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 }
                 
                 
-                // Give them the solution... check that it works
+//                // Give them the solution... check that it works
+//                
+//                // For a minute, give them the solution...
+//                if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
+//                    as[p].input(8) = 1;
+//                    as[p].input(9) = 0;
+//                } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
+//                    as[p].input(8) = 1;
+//                    as[p].input(9) = 1;
+//                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
+//                    as[p].input(8) = 0;
+//                    as[p].input(9) = 1;
+//                }
                 
-                // For a minute, give them the solution...
-                if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
-                    as[p].input(8) = 1;
-                    as[p].input(9) = 0;
-                } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
-                    as[p].input(8) = 1;
-                    as[p].input(9) = 1;
-                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
-                    as[p].input(8) = 0;
-                    as[p].input(9) = 1;
-                }
+                // Give them their coordinates...
+                
+                vector<bool> xcoor(9);
+                vector<bool> ycoor(9);
+                
+                ealib::algorithm::int2range(agent_x, xcoor.begin());
+                ealib::algorithm::int2range(agent_y, ycoor.begin());
+                
+                
+                
+                
+                
                 
                 // origin
                 if (agent_x == 0 and agent_y == 0) {
-                    as[p].input(12) = 1;
+                    as[p].input(8) = 1;
                 } else {
-                    as[p].input(12) = 0;
+                    as[p].input(8) = 0;
                 }
 
                 
@@ -203,18 +227,6 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 
                 // update brain_updates times.
                 for (int i = 0; i<brain_updates; ++i) {
-//                    if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
-//                        (as[p]).input(8) = 1;
-//                    } else {
-//                        (as[p]).input(8) = 0;
-//                    }
-//                    
-//                    if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
-//                        (as[p]).input(10) = 1;
-//                    } else {
-//                        (as[p]).input(10) = 0;
-//                    }
-                    
                     (as[p]).update();
                 }
                 
@@ -223,9 +235,18 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
             
         }
         
-        double f1 = 1.0;
-        double f2 = 1.0;
-        double f3 = 1.0;
+        double f1_10 = 1.0;
+        double f1_01 = 1.0;
+        double f1_11 = 1.0;
+        
+        double f2_10 = 1.0;
+        double f2_01 = 1.0;
+        double f2_11 = 1.0;
+        
+        double f3_10 = 1.0;
+        double f3_01 = 1.0;
+        double f3_11 = 1.0;
+        
         
         // Compute fitness.
         for (int xy = 0; xy<grid_size; xy++) {
@@ -240,33 +261,61 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 continue;
             }
             
-            // wrong ff... maybe? strange nested issues...
             if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-                    ++f1;
+                    ++f1_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f1_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f1_11;
                 }
+                
             } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
-                if  (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) {
-                    ++f2;
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f2_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f2_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f2_11;
                 }
-            } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
-                ++f3;
+                
+            } else {
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f3_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f3_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f3_11;
+                }
+                
             }
 
             
         }
 
+        accumulator_set<double, stats<tag::max> > fs;
         
-        // and return some measure of fitness:
-        // ponder gamma transform
-//        double fit_max = grid_size;
-//        double fit_min = 0;
+        double fx = f1_10 * f2_01 * f3_11;
+        fs(fx);
         
-//        double rescaled_fit = 100*pow((((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea))) + 1;
+        fx = f1_10 * f2_11 * f3_01;
+        fs(fx);
         
-        f = f1 * f2 * f3;
+        fx = f1_01 * f2_10 * f3_11;
+        fs(fx);
+        
+        fx = f1_01 * f2_11 * f3_10;
+        fs(fx);
+        
+        fx = f1_11 * f2_01 * f3_10;
+        fs(fx);
+        
+        fx = f1_11 * f2_10 * f3_01;
+        fs(fx);
+        
+        //f = f1 * f2 * f3;
 
-        
+        f = boost::accumulators::max(fs);
         
         return f;
     }
@@ -308,7 +357,7 @@ public:
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
         
-        add_tool<ealib::analysis::movie_markov_square_growth>(this);
+        add_tool<ealib::analysis::movie_markov_growth>(this);
     }
     
     virtual void gather_events(EA& ea) {
