@@ -17,6 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+
+#include <boost/accumulators/accumulators.hpp>
+#include <boost/accumulators/statistics/stats.hpp>
+#include <boost/accumulators/statistics/mean.hpp>
+#include <boost/accumulators/statistics/max.hpp>
+
 #include <ea/mkv/markov_network_evolution.h>
 #include <ea/generational_models/moran_process.h>
 #include <ea/fitness_function.h>
@@ -27,6 +34,8 @@
 using namespace ealib;
 using namespace mkv;
 using namespace std;
+using namespace boost::accumulators;
+
 
 
 /*! Sample fitness function for Markov networks.
@@ -101,9 +110,6 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                     continue;
                 }
                 
-                if (xy == 63) {
-                    int z = 12;
-                }
                 
                 // set the input states...
                 int agent_x = floor(xy / max_x);
@@ -151,8 +157,43 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                     }
                 }
                 
+                
+                // origin
+                if (agent_x == 0 and agent_y == 0) {
+                    as[p].input(8) = 1;
+                } else {
+                    as[p].input(8) = 0;
+                }
+                
+                
+                // edge
+                if ((agent_x == 0) or (agent_y == 0) or (agent_x == (max_x -1)) or (agent_y == (max_y -1))) {
+                    as[p].input(9) = 1;
+                } else {
+                    as[p].input(9) = 0;
+                }
+                
+                // Give them their coordinates...
+                
+                int bsize = 10;
+                vector<bool> xcoor(bsize);
+                vector<bool> ycoor(bsize);
+                
+                ealib::algorithm::int2range(agent_x, xcoor.begin());
+                ealib::algorithm::int2range(agent_y, ycoor.begin());
+                
+                int cur_input = 10;
+                for (int i = 0; i < bsize; ++i) {
+                    as[p].input(cur_input) = xcoor[i];
+                    as[p].input(cur_input + bsize) = ycoor[i];
+                    ++cur_input;
+                }
+                
                 // reproduce
                 if (as[p].output(5)) {
+                    
+                    int d1 = as[p].output(2);
+                    int d2 = as[p].output(3);
                     
                     if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
                         if (agent_pos[north] == -1){
@@ -177,32 +218,28 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                     }
                 }
                 
+                
                 // update brain_updates times.
                 for (int i = 0; i<brain_updates; ++i) {
-                    if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
-                        (as[p]).input(8) = 1;
-                    } else {
-                        (as[p]).input(8) = 0;
-                    }
-                    
-                    if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
-                        (as[p]).input(10) = 1;
-                    } else {
-                        (as[p]).input(10) = 0;
-                    }
-                    
                     (as[p]).update();
                 }
                 
-                
             }
-            
         }
-
         
-        double f1 = 1.0;
-        double f2 = 1.0;
-        double f3 = 1.0;
+        double f1_10 = 1.0;
+        double f1_01 = 1.0;
+        double f1_11 = 1.0;
+        
+        double f2_10 = 1.0;
+        double f2_01 = 1.0;
+        double f2_11 = 1.0;
+        
+        double f3_10 = 1.0;
+        double f3_01 = 1.0;
+        double f3_11 = 1.0;
+        
+
         // Compute fitness.
         for (int xy = 0; xy<grid_size; xy++) {
             
@@ -217,71 +254,55 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
             }
             
             if (agent_x < (floor(max_x) / 3 )) {
-                if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
-                    // blue 10
-                    ++f1;
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f1_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f1_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f1_11;
                 }
+
             } else if ((agent_x >= (floor(max_x) / 3))  && (agent_x < ((floor(max_x) / 3 * 2)))) {
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-                    // white 11
-                    ++f2;
+                    ++f2_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f2_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f2_11;
                 }
             } else if (agent_x >= ((floor(max_x) / 3 * 2))) {
-                if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
-                    // red 01
-                    ++f3;
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f3_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f3_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f3_11;
                 }
             }
         
     }
-
-//    
-//    
-//    
-//
-//        for (int x=0; x < max_x; ++x) {
-//            for (int y=0; y < max_y; ++y) {
-//                int xy = y * max_x + x; // the agent position...
-//                int p = agent_pos[xy];
-//                
-//                
-//                if (xy == 63) {
-//                    int z = 0;
-//                }
-//                if (p == -1) {
-//                    continue;
-//                }
-//                
-//                if (x < (floor(max_x) / 3 )) {
-//                    if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
-//                    // blue 10
-//                    ++f1;
-//                    }
-//                } else if ((x >= (floor(max_x) / 3))  && (x < ((floor(max_x) / 3 * 2)))) {
-//                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-//                    // white 11
-//                    ++f2;
-//                    }
-//                } else if (x >= ((floor(max_x) / 3 * 2))) {
-//                    if ((((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)) ) {
-//                    // red 01
-//                    ++f3;
-//                    }
-//                }
-//            }
-//        }
         
+        accumulator_set<double, stats<tag::max> > fs;
         
-        // and return some measure of fitness:
-        // ponder gamma transform
+        double fx = f1_10 * f2_01 * f3_11;
+        fs(fx);
         
-//        double fit_max = grid_size;
-//        double fit_min = 0;
+        fx = f1_10 * f2_11 * f3_01;
+        fs(fx);
         
-//        double rescaled_fit = 100*pow((((f-fit_min) / (fit_max - fit_min))), (get<FIT_GAMMA>(ea))) + 1;
+        fx = f1_01 * f2_10 * f3_11;
+        fs(fx);
         
-//        return rescaled_fit;
-        f = f1 * f2 * f3;
+        fx = f1_01 * f2_11 * f3_10;
+        fs(fx);
+        
+        fx = f1_11 * f2_01 * f3_10;
+        fs(fx);
+        
+        fx = f1_11 * f2_10 * f3_01;
+        fs(fx);
+        
+        f = boost::accumulators::max(fs);
         return f; 
     }
 };
