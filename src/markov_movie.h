@@ -407,7 +407,7 @@ namespace ealib {
         }
         
         
-        LIBEA_ANALYSIS_TOOL(movie_markov_square_growth) {
+        LIBEA_ANALYSIS_TOOL(movie_markov_growth_loc) {
             double max_fit = 0;
             typename EA::individual_type best;
             

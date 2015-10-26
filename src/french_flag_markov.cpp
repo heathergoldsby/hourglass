@@ -343,7 +343,7 @@ public:
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
         
-        add_tool<ealib::analysis::movie_markov_growth>(this);
+        add_tool<ealib::analysis::movie_markov_growth_loc>(this);
 
     }
     
