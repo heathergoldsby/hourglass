@@ -453,15 +453,17 @@ namespace ealib {
             }
             
             
-            // World update... this is where growth may occur.
-            // Run agents for X updates
+            // Inputs:
+            // (0) north color, (1) north color,
+            // (2) east color, (3) east color,
+            // (4) south color, (5) south color,
+            // (6) west color, (7) west color
+            // (8) origin
+            // (9) edge
             
             
-            // Inputs: (0) x, (1) y, // currently 1,1... they may not need them?
-            // (2) north color, (3) north color,
-            // (4) east color, (5) east color,
-            // (6) south color, (7) south color,
-            // (8) west color, (9) west color
+            // (10 - ??)  x and y
+            
             
             // Outputs:
             // (0) color, (1) color
@@ -469,6 +471,7 @@ namespace ealib {
             // (4) move
             // (5) reproduce
             
+            // for this grid, 0,0 is upper left.
             // for this grid, 0,0 is upper left.
             int world_updates = get<WORLD_UPDATES>(ea,10);
             int brain_updates = get<BRAIN_UPDATES>(ea,10);
@@ -493,10 +496,6 @@ namespace ealib {
                     int agent_x = floor(xy / max_x);
                     int agent_y = xy % max_x;
                     
-                    // x and y coord.
-                    (as[p]).input(0) = 1;
-                    (as[p]).input(1) = 1;
-                    
                     
                     
                     // north neighbor
@@ -504,8 +503,8 @@ namespace ealib {
                     if (agent_y > 0) {
                         if (agent_pos[north] != -1) {
                             typename EA::phenotype_type& neighbor = as[agent_pos[north]];
-                            (as[p]).input(2) = neighbor.output(0);
-                            (as[p]).input(3) = neighbor.output(1);
+                            (as[p]).input(0) = neighbor.output(0);
+                            (as[p]).input(1) = neighbor.output(1);
                         }
                     }
                     
@@ -514,8 +513,8 @@ namespace ealib {
                     if (agent_x < (max_x - 2)) {
                         if (agent_pos[east] != -1) {
                             typename EA::phenotype_type& neighbor = as[agent_pos[east]];
-                            (as[p]).input(4) = neighbor.output(0);
-                            (as[p]).input(5) = neighbor.output(1);
+                            (as[p]).input(2) = neighbor.output(0);
+                            (as[p]).input(3) = neighbor.output(1);
                         }
                     }
                     
@@ -524,8 +523,8 @@ namespace ealib {
                     if (agent_y < (max_x - 2)) {
                         if (agent_pos[south] != -1) {
                             typename EA::phenotype_type& neighbor = as[agent_pos[south]];
-                            (as[p]).input(6) = neighbor.output(0);
-                            (as[p]).input(7) = neighbor.output(1);
+                            (as[p]).input(4) = neighbor.output(0);
+                            (as[p]).input(5) = neighbor.output(1);
                         }
                     }
                     
@@ -534,36 +533,64 @@ namespace ealib {
                     if (agent_x > 0) {
                         if (agent_pos[west] != -1) {
                             typename EA::phenotype_type& neighbor = as[agent_pos[west]];
-                            (as[p]).input(8) = neighbor.output(0);
-                            (as[p]).input(9) = neighbor.output(1);
+                            (as[p]).input(6) = neighbor.output(0);
+                            (as[p]).input(7) = neighbor.output(1);
                         }
                     }
                     
                     
-                    // Give them the solution... check that it works
+                    //                // Give them the solution... check that it works
+                    //
+                    //                // For a minute, give them the solution...
+                    //                if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
+                    //                    as[p].input(8) = 1;
+                    //                    as[p].input(9) = 0;
+                    //                } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
+                    //                    as[p].input(8) = 1;
+                    //                    as[p].input(9) = 1;
+                    //                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
+                    //                    as[p].input(8) = 0;
+                    //                    as[p].input(9) = 1;
+                    //                }
                     
-                    // For a minute, give them the solution...
-                    if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
-                        as[p].input(8) = 1;
-                        as[p].input(9) = 0;
-                    } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
-                        as[p].input(8) = 1;
-                        as[p].input(9) = 1;
-                    } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
-                        as[p].input(8) = 0;
-                        as[p].input(9) = 1;
-                    }
+                    
                     
                     // origin
                     if (agent_x == 0 and agent_y == 0) {
-                        as[p].input(12) = 1;
+                        as[p].input(8) = 1;
                     } else {
-                        as[p].input(12) = 0;
+                        as[p].input(8) = 0;
                     }
-
+                    
+                    
+                    // edge
+                    if ((agent_x == 0) or (agent_y == 0) or (agent_x == (max_x -1)) or (agent_y == (max_y -1))) {
+                        as[p].input(9) = 1;
+                    } else {
+                        as[p].input(9) = 0;
+                    }
+                    
+                    // Give them their coordinates...
+                    
+                    int bsize = 10;
+                    vector<bool> xcoor(bsize);
+                    vector<bool> ycoor(bsize);
+                    
+                    ealib::algorithm::int2range(agent_x, xcoor.begin());
+                    ealib::algorithm::int2range(agent_y, ycoor.begin());
+                    
+                    int cur_input = 10;
+                    for (int i = 0; i < bsize; ++i) {
+                        as[p].input(cur_input) = xcoor[i];
+                        as[p].input(cur_input + bsize) = ycoor[i];
+                        ++cur_input;
+                    }
                     
                     // reproduce
                     if (as[p].output(5)) {
+                        
+                        int d1 = as[p].output(2);
+                        int d2 = as[p].output(3);
                         
                         if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
                             if (agent_pos[north] == -1){
@@ -588,22 +615,17 @@ namespace ealib {
                         }
                     }
                     
+                    
                     // update brain_updates times.
                     for (int i = 0; i<brain_updates; ++i) {
-//                        if ((ea.rng().uniform_integer(0,max_x)) > agent_x) {
-//                            (as[p]).input(0) = 1;
-//                        }
-//                        
-//                        if ((ea.rng().uniform_integer(0,max_y)) > agent_y) {
-//                            (as[p]).input(1) = 1;
-//                        }
-                        
                         (as[p]).update();
                     }
                     
-                } // exec order
+                    
+                }
                 
                 
+            
                 df.write(t);
                 // output time point for movie...
                 for (int xy = 0; xy<grid_size; xy++) {
