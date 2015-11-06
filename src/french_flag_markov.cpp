@@ -112,8 +112,8 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 
                 
                 // set the input states...
-                int agent_x = floor(xy / max_x);
-                int agent_y = xy % max_x;
+                int agent_y = floor(xy / max_x);
+                int agent_x = xy % max_x;
                 
                 
                 

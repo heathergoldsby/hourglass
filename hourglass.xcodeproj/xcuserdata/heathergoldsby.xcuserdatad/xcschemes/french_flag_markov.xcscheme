@@ -62,11 +62,11 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-c hourglass_mkv.cfg"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-l checkpoint-5.xml --analyze movie_markov_growth"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

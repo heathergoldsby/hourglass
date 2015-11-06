@@ -116,9 +116,9 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
                 }
                 
                 // set the input states...
-                int agent_x = floor(xy / max_x);
-                int agent_y = xy % max_x;
-            
+                int agent_y = floor(xy / max_x);
+                int agent_x = xy % max_x;
+                
                 
                 
                 // north neighbor

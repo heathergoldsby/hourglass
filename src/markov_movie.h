@@ -100,8 +100,8 @@ namespace ealib {
                     }
                     
                     // set the input states...
-                    int agent_x = floor(xy / max_x);
-                    int agent_y = xy % max_x;
+                    int agent_y = floor(xy / max_x);
+                    int agent_x = xy % max_x;
                     
                     
                     // north neighbor
@@ -277,8 +277,8 @@ namespace ealib {
                     }
                     
                     // set the input states...
-                    int agent_x = floor(xy / max_x);
-                    int agent_y = xy % max_x;
+                    int agent_y = floor(xy / max_x);
+                    int agent_x = xy % max_x;
                     
                     // x and y coord.
                     (as[p]).input(0) = 1;
@@ -375,8 +375,8 @@ namespace ealib {
                 for (int xy = 0; xy<grid_size; xy++) {
                     
                     // set the input states...
-                    int agent_x = floor(xy / max_x);
-                    int agent_y = xy % max_x;
+                    int agent_y = floor(xy / max_x);
+                    int agent_x = xy % max_x;
                     
                     int p = agent_pos[xy];
                     
@@ -493,8 +493,8 @@ namespace ealib {
                     }
                     
                     // set the input states...
-                    int agent_x = floor(xy / max_x);
-                    int agent_y = xy % max_x;
+                    int agent_y = floor(xy / max_x);
+                    int agent_x = xy % max_x;
                     
                     
                     
@@ -631,8 +631,9 @@ namespace ealib {
                 for (int xy = 0; xy<grid_size; xy++) {
                     
                     // set the input states...
-                    int agent_x = floor(xy / max_x);
-                    int agent_y = xy % max_x;
+                    int agent_y = floor(xy / max_x);
+                    int agent_x = xy % max_x;
+                    
                     
                     int p = agent_pos[xy];
                     
