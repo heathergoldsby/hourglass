@@ -49,6 +49,16 @@ src/french_flag_markov.cpp
 install dist : french_flag_markov : <location>$(HOME)/bin ;
 
 
+exe ff_markov_migration :
+src/ff_markov_migration.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : ff_markov_migration : <location>$(HOME)/bin ;
+
 exe square_markov :
 src/square_markov.cpp
 /libea//libea

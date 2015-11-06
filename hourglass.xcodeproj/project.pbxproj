@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		42DC570C1940DCEB005044F1 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		486110B21BED09E0009322A8 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		486110B81BED09FD009322A8 /* ff_markov_migration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486110AD1BED063E009322A8 /* ff_markov_migration.cpp */; };
 		4873BC191BA891F9001F2D47 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		4873BC1F1BA89204001F2D47 /* french_flag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4873BC141BA891D2001F2D47 /* french_flag.cpp */; };
 		4873BC251BA9AA11001F2D47 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
@@ -20,6 +22,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		486110B31BED09E0009322A8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		4873BC1A1BA891F9001F2D47 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,6 +85,8 @@
 		42C26B3D19454D6D00F0E6B9 /* stripes.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = stripes.cfg; sourceTree = "<group>"; };
 		42DC570A1940C99D005044F1 /* libea.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libea.a; path = ../DerivedData/research/Build/Products/Debug/libea.a; sourceTree = "<group>"; };
 		42DF06891945418600C9A364 /* subpopulation_propagule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subpopulation_propagule.h; sourceTree = "<group>"; };
+		486110AD1BED063E009322A8 /* ff_markov_migration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ff_markov_migration.cpp; sourceTree = "<group>"; };
+		486110B71BED09E0009322A8 /* ff_markov_migrate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ff_markov_migrate; sourceTree = BUILT_PRODUCTS_DIR; };
 		4873BC141BA891D2001F2D47 /* french_flag.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = french_flag.cpp; sourceTree = "<group>"; };
 		4873BC1E1BA891F9001F2D47 /* french_flag */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = french_flag; sourceTree = BUILT_PRODUCTS_DIR; };
 		4873BC201BA9A893001F2D47 /* square_markov.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = square_markov.cpp; sourceTree = "<group>"; };
@@ -91,6 +104,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		486110B11BED09E0009322A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				486110B21BED09E0009322A8 /* libea.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4873BC181BA891F9001F2D47 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,6 +175,7 @@
 				4873BC1E1BA891F9001F2D47 /* french_flag */,
 				4873BC2A1BA9AA11001F2D47 /* square_markov */,
 				48E1BFD31BB2EB9B00FA0BA3 /* french_flag_markov */,
+				486110B71BED09E0009322A8 /* ff_markov_migrate */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +203,7 @@
 				42DF06891945418600C9A364 /* subpopulation_propagule.h */,
 				4873BC201BA9A893001F2D47 /* square_markov.cpp */,
 				48A7233B1BB0805C00FB2C5E /* french_flag_markov.cpp */,
+				486110AD1BED063E009322A8 /* ff_markov_migration.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -196,6 +219,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		486110AE1BED09E0009322A8 /* ff_markov_migration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 486110B41BED09E0009322A8 /* Build configuration list for PBXNativeTarget "ff_markov_migration" */;
+			buildPhases = (
+				486110AF1BED09E0009322A8 /* Sources */,
+				486110B11BED09E0009322A8 /* Frameworks */,
+				486110B31BED09E0009322A8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ff_markov_migration;
+			productName = ealife;
+			productReference = 486110B71BED09E0009322A8 /* ff_markov_migrate */;
+			productType = "com.apple.product-type.tool";
+		};
 		4873BC151BA891F9001F2D47 /* french_flag */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4873BC1B1BA891F9001F2D47 /* Build configuration list for PBXNativeTarget "french_flag" */;
@@ -307,11 +347,20 @@
 				4873BC151BA891F9001F2D47 /* french_flag */,
 				4873BC211BA9AA11001F2D47 /* square_markov */,
 				48E1BFCA1BB2EB9B00FA0BA3 /* french_flag_markov */,
+				486110AE1BED09E0009322A8 /* ff_markov_migration */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		486110AF1BED09E0009322A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				486110B81BED09FD009322A8 /* ff_markov_migration.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4873BC161BA891F9001F2D47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,6 +420,28 @@
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx10.9;
+			};
+			name = Release;
+		};
+		486110B51BED09E0009322A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = ff_markov_migrate;
+			};
+			name = Debug;
+		};
+		486110B61BED09E0009322A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = ff_markov_migrate;
 			};
 			name = Release;
 		};
@@ -492,6 +563,15 @@
 			buildConfigurations = (
 				424419FB15861127009863BE /* Debug */,
 				424419FC15861127009863BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		486110B41BED09E0009322A8 /* Build configuration list for PBXNativeTarget "ff_markov_migration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				486110B51BED09E0009322A8 /* Debug */,
+				486110B61BED09E0009322A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
