@@ -264,6 +264,19 @@ struct french_flag_fitness : fitness_function<unary_fitness<double>, constantS, 
                 }
                 
                 
+                // apply errors if any.
+                float error_prob = get<INPUT_BIT_ERROR_PROB>(ea,0);
+                assert(0 <= error_prob <= 1.0);
+                if (error_prob > 0) {
+                    for (int k = 0; k < get<MKV_INPUT_N>(ea,0); k++) {
+                        if (ea.rng().p(error_prob)) {
+                            as[p].input(k) = ea.rng().bit();
+                        }
+                    }
+                    
+                }
+                
+                
                 // update brain_updates times.
                 for (int i = 0; i<brain_updates; ++i) {
                     (as[p]).update();
@@ -378,8 +391,7 @@ public:
         add_option<Y_SIZE>(this);
         add_option<BRAIN_UPDATES>(this);
         add_option<WORLD_UPDATES>(this);
-        add_option<FIT_GAMMA>(this);
-        
+        add_option<INPUT_BIT_ERROR_PROB>(this);
     }
     
     
