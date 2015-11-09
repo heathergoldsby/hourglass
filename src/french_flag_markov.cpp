@@ -333,7 +333,6 @@ public:
         add_option<Y_SIZE>(this);
         add_option<BRAIN_UPDATES>(this);
         add_option<WORLD_UPDATES>(this);
-        add_option<FIT_GAMMA>(this);
 
     }
     

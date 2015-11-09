@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "043FE3BFA590E887486C533E25FAC8FA804D8996",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "043FE3BFA590E887486C533E25FAC8FA804D8996" : 0,
+    "F4E43731183036190F477CF4C99425A6516F08D2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "875F384A-10D8-4F15-AD8F-57F02071BB65",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "043FE3BFA590E887486C533E25FAC8FA804D8996" : "hourglass",
+    "F4E43731183036190F477CF4C99425A6516F08D2" : "ealib"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "hourglass",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "hourglass.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/heathergoldsby\/hourglass.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "043FE3BFA590E887486C533E25FAC8FA804D8996"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:dknoester\/ealib.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F4E43731183036190F477CF4C99425A6516F08D2"
+    }
+  ]
+}
