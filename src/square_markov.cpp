@@ -70,184 +70,8 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
             exec_order[i] = i;
         }
 
-        
-        // World update... this is where growth may occur.
-        // Run agents for X updates
-        
+        update_world_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, ind, rng, ea);
 
-        
-        // Inputs:
-        // (0) north color, (1) north color,
-        // (2) east color, (3) east color,
-        // (4) south color, (5) south color,
-        // (6) west color, (7) west color
-        // (8) origin
-        // (9) edge
-        
-        
-        // (10 - ??)  x and y
-        
-        
-        // Outputs:
-        // (0) color, (1) color
-        // (2) direction for repro, (3) direction for repro
-        // (4) move
-        // (5) reproduce
-        
-        // for this grid, 0,0 is upper left.
-        // for this grid, 0,0 is upper left.
-        int world_updates = get<WORLD_UPDATES>(ea,10);
-        int brain_updates = get<BRAIN_UPDATES>(ea,10);
-        for(int t=0;t<world_updates;t++){
-            
-            // Must randomize agent execution order...
-            std::random_shuffle ( exec_order.begin(), exec_order.end() );
-            
-            // Brain update... there should be about 4-8 brain updates per agent per world update
-            for (int j=0; j<exec_order.size(); ++j) {
-                // get x,y coord of agent
-                int xy = exec_order[j];
-                // where we can find the agent itself
-                int p = agent_pos[exec_order[j]];
-                
-                // no agent exists
-                if (p == -1) {
-                    continue;
-                }
-                
-                // set the input states...
-                int agent_y = floor(xy / max_x);
-                int agent_x = xy % max_x;
-                
-                
-                
-                // north neighbor
-                int north = (agent_y - 1) * max_x + agent_x;
-                if (agent_y > 0) {
-                    if (agent_pos[north] != -1) {
-                        typename EA::phenotype_type& neighbor = as[agent_pos[north]];
-                        (as[p]).input(0) = neighbor.output(0);
-                        (as[p]).input(1) = neighbor.output(1);
-                    }
-                }
-                
-                // east neighbor
-                int east = agent_y * max_x + agent_x + 1;
-                if (agent_x < (max_x - 2)) {
-                    if (agent_pos[east] != -1) {
-                        typename EA::phenotype_type& neighbor = as[agent_pos[east]];
-                        (as[p]).input(2) = neighbor.output(0);
-                        (as[p]).input(3) = neighbor.output(1);
-                    }
-                }
-                
-                // south neighbor
-                int south = (agent_y + 1) * max_x + agent_x;
-                if (agent_y < (max_x - 2)) {
-                    if (agent_pos[south] != -1) {
-                        typename EA::phenotype_type& neighbor = as[agent_pos[south]];
-                        (as[p]).input(4) = neighbor.output(0);
-                        (as[p]).input(5) = neighbor.output(1);
-                    }
-                }
-                
-                // west neighbor
-                int west = agent_y * max_x + agent_x - 1;
-                if (agent_x > 0) {
-                    if (agent_pos[west] != -1) {
-                        typename EA::phenotype_type& neighbor = as[agent_pos[west]];
-                        (as[p]).input(6) = neighbor.output(0);
-                        (as[p]).input(7) = neighbor.output(1);
-                    }
-                }
-                
-                
-//                // Give them the solution... check that it works
-//                
-//                // For a minute, give them the solution...
-//                if (agent_x == 0 || agent_x == (max_x-1) || agent_y == 0 || agent_y == (max_y-1)) {
-//                    as[p].input(8) = 1;
-//                    as[p].input(9) = 0;
-//                } else if (agent_x == 1 || agent_x == (max_x-2) || agent_y == 1 || agent_y == (max_y-2)) {
-//                    as[p].input(8) = 1;
-//                    as[p].input(9) = 1;
-//                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)) {
-//                    as[p].input(8) = 0;
-//                    as[p].input(9) = 1;
-//                }
-                
-
-                
-                // origin
-                if (agent_x == 0 and agent_y == 0) {
-                    as[p].input(8) = 1;
-                } else {
-                    as[p].input(8) = 0;
-                }
-                
-                
-                // edge
-                if ((agent_x == 0) or (agent_y == 0) or (agent_x == (max_x -1)) or (agent_y == (max_y -1))) {
-                    as[p].input(9) = 1;
-                } else {
-                    as[p].input(9) = 0;
-                }
-                
-                // Give them their coordinates...
-                
-                int bsize = 10;
-                vector<bool> xcoor(bsize);
-                vector<bool> ycoor(bsize);
-                
-                ealib::algorithm::int2range(agent_x, xcoor.begin());
-                ealib::algorithm::int2range(agent_y, ycoor.begin());
-                
-                int cur_input = 10;
-                for (int i = 0; i < bsize; ++i) {
-                    as[p].input(cur_input) = xcoor[i];
-                    as[p].input(cur_input + bsize) = ycoor[i];
-                    ++cur_input;
-                }
-                
-                // reproduce
-                if (as[p].output(5)) {
-                    
-                    int d1 = as[p].output(2);
-                    int d2 = as[p].output(3);
-                    
-                    if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
-                        if (agent_pos[north] == -1){
-                            as.push_back(N); // Add a new agent.
-                            agent_pos[north] = (as.size() -1); // This agent is at the end...
-                        }
-                    } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 1))) {  // 01 east
-                        if (agent_pos[east] == -1) {
-                            as.push_back(N); // Add a new agent.
-                            agent_pos[east] = (as.size() -1); // This agent is at the end...
-                        }
-                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 1))) { // 11 south
-                        if (agent_pos[south] == -1){
-                            as.push_back(N); // Add a new agent.
-                            agent_pos[south] = (as.size() -1); // This agent is at the end...
-                        }
-                    } else if ((as[p].output(2) == 1) && (as[p].output(3)== 0) && (agent_x > 0)) { // 10 west
-                        if (agent_pos[west] == -1){
-                            as.push_back(N); // Add a new agent.
-                            agent_pos[west] = (as.size() -1); // This agent is at the end...
-                        }
-                    }
-                }
-                
-                
-                // update brain_updates times.
-                for (int i = 0; i<brain_updates; ++i) {
-                    (as[p]).update();
-                }
-                
-                
-            }
-            
-        }
         
         double f1_10 = 1.0;
         double f1_01 = 1.0;
@@ -358,7 +182,12 @@ public:
         add_option<Y_SIZE>(this);
         add_option<BRAIN_UPDATES>(this);
         add_option<WORLD_UPDATES>(this);
-        add_option<FIT_GAMMA>(this);
+        add_option<INPUT_BIT_ERROR_PROB>(this);
+        add_option<CAPABILITIES_OFF>(this);
+        add_option<AGENT_DEATH_PROB>(this);
+
+
+//        add_option<FIT_GAMMA>(this);
         
         
     }
@@ -369,7 +198,7 @@ public:
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
         
-        add_tool<ealib::analysis::movie_markov_growth_loc>(this);
+        add_tool<ealib::analysis::movie_markov_growth_migration>(this);
     }
     
     virtual void gather_events(EA& ea) {

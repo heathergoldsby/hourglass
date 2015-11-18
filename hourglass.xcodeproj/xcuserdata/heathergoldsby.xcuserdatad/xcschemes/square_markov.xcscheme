@@ -64,7 +64,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-c hourglass_mkv.cfg"
+            argument = "-c hourglass_mkv.cfg --ea.hourglass.capabilities_off=origin --ea.hourglass.agent_death_prob=1.0"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
