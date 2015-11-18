@@ -58,4 +58,15 @@ src/square_markov.cpp
 install dist : square_markov : <location>$(HOME)/bin ;
 
 
+exe split :
+src/split.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : split : <location>$(HOME)/bin ;
+
+
 
