@@ -1,4 +1,4 @@
-/* split.cpp
+/* four_square.cpp
  *
  * This file is part of EALib.
  *
@@ -73,10 +73,24 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
         double f1_10 = 1.0;
         double f1_01 = 1.0;
         double f1_11 = 1.0;
-
+        double f1_00 = 1.0;
+        
+        double f2_10 = 1.0;
+        double f2_01 = 1.0;
+        double f2_11 = 1.0;
+        double f2_00 = 1.0;
+        
         double f3_10 = 1.0;
         double f3_01 = 1.0;
         double f3_11 = 1.0;
+        double f3_00 = 1.0;
+        
+        double f4_10 = 1.0;
+        double f4_01 = 1.0;
+        double f4_11 = 1.0;
+        double f4_00 = 1.0;
+        
+        
         
         // Compute fitness.
         for (int xy = 0; xy<grid_size; xy++) {
@@ -91,22 +105,49 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
                 continue;
             }
             
-            if (agent_x <= (floor(max_x) / 2 )) {
+            
+            if ((agent_x <= (floor(max_x) / 2 )) && (agent_y <= (floor(max_y) / 2))) {  // q1 <=, <=
+                
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f1_10;
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                     ++f1_01;
                 } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
                     ++f1_11;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                    ++f1_00;
                 }
                 
-            } else if (agent_x > (floor(max_x) / 2 )) {
+            } else if ((agent_x > (floor(max_x) / 2 )) && (agent_y <= (floor(max_y) / 2))) {  // q2 >, <=
+                
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f2_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f2_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f2_11;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                    ++f2_00;
+                }
+            } else if ((agent_x <= (floor(max_x) / 2 )) && (agent_y > (floor(max_y) / 2))) {  // q3 <=, >
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f3_10;
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                     ++f3_01;
                 } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
                     ++f3_11;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                    ++f3_00;
+                }
+            } else if ((agent_x > (floor(max_x) / 2 )) && (agent_y > (floor(max_y) / 2))) {  // q4 >, >
+                if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f4_10;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                    ++f4_01;
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f4_11;
+                } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                    ++f4_00;
                 }
             }
             
@@ -114,24 +155,90 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
         
         accumulator_set<double, stats<tag::max> > fs;
         
-        double fx = f1_10 * f3_11;
+        double fx = f0_00 * f1_10 * f2_01 * f3_11;
         fs(fx);
         
-        fx = f1_10 * f3_01;
+        fx = f0_00 * f1_10 * f2_11 * f3_01;
         fs(fx);
         
-        fx = f1_11 * f3_01;
+        fx = f0_00 * f1_01 * f2_10 * f3_11;
         fs(fx);
         
-        fx = f1_11 * f3_10;
+        fx = f0_00 * f1_01 * f2_11 * f3_10;
         fs(fx);
         
-        fx = f1_01 * f3_11;
+        fx = f0_00 * f1_11 * f2_10 * f3_01;
         fs(fx);
         
-        fx = f1_01 * f3_10;
+        fx = f0_00 * f1_11 * f2_01 * f3_10;
         fs(fx);
         
+        
+        
+        
+        fx = f0_10 * f1_00 * f2_01 * f3_11;
+        fs(fx);
+        
+        fx = f0_10 * f1_00 * f2_11 * f3_01;
+        fs(fx);
+        
+        fx = f0_10 * f1_01 * f2_00 * f3_11;
+        fs(fx);
+        
+        fx = f0_10 * f1_01 * f2_11 * f3_00;
+        fs(fx);
+        
+        fx = f0_10 * f1_11 * f2_00 * f3_01;
+        fs(fx);
+        
+        fx = f0_10 * f1_11 * f2_01 * f3_00;
+        fs(fx);
+        
+        
+        
+        
+        fx = f0_11 * f1_00 * f2_01 * f3_10;
+        fs(fx);
+        
+        fx = f0_11 * f1_00 * f2_10 * f3_01;
+        fs(fx);
+        
+        fx = f0_11 * f1_01 * f2_00 * f3_10;
+        fs(fx);
+        
+        fx = f0_11 * f1_01 * f2_10 * f3_00;
+        fs(fx);
+        
+        fx = f0_11 * f1_10 * f2_00 * f3_01;
+        fs(fx);
+        
+        fx = f0_11 * f1_10 * f2_01 * f3_00;
+        fs(fx);
+        
+        
+        
+        
+        fx = f0_01 * f1_00 * f2_11 * f3_10;
+        fs(fx);
+        
+        fx = f0_01 * f1_00 * f2_10 * f3_11;
+        fs(fx);
+        
+        fx = f0_01 * f1_11 * f2_00 * f3_10;
+        fs(fx);
+        
+        fx = f0_01 * f1_11 * f2_10 * f3_00;
+        fs(fx);
+        
+        fx = f0_01 * f1_10 * f2_00 * f3_11;
+        fs(fx);
+        
+        fx = f0_01 * f1_10 * f2_11 * f3_00;
+        fs(fx);
+        
+        
+        
+      
         f = boost::accumulators::max(fs);
         return f;
     }

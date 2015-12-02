@@ -69,4 +69,14 @@ src/split.cpp
 install dist : split : <location>$(HOME)/bin ;
 
 
+exe four_square :
+src/four_square.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : four_square : <location>$(HOME)/bin ;
+
 

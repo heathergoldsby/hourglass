@@ -22,6 +22,7 @@ LIBEA_MD_DECL(WORLD_UPDATES, "ea.hourglass.world_updates", int); // number of wo
 LIBEA_MD_DECL(INPUT_BIT_ERROR_PROB, "ea.hourglass.input_bit_error_prob", float); // probability of an input bit flipping (between 0 and 1).
 LIBEA_MD_DECL(AGENT_DEATH_PROB, "ea.hourglass.agent_death_prob", float); // probability of an agent dying.
 LIBEA_MD_DECL(CAPABILITIES_OFF, "ea.hourglass.capabilities_off", std::string); // which capabilities are we turning off? (Setting input bits to 0 or ignoring output.)
+LIBEA_MD_DECL(NUM_START_AGENTS, "ea.hourglass.num_start_agents", int); // number of agents to start with
 
 
 // Run the world...

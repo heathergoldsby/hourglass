@@ -46,9 +46,11 @@ namespace ealib {
             
             // start with one agent...
             vector<typename EA::phenotype_type> as; //
-            as.push_back(N); //grid_size, N); // my agents or networks
-            agent_pos[0] = 0;
-            as[0].reset(ea.rng().seed());
+            for (int q=0; q<get<NUM_START_AGENTS>(ea,1); q++) {
+                as.push_back(N); //grid_size, N); // my agents or networks
+                agent_pos[q] = q;
+                as[q].reset(ea.rng().seed());
+            }
             
             datafile df("movie.dat");
             df.write(max_x);

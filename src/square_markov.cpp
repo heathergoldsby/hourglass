@@ -59,10 +59,11 @@ struct square_fitness : fitness_function<unary_fitness<double>, constantS, stoch
         
         // start with one agent...
         vector<typename EA::phenotype_type> as; //
-        as.push_back(N); //grid_size, N); // my agents or networks
-        agent_pos[0] = 0;
-        as[0].reset(rng.seed());
-        
+        for (int q=0; q<get<NUM_START_AGENTS>(ea,1); q++) {
+            as.push_back(N); //grid_size, N); // my agents or networks
+            agent_pos[q] = q;
+            as[q].reset(rng.seed());
+        }
         
         
         
@@ -185,10 +186,7 @@ public:
         add_option<INPUT_BIT_ERROR_PROB>(this);
         add_option<CAPABILITIES_OFF>(this);
         add_option<AGENT_DEATH_PROB>(this);
-
-
-//        add_option<FIT_GAMMA>(this);
-        
+        add_option<NUM_START_AGENTS>(this);
         
     }
     

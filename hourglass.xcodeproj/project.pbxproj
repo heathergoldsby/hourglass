@@ -84,6 +84,7 @@
 		42C26B3D19454D6D00F0E6B9 /* stripes.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = stripes.cfg; sourceTree = "<group>"; };
 		42DC570A1940C99D005044F1 /* libea.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libea.a; path = ../DerivedData/research/Build/Products/Debug/libea.a; sourceTree = "<group>"; };
 		42DF06891945418600C9A364 /* subpopulation_propagule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subpopulation_propagule.h; sourceTree = "<group>"; };
+		480EE9CD1C0F45E300733AAE /* four_square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = four_square.cpp; sourceTree = "<group>"; };
 		486110AD1BED063E009322A8 /* ff_markov_migration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ff_markov_migration.cpp; sourceTree = "<group>"; };
 		486110B71BED09E0009322A8 /* ff_markov_migrate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ff_markov_migrate; sourceTree = BUILT_PRODUCTS_DIR; };
 		4871EAB91BFCD79A0054C740 /* split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = split.cpp; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 				4873BC201BA9A893001F2D47 /* square_markov.cpp */,
 				486110AD1BED063E009322A8 /* ff_markov_migration.cpp */,
 				4871EAB91BFCD79A0054C740 /* split.cpp */,
+				480EE9CD1C0F45E300733AAE /* four_square.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
