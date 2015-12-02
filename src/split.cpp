@@ -89,7 +89,7 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
                 continue;
             }
             
-            if (agent_x < (floor(max_x) / 2 )) {
+            if (agent_x <= (floor(max_x) / 2 )) {
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f1_10;
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
@@ -98,7 +98,7 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
                     ++f1_11;
                 }
                 
-            } else if (agent_x >= (floor(max_x) / 2 )) {
+            } else if (agent_x > (floor(max_x) / 2 )) {
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f3_10;
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
