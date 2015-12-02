@@ -109,9 +109,6 @@ void update_world_N(int n, std::vector<int>& agent_pos, std::vector<int>& exec_o
             // migrate
             if (migrate && as[p].output(4)) {
                 
-                int d1 = as[p].output(2);
-                int d2 = as[p].output(3);
-                
                 if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
                     if (agent_pos[north] == -1){
                         agent_pos[north] = p; // move agent
@@ -227,8 +224,6 @@ void update_world_N(int n, std::vector<int>& agent_pos, std::vector<int>& exec_o
             // reproduce
             if (reproduce && as[p].output(5)) {
                 
-                int d1 = as[p].output(2);
-                int d2 = as[p].output(3);
                 
                 if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
                     if (agent_pos[north] == -1){

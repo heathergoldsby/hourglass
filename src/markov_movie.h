@@ -74,20 +74,13 @@ namespace ealib {
                 // output time point for movie...
                 for (int xy = 0; xy<grid_size; xy++) {
                     
-                    // set the input states...
-                    int agent_y = floor(xy / max_x);
-                    int agent_x = xy % max_x;
-                    
-                    
                     int p = agent_pos[xy];
                     
                     if (p == -1) {
                         df.write("-1");
                         continue;
                     }
-                    
-                    int o_zero = as[p].output(0);
-                    int o_one = as[p].output(1);
+
                     
                     if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)) {
                         df.write("0");
