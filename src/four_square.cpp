@@ -106,7 +106,7 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
             }
             
             
-            if ((agent_x <= (floor(max_x) / 2 )) && (agent_y <= (floor(max_y) / 2))) {  // q1 <=, <=
+            if ((agent_x < (floor(max_x) / 2 )) && (agent_y < (floor(max_y) / 2))) {  // q1 <, <
                 
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f1_10;
@@ -118,7 +118,7 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
                     ++f1_00;
                 }
                 
-            } else if ((agent_x > (floor(max_x) / 2 )) && (agent_y <= (floor(max_y) / 2))) {  // q2 >, <=
+            } else if ((agent_x >= (floor(max_x) / 2 )) && (agent_y < (floor(max_y) / 2))) {  // q2 >, <
                 
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f2_10;
@@ -129,7 +129,7 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
                     ++f2_00;
                 }
-            } else if ((agent_x <= (floor(max_x) / 2 )) && (agent_y > (floor(max_y) / 2))) {  // q3 <=, >
+            } else if ((agent_x < (floor(max_x) / 2 )) && (agent_y >= (floor(max_y) / 2))) {  // q3 <, >
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f3_10;
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
@@ -139,7 +139,7 @@ struct split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
                     ++f3_00;
                 }
-            } else if ((agent_x > (floor(max_x) / 2 )) && (agent_y > (floor(max_y) / 2))) {  // q4 >, >
+            } else if ((agent_x >= (floor(max_x) / 2 )) && (agent_y >= (floor(max_y) / 2))) {  // q4 >, >
                 if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                     ++f4_10;
                 } else if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
