@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		42DC570C1940DCEB005044F1 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		484A871C1C4185230029F05B /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		484A87221C4185340029F05B /* six_rectangles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484A87171C4180D40029F05B /* six_rectangles.cpp */; };
+		484A87281C4187C70029F05B /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		484A872E1C4187D00029F05B /* nine_rectangles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484A87231C4187580029F05B /* nine_rectangles.cpp */; };
 		486110B21BED09E0009322A8 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		486110B81BED09FD009322A8 /* ff_markov_migration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486110AD1BED063E009322A8 /* ff_markov_migration.cpp */; };
 		4873BC191BA891F9001F2D47 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
@@ -21,6 +25,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		484A871D1C4185230029F05B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		484A87291C4187C70029F05B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		486110B31BED09E0009322A8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +107,11 @@
 		42DC570A1940C99D005044F1 /* libea.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libea.a; path = ../DerivedData/research/Build/Products/Debug/libea.a; sourceTree = "<group>"; };
 		42DF06891945418600C9A364 /* subpopulation_propagule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subpopulation_propagule.h; sourceTree = "<group>"; };
 		480EE9CD1C0F45E300733AAE /* four_square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = four_square.cpp; sourceTree = "<group>"; };
+		484A87161C417FB10029F05B /* perfect_split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = perfect_split.cpp; sourceTree = "<group>"; };
+		484A87171C4180D40029F05B /* six_rectangles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = six_rectangles.cpp; sourceTree = "<group>"; };
+		484A87211C4185230029F05B /* six_rectangles */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = six_rectangles; sourceTree = BUILT_PRODUCTS_DIR; };
+		484A87231C4187580029F05B /* nine_rectangles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nine_rectangles.cpp; sourceTree = "<group>"; };
+		484A872D1C4187C70029F05B /* nine_rectangles */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = nine_rectangles; sourceTree = BUILT_PRODUCTS_DIR; };
 		486110AD1BED063E009322A8 /* ff_markov_migration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ff_markov_migration.cpp; sourceTree = "<group>"; };
 		486110B71BED09E0009322A8 /* ff_markov_migrate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ff_markov_migrate; sourceTree = BUILT_PRODUCTS_DIR; };
 		4871EAB91BFCD79A0054C740 /* split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = split.cpp; sourceTree = "<group>"; };
@@ -104,6 +131,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		484A871B1C4185230029F05B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484A871C1C4185230029F05B /* libea.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		484A87271C4187C70029F05B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484A87281C4187C70029F05B /* libea.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		486110B11BED09E0009322A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -176,6 +219,8 @@
 				4873BC2A1BA9AA11001F2D47 /* square_markov */,
 				48E1BFD31BB2EB9B00FA0BA3 /* french_flag_markov */,
 				486110B71BED09E0009322A8 /* ff_markov_migrate */,
+				484A87211C4185230029F05B /* six_rectangles */,
+				484A872D1C4187C70029F05B /* nine_rectangles */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,7 +248,10 @@
 				42DF06891945418600C9A364 /* subpopulation_propagule.h */,
 				4873BC201BA9A893001F2D47 /* square_markov.cpp */,
 				486110AD1BED063E009322A8 /* ff_markov_migration.cpp */,
+				484A87171C4180D40029F05B /* six_rectangles.cpp */,
+				484A87231C4187580029F05B /* nine_rectangles.cpp */,
 				4871EAB91BFCD79A0054C740 /* split.cpp */,
+				484A87161C417FB10029F05B /* perfect_split.cpp */,
 				480EE9CD1C0F45E300733AAE /* four_square.cpp */,
 			);
 			path = src;
@@ -220,6 +268,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		484A87181C4185230029F05B /* six_rectangles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 484A871E1C4185230029F05B /* Build configuration list for PBXNativeTarget "six_rectangles" */;
+			buildPhases = (
+				484A87191C4185230029F05B /* Sources */,
+				484A871B1C4185230029F05B /* Frameworks */,
+				484A871D1C4185230029F05B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = six_rectangles;
+			productName = ealife;
+			productReference = 484A87211C4185230029F05B /* six_rectangles */;
+			productType = "com.apple.product-type.tool";
+		};
+		484A87241C4187C70029F05B /* nine_rectangles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 484A872A1C4187C70029F05B /* Build configuration list for PBXNativeTarget "nine_rectangles" */;
+			buildPhases = (
+				484A87251C4187C70029F05B /* Sources */,
+				484A87271C4187C70029F05B /* Frameworks */,
+				484A87291C4187C70029F05B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nine_rectangles;
+			productName = ealife;
+			productReference = 484A872D1C4187C70029F05B /* nine_rectangles */;
+			productType = "com.apple.product-type.tool";
+		};
 		486110AE1BED09E0009322A8 /* ff_markov_migration */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 486110B41BED09E0009322A8 /* Build configuration list for PBXNativeTarget "ff_markov_migration" */;
@@ -349,11 +431,29 @@
 				4873BC211BA9AA11001F2D47 /* square_markov */,
 				48E1BFCA1BB2EB9B00FA0BA3 /* french_flag_markov */,
 				486110AE1BED09E0009322A8 /* ff_markov_migration */,
+				484A87181C4185230029F05B /* six_rectangles */,
+				484A87241C4187C70029F05B /* nine_rectangles */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		484A87191C4185230029F05B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484A87221C4185340029F05B /* six_rectangles.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		484A87251C4187C70029F05B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484A872E1C4187D00029F05B /* nine_rectangles.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		486110AF1BED09E0009322A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -421,6 +521,50 @@
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		484A871F1C4185230029F05B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		484A87201C4185230029F05B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		484A872B1C4187C70029F05B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		484A872C1C4187C70029F05B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -564,6 +708,24 @@
 			buildConfigurations = (
 				424419FB15861127009863BE /* Debug */,
 				424419FC15861127009863BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		484A871E1C4185230029F05B /* Build configuration list for PBXNativeTarget "six_rectangles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				484A871F1C4185230029F05B /* Debug */,
+				484A87201C4185230029F05B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		484A872A1C4187C70029F05B /* Build configuration list for PBXNativeTarget "nine_rectangles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				484A872B1C4187C70029F05B /* Debug */,
+				484A872C1C4187C70029F05B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

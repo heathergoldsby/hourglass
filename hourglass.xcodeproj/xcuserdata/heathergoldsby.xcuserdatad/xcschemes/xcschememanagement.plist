@@ -19,6 +19,16 @@
 			<key>orderHint</key>
 			<integer>22</integer>
 		</dict>
+		<key>nine_rectangles.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
+		<key>six_rectangles.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
+		</dict>
 		<key>square.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -138,6 +148,16 @@
 			<true/>
 		</dict>
 		<key>48460689192D1FFE005579F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>484A87181C4185230029F05B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>484A87241C4187C70029F05B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -69,6 +69,42 @@ src/split.cpp
 install dist : split : <location>$(HOME)/bin ;
 
 
+
+exe perfect_split :
+src/perfect_split.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : perfect_split : <location>$(HOME)/bin ;
+
+
+exe six_rectangles :
+src/six_rectangles.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : six_rectangles : <location>$(HOME)/bin ;
+
+
+exe nine_rectangles :
+src/nine_rectangles.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : nine_rectangles : <location>$(HOME)/bin ;
+
+
+
+
 exe four_square :
 src/four_square.cpp
 /libea//libea
