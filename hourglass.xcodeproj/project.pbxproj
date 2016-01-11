@@ -14,6 +14,8 @@
 		484A872E1C4187D00029F05B /* nine_rectangles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484A87231C4187580029F05B /* nine_rectangles.cpp */; };
 		48525B861C43CFD500D3F315 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		48525B8C1C43CFDD00D3F315 /* scaffolding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48525B801C43CE4700D3F315 /* scaffolding.cpp */; };
+		48525B931C44674100D3F315 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		48525B991C44675D00D3F315 /* skinny3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48525B8D1C443E7300D3F315 /* skinny3.cpp */; };
 		486110B21BED09E0009322A8 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		486110B81BED09FD009322A8 /* ff_markov_migration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 486110AD1BED063E009322A8 /* ff_markov_migration.cpp */; };
 		4873BC191BA891F9001F2D47 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
@@ -46,6 +48,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		48525B871C43CFD500D3F315 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		48525B941C44674100D3F315 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -128,6 +139,7 @@
 		48525B8B1C43CFD500D3F315 /* scaffolding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scaffolding; sourceTree = BUILT_PRODUCTS_DIR; };
 		48525B8D1C443E7300D3F315 /* skinny3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = skinny3.cpp; sourceTree = "<group>"; };
 		48525B8E1C443E9A00D3F315 /* skinny4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = skinny4.cpp; sourceTree = "<group>"; };
+		48525B981C44674100D3F315 /* skinny3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = skinny3; sourceTree = BUILT_PRODUCTS_DIR; };
 		486110AD1BED063E009322A8 /* ff_markov_migration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ff_markov_migration.cpp; sourceTree = "<group>"; };
 		486110B71BED09E0009322A8 /* ff_markov_migrate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ff_markov_migrate; sourceTree = BUILT_PRODUCTS_DIR; };
 		4871EAB91BFCD79A0054C740 /* split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = split.cpp; sourceTree = "<group>"; };
@@ -168,6 +180,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				48525B861C43CFD500D3F315 /* libea.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48525B921C44674100D3F315 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48525B931C44674100D3F315 /* libea.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +266,7 @@
 				484A87211C4185230029F05B /* six_rectangles */,
 				484A872D1C4187C70029F05B /* nine_rectangles */,
 				48525B8B1C43CFD500D3F315 /* scaffolding */,
+				48525B981C44674100D3F315 /* skinny3 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -346,6 +367,23 @@
 			name = scaffolding;
 			productName = ealife;
 			productReference = 48525B8B1C43CFD500D3F315 /* scaffolding */;
+			productType = "com.apple.product-type.tool";
+		};
+		48525B8F1C44674100D3F315 /* skinny3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48525B951C44674100D3F315 /* Build configuration list for PBXNativeTarget "skinny3" */;
+			buildPhases = (
+				48525B901C44674100D3F315 /* Sources */,
+				48525B921C44674100D3F315 /* Frameworks */,
+				48525B941C44674100D3F315 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = skinny3;
+			productName = ealife;
+			productReference = 48525B981C44674100D3F315 /* skinny3 */;
 			productType = "com.apple.product-type.tool";
 		};
 		486110AE1BED09E0009322A8 /* ff_markov_migration */ = {
@@ -480,6 +518,7 @@
 				484A87181C4185230029F05B /* six_rectangles */,
 				484A87241C4187C70029F05B /* nine_rectangles */,
 				48525B821C43CFD500D3F315 /* scaffolding */,
+				48525B8F1C44674100D3F315 /* skinny3 */,
 			);
 		};
 /* End PBXProject section */
@@ -506,6 +545,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				48525B8C1C43CFDD00D3F315 /* scaffolding.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48525B901C44674100D3F315 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48525B991C44675D00D3F315 /* skinny3.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +682,28 @@
 			name = Debug;
 		};
 		48525B8A1C43CFD500D3F315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		48525B961C44674100D3F315 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		48525B971C44674100D3F315 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
@@ -812,6 +881,15 @@
 			buildConfigurations = (
 				48525B891C43CFD500D3F315 /* Debug */,
 				48525B8A1C43CFD500D3F315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48525B951C44674100D3F315 /* Build configuration list for PBXNativeTarget "skinny3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48525B961C44674100D3F315 /* Debug */,
+				48525B971C44674100D3F315 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>24</integer>
 		</dict>
+		<key>skinny3.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
+		</dict>
 		<key>square.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -168,6 +173,11 @@
 			<true/>
 		</dict>
 		<key>48525B821C43CFD500D3F315</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48525B8F1C44674100D3F315</key>
 		<dict>
 			<key>primary</key>
 			<true/>

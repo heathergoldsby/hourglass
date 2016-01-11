@@ -188,7 +188,7 @@ struct skinny_4_stripe : fitness_function<unary_fitness<double>, constantS, stoc
 
 // Evolutionary algorithm definition.
 typedef markov_network_evolution
-< french_flag_fitness
+< skinny_4_stripe
 , recombination::asexual
 , generational_models::moran_process< >
 > ea_type;
