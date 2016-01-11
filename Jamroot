@@ -116,3 +116,27 @@ src/four_square.cpp
 install dist : four_square : <location>$(HOME)/bin ;
 
 
+
+
+exe skinny3 :
+src/skinny3.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : skinny3 : <location>$(HOME)/bin ;
+
+
+
+
+exe skinny4 :
+src/skinny4.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : skinny4 : <location>$(HOME)/bin ;

@@ -24,6 +24,11 @@
 			<key>orderHint</key>
 			<integer>25</integer>
 		</dict>
+		<key>scaffolding.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>26</integer>
+		</dict>
 		<key>six_rectangles.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -158,6 +163,11 @@
 			<true/>
 		</dict>
 		<key>484A87241C4187C70029F05B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48525B821C43CFD500D3F315</key>
 		<dict>
 			<key>primary</key>
 			<true/>
