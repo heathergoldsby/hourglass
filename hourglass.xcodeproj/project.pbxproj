@@ -143,6 +143,7 @@
 		48525B981C44674100D3F315 /* skinny3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = skinny3; sourceTree = BUILT_PRODUCTS_DIR; };
 		486110AD1BED063E009322A8 /* ff_markov_migration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ff_markov_migration.cpp; sourceTree = "<group>"; };
 		486110B71BED09E0009322A8 /* ff_markov_migrate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ff_markov_migrate; sourceTree = BUILT_PRODUCTS_DIR; };
+		486CA59A1C4ACFCD00D2EE43 /* outline_split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = outline_split.cpp; sourceTree = "<group>"; };
 		4871EAB91BFCD79A0054C740 /* split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = split.cpp; sourceTree = "<group>"; };
 		4873BC141BA891D2001F2D47 /* french_flag.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = french_flag.cpp; sourceTree = "<group>"; };
 		4873BC1E1BA891F9001F2D47 /* french_flag */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = french_flag; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +304,7 @@
 				484A87231C4187580029F05B /* nine_rectangles.cpp */,
 				4871EAB91BFCD79A0054C740 /* split.cpp */,
 				484A87161C417FB10029F05B /* perfect_split.cpp */,
+				486CA59A1C4ACFCD00D2EE43 /* outline_split.cpp */,
 				4804D6071C4ACD8B005C67CE /* outline.cpp */,
 				480EE9CD1C0F45E300733AAE /* four_square.cpp */,
 			);
