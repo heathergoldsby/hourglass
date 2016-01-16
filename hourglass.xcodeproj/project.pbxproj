@@ -128,6 +128,7 @@
 		42C26B3D19454D6D00F0E6B9 /* stripes.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = stripes.cfg; sourceTree = "<group>"; };
 		42DC570A1940C99D005044F1 /* libea.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libea.a; path = ../DerivedData/research/Build/Products/Debug/libea.a; sourceTree = "<group>"; };
 		42DF06891945418600C9A364 /* subpopulation_propagule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subpopulation_propagule.h; sourceTree = "<group>"; };
+		4804D6071C4ACD8B005C67CE /* outline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = outline.cpp; sourceTree = "<group>"; };
 		480EE9CD1C0F45E300733AAE /* four_square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = four_square.cpp; sourceTree = "<group>"; };
 		484A87161C417FB10029F05B /* perfect_split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = perfect_split.cpp; sourceTree = "<group>"; };
 		484A87171C4180D40029F05B /* six_rectangles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = six_rectangles.cpp; sourceTree = "<group>"; };
@@ -302,6 +303,7 @@
 				484A87231C4187580029F05B /* nine_rectangles.cpp */,
 				4871EAB91BFCD79A0054C740 /* split.cpp */,
 				484A87161C417FB10029F05B /* perfect_split.cpp */,
+				4804D6071C4ACD8B005C67CE /* outline.cpp */,
 				480EE9CD1C0F45E300733AAE /* four_square.cpp */,
 			);
 			path = src;

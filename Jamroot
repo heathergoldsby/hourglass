@@ -140,3 +140,15 @@ src/skinny4.cpp
 ;
 
 install dist : skinny4 : <location>$(HOME)/bin ;
+
+
+
+exe outline :
+src/outline.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : outline : <location>$(HOME)/bin ;
