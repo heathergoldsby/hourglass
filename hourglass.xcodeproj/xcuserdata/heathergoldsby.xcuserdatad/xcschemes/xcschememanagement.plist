@@ -24,6 +24,11 @@
 			<key>orderHint</key>
 			<integer>25</integer>
 		</dict>
+		<key>outline_split.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>28</integer>
+		</dict>
 		<key>scaffolding.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -188,6 +193,11 @@
 			<true/>
 		</dict>
 		<key>486110AE1BED09E0009322A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>486CA59B1C4AD0D000D2EE43</key>
 		<dict>
 			<key>primary</key>
 			<true/>

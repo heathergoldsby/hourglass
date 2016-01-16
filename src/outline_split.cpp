@@ -70,13 +70,10 @@ struct outline_split : fitness_function<unary_fitness<double>, constantS, stocha
         update_world_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, ind, rng, ea);
         
         
-        double f1_10 = 1.0;
-        double f2_11 = 1.0;
-
-        
+        double f1_01 = 1.0;
+        double f2_11 = 1.0;        
         double f3_10 = 1.0;
-        double f3_01 = 1.0;
-        double f3_11 = 1.0;
+        
         
         // Compute fitness.
         for (int xy = 0; xy<grid_size; xy++) {
@@ -113,7 +110,6 @@ struct outline_split : fitness_function<unary_fitness<double>, constantS, stocha
             
         }
         
-        accumulator_set<double, stats<tag::max> > fs;
         
         f = f1_01 * f2_11 * f3_10;
         return f;
