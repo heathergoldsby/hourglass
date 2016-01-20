@@ -1,4 +1,4 @@
-/* outline_split.cpp
+/* outline_split2.cpp
  *
  * This file is part of EALib.
  *
@@ -39,7 +39,7 @@ using namespace boost::accumulators;
 
 
 
-struct outline_split : fitness_function<unary_fitness<double>, constantS, stochasticS> {
+struct outline_split2 : fitness_function<unary_fitness<double>, constantS, stochasticS> {
     template <typename Individual, typename RNG, typename EA>
     double operator()(Individual& ind, RNG& rng, EA& ea) {
         
@@ -71,9 +71,9 @@ struct outline_split : fitness_function<unary_fitness<double>, constantS, stocha
         
         
         double f1_01 = 1.0;
-        double f2_11 = 1.0;        
+        double f2_11 = 1.0;
         double f3_10 = 1.0;
-        
+        double f4_00 = 1.0;
         
         // Compute fitness.
         for (int xy = 0; xy<grid_size; xy++) {
@@ -90,35 +90,39 @@ struct outline_split : fitness_function<unary_fitness<double>, constantS, stocha
             
             
             
-                if (agent_x < (floor(max_x) / 2 )) {
-                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
-                        ++f2_11;
+            if (agent_x < (floor(max_x) / 2 )) {
+                if ((agent_x ==0) || (agent_y == 0) || (agent_x == (max_x -1)) || (agent_y == (max_y -1))) {
+                    if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                        ++f4_00;
                     }
-                    
-                } else if (agent_x >= (floor(max_x) / 2 )) {
-                    if ((agent_x ==0) || (agent_y == 0) || (agent_x == (max_x -1)) || (agent_y == (max_y -1))) {
-                        if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
-                            ++f1_01;
-                        }
-                    } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-                        ++f3_10;
-                    }
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                    ++f2_11;
                 }
                 
-
+            } else if (agent_x >= (floor(max_x) / 2 )) {
+                if ((agent_x ==0) || (agent_y == 0) || (agent_x == (max_x -1)) || (agent_y == (max_y -1))) {
+                    if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                        ++f1_01;
+                    }
+                } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                    ++f3_10;
+                }
+            }
+            
+            
             
             
         }
         
         
-        f = f1_01 * f2_11 * f3_10;
+        f = f1_01 * f2_11 * f3_10 * f4_00;
         return f;
     }
 };
 
 // Evolutionary algorithm definition.
 typedef markov_network_evolution
-< outline_split
+< outline_split2
 , recombination::asexual
 , generational_models::moran_process< >
 > ea_type;

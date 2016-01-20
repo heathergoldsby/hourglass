@@ -164,3 +164,16 @@ src/outline_split.cpp
 
 install dist : outline_split : <location>$(HOME)/bin ;
 
+
+
+exe outline_split2 :
+src/outline_split2.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : outline_split2 : <location>$(HOME)/bin ;
+
+
