@@ -67,7 +67,7 @@ struct outline_split : fitness_function<unary_fitness<double>, constantS, stocha
         }
         
         
-        update_world_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, ind, rng, ea);
+        update_world_stigmergic_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, ind, rng, ea);
         
         
         double f1_01 = 1.0;
@@ -91,8 +91,8 @@ struct outline_split : fitness_function<unary_fitness<double>, constantS, stocha
             
             
                 if (agent_x < (floor(max_x) / 2 )) {
-                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
-                        ++f2_11;
+                    if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                        ++f3_10;
                     }
                     
                 } else if (agent_x >= (floor(max_x) / 2 )) {
@@ -100,8 +100,8 @@ struct outline_split : fitness_function<unary_fitness<double>, constantS, stocha
                         if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                             ++f1_01;
                         }
-                    } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-                        ++f3_10;
+                    } else if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                        ++f2_11;
                     }
                 }
                 
