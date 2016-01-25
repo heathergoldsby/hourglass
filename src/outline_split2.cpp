@@ -67,7 +67,7 @@ struct outline_split2 : fitness_function<unary_fitness<double>, constantS, stoch
         }
         
         
-        update_world_stigmergic_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, ind, rng, ea);
+        update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, ind, rng, ea);
         
         
         double f1_01 = 1.0;
