@@ -99,7 +99,10 @@ struct outline : fitness_function<unary_fitness<double>, constantS, stochasticS>
             
         }
         
-        f = f1_01 * f2_11;
+        //f = f1_01 * f2_11;
+        double e = f1_01 + f2_11 - 2;
+        f = pow(1.5, e);
+        
         return f;
     }
 };

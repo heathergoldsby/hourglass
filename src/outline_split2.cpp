@@ -116,7 +116,10 @@ struct outline_split2 : fitness_function<unary_fitness<double>, constantS, stoch
         }
         
         
-        f = f1_01 * f2_11 * f3_10 * f4_00;
+        //f = f1_01 * f2_11 * f3_10 * f4_00;
+        double e = f1_01 + f2_11 + f3_10 + f4_00 - 4;
+        f = pow(1.5, e);
+        
         return f;
     }
 };
