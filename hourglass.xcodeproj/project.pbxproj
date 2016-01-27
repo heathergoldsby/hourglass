@@ -162,6 +162,7 @@
 		4873BC201BA9A893001F2D47 /* square_markov.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = square_markov.cpp; sourceTree = "<group>"; };
 		4873BC2A1BA9AA11001F2D47 /* square_markov */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = square_markov; sourceTree = BUILT_PRODUCTS_DIR; };
 		487ACE231934F7C60016340B /* movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = movie.h; sourceTree = "<group>"; };
+		487E25F21C590BF700B6B896 /* outline_quad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = outline_quad.cpp; sourceTree = "<group>"; };
 		48A1E129183F8ED70023C478 /* stripes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stripes.h; sourceTree = "<group>"; };
 		48A5B7781BB94D9400E4E515 /* markov_movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = markov_movie.h; sourceTree = "<group>"; };
 		48A904F11BBAA07700A1532C /* hourglass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hourglass.h; sourceTree = "<group>"; };
@@ -328,6 +329,7 @@
 				484A87161C417FB10029F05B /* perfect_split.cpp */,
 				486CA59A1C4ACFCD00D2EE43 /* outline_split.cpp */,
 				48EDF70B1C4FD54400679023 /* outline_split2.cpp */,
+				487E25F21C590BF700B6B896 /* outline_quad.cpp */,
 				4804D6071C4ACD8B005C67CE /* outline.cpp */,
 				480EE9CD1C0F45E300733AAE /* four_square.cpp */,
 			);

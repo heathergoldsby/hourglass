@@ -177,3 +177,13 @@ src/outline_split2.cpp
 install dist : outline_split2 : <location>$(HOME)/bin ;
 
 
+
+exe outline_quad :
+src/outline_quad.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : outline_quad : <location>$(HOME)/bin ;
