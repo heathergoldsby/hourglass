@@ -66,8 +66,9 @@ struct outline : fitness_function<unary_fitness<double>, constantS, stochasticS>
             exec_order[i] = i;
         }
         
-        
-        update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, ind, rng, ea);
+        std::vector< std::vector<int> > cell_color(grid_size, std::vector<int>(2, 0));
+
+        update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, cell_color, ind, rng, ea);
         
         
         double f1_01 = 1.0;
@@ -146,7 +147,7 @@ public:
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
         
-        add_tool<ealib::analysis::movie_markov_growth_migration>(this);
+        add_tool<ealib::analysis::markov_movie>(this);
         
     }
     

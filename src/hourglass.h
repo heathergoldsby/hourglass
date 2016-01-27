@@ -525,7 +525,7 @@ void update_world_stigmergic_N(int n, std::vector<int>& agent_pos, std::vector<i
 // Run the world... no coordinates; stigmergic and communication
 
 template <typename Individual, typename RNG, typename EA>
-void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos, std::vector<int>& exec_order, std::vector<typename EA::phenotype_type>& as, Individual& ind, RNG& rng, EA& ea) {
+void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos, std::vector<int>& exec_order, std::vector<typename EA::phenotype_type>& as, std::vector< std::vector<int> >& cell_color, Individual& ind, RNG& rng, EA& ea) {
     
     int max_x = get<X_SIZE>(ea,10);
     int max_y = get<Y_SIZE>(ea,10);
@@ -534,7 +534,6 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
     
     // cell color (init vector of vectors? how?)
     int max_size = max_x * max_y;
-    std::vector< std::vector<int> > cell_color(max_size, std::vector<int>(2, 0));
     
     
     // World update... this is where growth may occur.
