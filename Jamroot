@@ -187,3 +187,14 @@ src/outline_quad.cpp
 ;
 
 install dist : outline_quad : <location>$(HOME)/bin ;
+
+
+exe steppingstones :
+src/steppingstones.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : steppingstones : <location>$(HOME)/bin ;
