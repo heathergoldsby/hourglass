@@ -54,6 +54,11 @@
 			<key>orderHint</key>
 			<integer>21</integer>
 		</dict>
+		<key>steppingstones.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>29</integer>
+		</dict>
 		<key>stripes_multi.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -223,6 +228,11 @@
 			<true/>
 		</dict>
 		<key>4873BC211BA9AA11001F2D47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4875B5011C5997F1003C955D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
