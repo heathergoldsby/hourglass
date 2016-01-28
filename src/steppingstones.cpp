@@ -299,10 +299,10 @@ struct steppingstones : fitness_function<unary_fitness<double>, constantS, stoch
         
 
         // given the final state, evaluate on a variety of different patterns
-        fs(get<W1>(ea,1) * outline(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W2>(ea,1) * outline_split(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W3>(ea,1) * outline_split2(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W4>(ea,1) * outline_quad(grid_size, max_x, max_y, agent_pos, as, ea));
+        fs(get<W1>(ea) * outline(grid_size, max_x, max_y, agent_pos, as, ea));
+        fs(get<W2>(ea) * outline_split(grid_size, max_x, max_y, agent_pos, as, ea));
+        fs(get<W3>(ea) * outline_split2(grid_size, max_x, max_y, agent_pos, as, ea));
+        fs(get<W4>(ea) * outline_quad(grid_size, max_x, max_y, agent_pos, as, ea));
         
         f = boost::accumulators::max(fs);
         return (f);
