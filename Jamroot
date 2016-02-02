@@ -198,3 +198,15 @@ src/steppingstones.cpp
 ;
 
 install dist : steppingstones : <location>$(HOME)/bin ;
+
+
+
+exe island :
+src/islandmodel.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : island : <location>$(HOME)/bin ;
