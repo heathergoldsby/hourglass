@@ -64,8 +64,7 @@ void update_world_N(int n, std::vector<int>& agent_pos, std::vector<int>& exec_o
     bool reproduce = (!boost::algorithm::icontains(capabilities_off, "reproduce"));
     bool coordinate = (!boost::algorithm::icontains(capabilities_off, "coordinate"));
     bool edge = (!boost::algorithm::icontains(capabilities_off, "edge"));
-    
-    
+
     
     // agent_pos, as, exec_order
     for(int t=0;t<n;t++){
@@ -323,6 +322,7 @@ void update_world_stigmergic_N(int n, std::vector<int>& agent_pos, std::vector<i
     
     
     
+    
     // agent_pos, as, exec_order
     for(int t=0;t<n;t++){
         
@@ -573,7 +573,8 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
     bool reproduce = (!boost::algorithm::icontains(capabilities_off, "reproduce"));
     bool stigmergic = (!boost::algorithm::icontains(capabilities_off, "stigmergic"));
     bool edge = (!boost::algorithm::icontains(capabilities_off, "edge"));
-    
+    bool communication = (!boost::algorithm::icontains(capabilities_off, "communication"));
+
     
     
     // agent_pos, as, exec_order
@@ -663,9 +664,11 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
                     (as[p]).input(0) = neighbor.output(0);
                     (as[p]).input(1) = neighbor.output(1);
                     
-                    (as[p]).input(13) = neighbor.output(10);
-                    (as[p]).input(14) = neighbor.output(11);
-                    (as[p]).input(15) = neighbor.output(12);
+                    if (communication) {
+                        (as[p]).input(13) = neighbor.output(10);
+                        (as[p]).input(14) = neighbor.output(11);
+                        (as[p]).input(15) = neighbor.output(12);
+                    }
                     
                 }
             }
@@ -677,9 +680,11 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
                     (as[p]).input(2) = neighbor.output(0);
                     (as[p]).input(3) = neighbor.output(1);
                     
-                    (as[p]).input(16) = neighbor.output(10);
-                    (as[p]).input(17) = neighbor.output(11);
-                    (as[p]).input(18) = neighbor.output(12);
+                    if (communication) {
+                        (as[p]).input(16) = neighbor.output(10);
+                        (as[p]).input(17) = neighbor.output(11);
+                        (as[p]).input(18) = neighbor.output(12);
+                    }
                 }
             }
             
@@ -690,9 +695,11 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
                     (as[p]).input(4) = neighbor.output(0);
                     (as[p]).input(5) = neighbor.output(1);
                     
-                    (as[p]).input(19) = neighbor.output(10);
-                    (as[p]).input(20) = neighbor.output(11);
-                    (as[p]).input(21) = neighbor.output(12);
+                    if (communication) {
+                        (as[p]).input(19) = neighbor.output(10);
+                        (as[p]).input(20) = neighbor.output(11);
+                        (as[p]).input(21) = neighbor.output(12);
+                    }
                 }
             }
             
@@ -703,9 +710,11 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
                     (as[p]).input(6) = neighbor.output(0);
                     (as[p]).input(7) = neighbor.output(1);
                     
-                    (as[p]).input(22) = neighbor.output(10);
-                    (as[p]).input(23) = neighbor.output(11);
-                    (as[p]).input(24) = neighbor.output(12);
+                    if (communication) {
+                        (as[p]).input(22) = neighbor.output(10);
+                        (as[p]).input(23) = neighbor.output(11);
+                        (as[p]).input(24) = neighbor.output(12);
+                    }
                 }
             }
             
