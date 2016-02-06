@@ -5,16 +5,44 @@
 #include <sstream>
 #include <cmath>
 #include <vector>
+#include <boost/accumulators/accumulators.hpp>
+#include <boost/accumulators/statistics/stats.hpp>
+#include <boost/accumulators/statistics/mean.hpp>
+#include <boost/accumulators/statistics/max.hpp>
+
 #include <ea/datafile.h>
 #include <ea/line_of_descent.h>
 #include <ea/analysis.h>
 #include "hourglass.h"
 using namespace std;
+using namespace boost::accumulators;
+
 
 namespace ealib {
     namespace analysis {
 
 
+        LIBEA_ANALYSIS_TOOL(recalc_fit) {
+            accumulator_set<double, stats<tag::max, tag::mean> > fs;
+
+            for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
+                
+                recalculate_fitness(*i, ea);
+                fs(static_cast<int>(ealib::fitness(*i,ea)));
+                
+            }
+            
+            datafile df("recalc_fit.dat");
+            df.write("pop size");
+            df.write("mean");
+            df.write("max");
+            df.endl();
+            df.write(ea.size());
+            df.write(boost::accumulators::mean(fs));
+            df.write(boost::accumulators::max(fs));
+            df.endl();
+
+        }
         
         LIBEA_ANALYSIS_TOOL(movie_markov_growth_migration) {
             double max_fit = 0;
