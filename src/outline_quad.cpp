@@ -182,7 +182,8 @@ public:
         add_tool<analysis::dominant_genetic_graph>(this);
         add_tool<analysis::dominant_causal_graph>(this);
         add_tool<analysis::dominant_reduced_graph>(this);
-        
+        add_tool<ealib::analysis::recalc_fit>(this);
+
         add_tool<ealib::analysis::markov_movie>(this);
         
     }
