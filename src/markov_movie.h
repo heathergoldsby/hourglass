@@ -33,7 +33,7 @@ namespace ealib {
             }
             
             datafile df("recalc_fit.dat");
-            df.write("pop size");
+            df.write("popsize");
             df.write("mean");
             df.write("max");
             df.endl();
