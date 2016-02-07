@@ -574,7 +574,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
     bool stigmergic = (!boost::algorithm::icontains(capabilities_off, "stigmergic"));
     bool edge = (!boost::algorithm::icontains(capabilities_off, "edge"));
     bool communication = (!boost::algorithm::icontains(capabilities_off, "communication"));
-    bool neighbor = (!boost::algorithm::icontains(capabilities_off, "neighbor"));
+    bool sense = (!boost::algorithm::icontains(capabilities_off, "neighbor"));
 
     
     
@@ -662,7 +662,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             if (agent_y > 0) {
                 if (agent_pos[north] != -1) {
                     typename EA::phenotype_type& neighbor = as[agent_pos[north]];
-                    if (neighbor) {
+                    if (sense) {
                         (as[p]).input(0) = neighbor.output(0);
                         (as[p]).input(1) = neighbor.output(1);
                     }
@@ -680,7 +680,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             if (agent_x < (max_x - 2)) {
                 if (agent_pos[east] != -1) {
                     typename EA::phenotype_type& neighbor = as[agent_pos[east]];
-                    if (neighbor) {
+                    if (sense) {
                         (as[p]).input(2) = neighbor.output(0);
                         (as[p]).input(3) = neighbor.output(1);
                     }
@@ -697,7 +697,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             if (agent_y < (max_x - 2)) {
                 if (agent_pos[south] != -1) {
                     typename EA::phenotype_type& neighbor = as[agent_pos[south]];
-                    if (neighbor) {
+                    if (sense) {
                         (as[p]).input(4) = neighbor.output(0);
                         (as[p]).input(5) = neighbor.output(1);
                     }
@@ -714,7 +714,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             if (agent_x > 0) {
                 if (agent_pos[west] != -1) {
                     typename EA::phenotype_type& neighbor = as[agent_pos[west]];
-                    if (neighbor) {
+                    if (sense) {
                         (as[p]).input(6) = neighbor.output(0);
                         (as[p]).input(7) = neighbor.output(1);
                     }
