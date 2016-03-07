@@ -95,6 +95,9 @@ struct body_plans : fitness_function<unary_fitness<double>, nonstationaryS, stoc
 //                break;
         }
 
+        if (f == 0) {
+            f = 1; 
+        }
         return (f);
         
         
