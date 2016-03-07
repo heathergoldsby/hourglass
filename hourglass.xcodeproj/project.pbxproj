@@ -10,6 +10,8 @@
 		42DC570C1940DCEB005044F1 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		481E14461C5FB89C00FF4F51 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		481E144C1C5FB8AE00FF4F51 /* islandmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 482C7A191C5BE6C400F3D7F7 /* islandmodel.cpp */; };
+		481F3C0D1C8DE3EE00325485 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		481F3C131C8DE3FA00325485 /* body_plans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 481F3C071C8DD4B600325485 /* body_plans.cpp */; };
 		484A871C1C4185230029F05B /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		484A87221C4185340029F05B /* six_rectangles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 484A87171C4180D40029F05B /* six_rectangles.cpp */; };
 		484A87281C4187C70029F05B /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
@@ -38,6 +40,15 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		481E14471C5FB89C00FF4F51 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		481F3C0E1C8DE3EE00325485 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -175,6 +186,9 @@
 		4804D6071C4ACD8B005C67CE /* outline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = outline.cpp; sourceTree = "<group>"; };
 		480EE9CD1C0F45E300733AAE /* four_square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = four_square.cpp; sourceTree = "<group>"; };
 		481E144B1C5FB89C00FF4F51 /* island */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = island; sourceTree = BUILT_PRODUCTS_DIR; };
+		481F3C071C8DD4B600325485 /* body_plans.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = body_plans.cpp; sourceTree = "<group>"; };
+		481F3C081C8DD4CE00325485 /* body_plans.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = body_plans.h; sourceTree = "<group>"; };
+		481F3C121C8DE3EE00325485 /* body_plans */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = body_plans; sourceTree = BUILT_PRODUCTS_DIR; };
 		482C7A191C5BE6C400F3D7F7 /* islandmodel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = islandmodel.cpp; sourceTree = "<group>"; };
 		484A87161C417FB10029F05B /* perfect_split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = perfect_split.cpp; sourceTree = "<group>"; };
 		484A87171C4180D40029F05B /* six_rectangles.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = six_rectangles.cpp; sourceTree = "<group>"; };
@@ -217,6 +231,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				481E14461C5FB89C00FF4F51 /* libea.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		481F3C0C1C8DE3EE00325485 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				481F3C0D1C8DE3EE00325485 /* libea.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +378,7 @@
 				4875B50A1C5997F1003C955D /* steppingstones */,
 				481E144B1C5FB89C00FF4F51 /* island */,
 				48BAE8931C68F16E005698AE /* outline_quad */,
+				481F3C121C8DE3EE00325485 /* body_plans */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -397,6 +420,8 @@
 				487E25F21C590BF700B6B896 /* outline_quad.cpp */,
 				4804D6071C4ACD8B005C67CE /* outline.cpp */,
 				480EE9CD1C0F45E300733AAE /* four_square.cpp */,
+				481F3C071C8DD4B600325485 /* body_plans.cpp */,
+				481F3C081C8DD4CE00325485 /* body_plans.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -427,6 +452,23 @@
 			name = island;
 			productName = ealife;
 			productReference = 481E144B1C5FB89C00FF4F51 /* island */;
+			productType = "com.apple.product-type.tool";
+		};
+		481F3C091C8DE3EE00325485 /* body_plans */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 481F3C0F1C8DE3EE00325485 /* Build configuration list for PBXNativeTarget "body_plans" */;
+			buildPhases = (
+				481F3C0A1C8DE3EE00325485 /* Sources */,
+				481F3C0C1C8DE3EE00325485 /* Frameworks */,
+				481F3C0E1C8DE3EE00325485 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = body_plans;
+			productName = ealife;
+			productReference = 481F3C121C8DE3EE00325485 /* body_plans */;
 			productType = "com.apple.product-type.tool";
 		};
 		484A87181C4185230029F05B /* six_rectangles */ = {
@@ -685,6 +727,7 @@
 				4875B5011C5997F1003C955D /* steppingstones */,
 				481E14421C5FB89C00FF4F51 /* island */,
 				48BAE88A1C68F16E005698AE /* outline_quad */,
+				481F3C091C8DE3EE00325485 /* body_plans */,
 			);
 		};
 /* End PBXProject section */
@@ -695,6 +738,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				481E144C1C5FB8AE00FF4F51 /* islandmodel.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		481F3C0A1C8DE3EE00325485 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				481F3C131C8DE3FA00325485 /* body_plans.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +887,28 @@
 			name = Debug;
 		};
 		481E144A1C5FB89C00FF4F51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		481F3C101C8DE3EE00325485 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/dk/Documents/repositories/research.hg/src/DerivedData/research/Build/Products/Debug,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		481F3C111C8DE3EE00325485 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
@@ -1149,6 +1222,15 @@
 			buildConfigurations = (
 				481E14491C5FB89C00FF4F51 /* Debug */,
 				481E144A1C5FB89C00FF4F51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		481F3C0F1C8DE3EE00325485 /* Build configuration list for PBXNativeTarget "body_plans" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				481F3C101C8DE3EE00325485 /* Debug */,
+				481F3C111C8DE3EE00325485 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

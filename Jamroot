@@ -201,6 +201,19 @@ install dist : steppingstones : <location>$(HOME)/bin ;
 
 
 
+exe body_plans :
+src/body_plans.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : body_plans : <location>$(HOME)/bin ;
+
+
+
+
 exe island :
 src/islandmodel.cpp
 /libea//libea
