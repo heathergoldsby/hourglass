@@ -32,7 +32,7 @@ using namespace mkv;
 
 /*! Sample fitness function for Markov networks.
  */
-struct body_plans : fitness_function<unary_fitness<double>, nonstationaryS, stochasticS> {
+struct body_plans : fitness_function<unary_fitness<double>, constantS, stochasticS> {
     template <typename Individual, typename RNG, typename EA>
     double operator()(Individual& ind, RNG& rng, EA& ea) {
         
