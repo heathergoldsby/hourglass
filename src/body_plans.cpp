@@ -90,9 +90,30 @@ struct body_plans : fitness_function<unary_fitness<double>, constantS, stochasti
             case 7:
                 f = body_plan7(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-//            case 8:
-//                f = body_plan8(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
+            case 8:
+                f = body_plan8(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 9:
+                f = body_plan9(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 10:
+                f = body_plan10(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 11:
+                f = body_plan11(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 12:
+                f = body_plan12(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 13:
+                f = body_plan13(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 14:
+                f = body_plan14(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 15:
+                f = body_plan15(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
         }
 
         if (f == 0) {

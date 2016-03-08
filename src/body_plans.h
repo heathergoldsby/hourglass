@@ -478,4 +478,574 @@ double body_plan7 (int grid_size, int max_x, int max_y, std::vector<int>& agent_
 
 
 
+/* mammal 11  */
+template <typename EA>
+double body_plan8 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 2)) || ((agent_x == 5) && (agent_y == 2)) ||
+                ((agent_x == 0) && (agent_y == 3)) || ((agent_x == 5) && (agent_y == 3))) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if (((agent_y == 0) || (agent_x ==0) || (agent_x==5) || ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))
+            || ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 4) && (agent_y == 2))
+            || ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3)))) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 4) && (agent_y == 1))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1)) ||
+            ((agent_x == 2) && (agent_y == 2)) || ((agent_x == 3) && (agent_y == 2)) ||
+            ((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 4)) || ((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ||
+            (((agent_x == 4) && (agent_y == 4)) || (agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+
+/* mammal 12  */
+template <typename EA>
+double body_plan9 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 3)) || ((agent_x == 5) && (agent_y == 3)) ) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if ((agent_y == 0) || (agent_x ==0) || (agent_x==5) || ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))
+            || ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1)) ||
+            ((agent_x == 4) && (agent_y == 1)) || ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 4) && (agent_y == 2))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if ( ((agent_x == 2) && (agent_y == 2)) || ((agent_x == 3) && (agent_y == 2)) ||
+             ((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3)) ||
+             ((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 4)) || (((agent_x == 4) && (agent_y == 4)) ||
+            (agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+/* mammal 21 */
+template <typename EA>
+double body_plan10 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 5)) || ((agent_x == 5) && (agent_y == 5)) ) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if ((agent_y == 0) || (agent_x ==0) || (agent_x==5) || ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1)) ||
+            ((agent_x == 4) && (agent_y == 1)) || ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 4) && (agent_y == 2))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 2)) || ((agent_x == 3) && (agent_y == 2)) ||
+            ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 4)) || ((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ||
+            (((agent_x == 4) && (agent_y == 4)) || (agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5)) ||
+            ((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+/* mammal 22 */
+template <typename EA>
+double body_plan11 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 5)) || ((agent_x == 5) && (agent_y == 5))) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if ((agent_y == 0) || (agent_x ==0) || (agent_x==5) || ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 4) && (agent_y == 1)) ||
+            ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 2) && (agent_y == 2)) ||
+            ((agent_x == 3) && (agent_y == 2)) || ((agent_x == 4) && (agent_y == 2)) ||
+            ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 4)) || ((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ||
+            (((agent_x == 4) && (agent_y == 4)) || (agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5)) ||
+            ((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+
+
+/* mammal 111  */
+template <typename EA>
+double body_plan12 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 2)) || ((agent_x == 5) && (agent_y == 2)) ||
+                ((agent_x == 0) && (agent_y == 3)) || ((agent_x == 5) && (agent_y == 3)) ||
+                ((agent_x == 0) && (agent_y == 3)) || ((agent_x == 5) && (agent_y == 3))) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if ((agent_y == 0) || (agent_x ==0) || (agent_x==5) ||
+            ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 4) && (agent_y == 2)) ||
+            ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3)) ||
+            ((agent_x == 1) && (agent_y == 4)) || ((agent_x == 4) && (agent_y == 4)) ||
+            ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 4) && (agent_y == 1))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1)) ||
+            ((agent_x == 2) && (agent_y == 2)) || ((agent_x == 3) && (agent_y == 2)) ||
+            ((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ||
+            ((agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+
+
+/* mammal 112  */
+template <typename EA>
+double body_plan13 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 2)) || ((agent_x == 5) && (agent_y == 2))) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if (((agent_y == 0) || (agent_x ==0) || (agent_x==5) || ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))
+             || ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 4) && (agent_y == 2))
+             || ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3)))) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 4) && (agent_y == 1)) ||
+            ((agent_x == 2) && (agent_y == 2)) || ((agent_x == 3) && (agent_y == 2))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1)) ||
+            ((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 4)) || ((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ||
+            (((agent_x == 4) && (agent_y == 4)) || (agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+
+/* mammal 121  */
+template <typename EA>
+double body_plan14 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 3)) || ((agent_x == 5) && (agent_y == 3)) ) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if ((agent_y == 0) || (agent_x ==0) || (agent_x==5) || ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))
+            || ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1)) ||
+            ((agent_x == 4) && (agent_y == 1)) || ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 2) && (agent_y == 2)) ||
+            ((agent_x == 3) && (agent_y == 2)) ||((agent_x == 4) && (agent_y == 2))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3)) ||
+            ((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ||
+            ((agent_x == 1) && (agent_y == 4)) || ((agent_x == 4) && (agent_y == 4))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+
+
+
+/* mammal 122  */
+template <typename EA>
+double body_plan15 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+    double f_01 = 0.0;
+    double f_11 = 0.0;
+    double f_10 = 0.0;
+    double f_na = 0.0;
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            if (((agent_x == 0) && (agent_y == 3)) || ((agent_x == 5) && (agent_y == 3)) ) {
+                f_na++;
+            }
+            continue;
+        }
+        
+        
+        
+        if ((agent_y == 0) || (agent_x ==0) || (agent_x==5) || ((agent_x == 1) && (agent_y == 5)) || ((agent_x == 4) && (agent_y == 5))
+            || ((agent_x == 1) && (agent_y == 3)) || ((agent_x == 4) && (agent_y == 3))) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        }
+        
+        if (((agent_x == 1) && (agent_y == 1)) || ((agent_x == 2) && (agent_y == 1)) || ((agent_x == 3) && (agent_y == 1)) ||
+            ((agent_x == 4) && (agent_y == 1)) || ((agent_x == 1) && (agent_y == 2)) || ((agent_x == 4) && (agent_y == 2))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 2)) || ((agent_x == 3) && (agent_y == 2))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++f_11;
+            }
+        }
+        
+        if (((agent_x == 2) && (agent_y == 5)) || ((agent_x == 3) && (agent_y == 5)) ||
+            ((agent_x == 2) && (agent_y == 3)) || ((agent_x == 3) && (agent_y == 3)) ||
+            ((agent_x == 2) && (agent_y == 4)) || ((agent_x == 3) && (agent_y == 4)) ||
+            ((agent_x == 1) && (agent_y == 4)) || ((agent_x == 4) && (agent_y == 4))) {
+            
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++f_01;
+            }
+        }
+        
+    }
+    
+    double e = f_00 + f_01 + f_11 + f_10 + f_na;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+
 #endif /* body_plans_h */
+
