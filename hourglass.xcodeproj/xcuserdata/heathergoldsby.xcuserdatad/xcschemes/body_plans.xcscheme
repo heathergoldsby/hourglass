@@ -64,7 +64,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-c hourglass_mkv.cfg --ea.hourglass.x_size=6 --ea.hourglass.y_size=6  --ea.run.updates=200000 --ea.hourglass.brain_updates=1 --ea.hourglass.body_plans.f 0"
+            argument = "-c hourglass_mkv.cfg --ea.hourglass.x_size=6 --ea.hourglass.y_size=6  --ea.run.updates=200000 --ea.hourglass.brain_updates=1 --ea.hourglass.body_plans.body_plan 0 --ea.rng.seed 1"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

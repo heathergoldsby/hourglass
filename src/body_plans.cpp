@@ -64,7 +64,7 @@ struct body_plans : fitness_function<unary_fitness<double>, nonstationaryS, stoc
         update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, cell_color, ind, rng, ea);
         
         
-        int fit_func = get<F>(ea,0) ;
+        int fit_func = get<BODYPLAN>(ea,0) ;
         switch(fit_func) {
             case 0:
                 f = body_plan0(grid_size, max_x, max_y, agent_pos, as, ea);
@@ -136,7 +136,7 @@ public:
         add_option<CAPABILITIES_OFF>(this);
         add_option<AGENT_DEATH_PROB>(this);
         add_option<NUM_START_AGENTS>(this);
-        add_option<F>(this);
+        add_option<BODYPLAN>(this);
 
         
     }
