@@ -114,6 +114,18 @@ struct body_plans : fitness_function<unary_fitness<double>, constantS, stochasti
             case 15:
                 f = body_plan15(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
+            case 16:
+                f = body_plan16(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 17:
+                f = body_plan17(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 18:
+                f = body_plan18(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 19:
+                f = body_plan19(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
         }
 
         if (f == 0) {
