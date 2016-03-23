@@ -562,6 +562,8 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
     // (6) mark
     // (7) mark color (8) mark color (9) mark color
     // (10 - 12) out message
+    // (13 - 14) apop
+    
     
     // for this grid, 0,0 is upper left.
     // for this grid, 0,0 is upper left.
@@ -604,6 +606,11 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
                 continue;
                 // we don't actually delete the agent from as b/c this
                 // causes ordering trouble.
+            }
+            
+            if ((as[p].output(13) == 1) && (as[p].output(14) == 1)) {
+                agent_pos[xy] = -1;
+                continue;
             }
             
             
