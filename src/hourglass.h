@@ -608,7 +608,9 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
                 // causes ordering trouble.
             }
             
-            if ((as[p].output(13) == 1) && (as[p].output(14) == 1)) {
+            
+            // apoptosis bits -- 
+            if ((as[p].output(13) == 1) && (as[p].output(14) == 0)) {
                 agent_pos[xy] = -1;
                 continue;
             }
