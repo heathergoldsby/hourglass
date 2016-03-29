@@ -171,6 +171,7 @@ public:
         add_option<AGENT_DEATH_PROB>(this);
         add_option<NUM_START_AGENTS>(this);
         add_option<BODYPLAN>(this);
+        add_option<APOP_THRESH>(this);
 
         
     }
