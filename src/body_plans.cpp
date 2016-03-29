@@ -61,7 +61,8 @@ struct body_plans : fitness_function<unary_fitness<double>, constantS, stochasti
         
         
         std::vector< std::vector<int> > cell_color(grid_size, std::vector<int>(2, 0));
-        update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, cell_color, ind, rng, ea);
+        std::vector<int> apop_count(grid_size,0);
+        update_world_stigmergic_communication_apop_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, cell_color, apop_count, ind, rng, ea);
         
         
         int fit_func = get<BODYPLAN>(ea,0) ;
