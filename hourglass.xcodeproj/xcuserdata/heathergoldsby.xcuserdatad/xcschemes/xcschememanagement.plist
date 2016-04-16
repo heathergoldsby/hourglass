@@ -29,6 +29,11 @@
 			<key>orderHint</key>
 			<integer>30</integer>
 		</dict>
+		<key>new_body_plans.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>33</integer>
+		</dict>
 		<key>nine_rectangles.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -308,6 +313,11 @@
 			<true/>
 		</dict>
 		<key>48E57B5B1B98C4F100E630CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48F6D17D1CC2BD8E000BA5C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
