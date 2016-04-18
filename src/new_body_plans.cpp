@@ -83,30 +83,30 @@ struct new_body_plans : fitness_function<unary_fitness<double>, constantS, stoch
             case 7:
                 f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-//            case 8:
-//                f = body_plan8(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 9:
-//                f = body_plan9(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 10:
-//                f = body_plan10(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 11:
-//                f = body_plan11(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 12:
-//                f = body_plan12(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 13:
-//                f = body_plan13(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 14:
-//                f = body_plan14(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 15:
-//                f = body_plan15(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
+            case 8:
+                f = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 9:
+                f = body_plan_j(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 10:
+                f = body_plan_k(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 11:
+                f = body_plan_l(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 12:
+                f = body_plan_m(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 13:
+                f = body_plan_n(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 14:
+                f = body_plan_o(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 15:
+                f = body_plan_p(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
 //            case 16:
 //                f = body_plan16(grid_size, max_x, max_y, agent_pos, as, ea);
 //                break;
