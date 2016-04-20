@@ -107,19 +107,28 @@ struct new_body_plans : fitness_function<unary_fitness<double>, constantS, stoch
             case 15:
                 f = body_plan_p(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-//            case 16:
-//                f = body_plan16(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 17:
-//                f = body_plan17(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 18:
-//                f = body_plan18(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-//            case 19:
-//                f = body_plan19(grid_size, max_x, max_y, agent_pos, as, ea);
-//                break;
-        }
+            case 16:
+                f = body_plan_q(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 17:
+                f = body_plan_r(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 18:
+                f = body_plan_s(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 19:
+                f = body_plan_t(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 20:
+                f = body_plan_u(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 21:
+                f = body_plan_v(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 22:
+                f = body_plan_w(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            }
         
         if (f == 0) {
             f = 1;
