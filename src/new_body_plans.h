@@ -11,6 +11,7 @@
 
 
 LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
+LIBEA_MD_DECL(START_POS, "ea.hourglass.body_plans.start_pos", int); // 0 - 0,0, 1 - middle
 
 
 

@@ -41,10 +41,27 @@ struct new_body_plans : fitness_function<unary_fitness<double>, constantS, stoch
         typename EA::phenotype_type &N = ealib::phenotype(ind, ea);
         vector<typename EA::phenotype_type> as; //
         
+        int start_pos = get<START_POS>(ea,0);
+        int offset = 0;
+        
+        switch (start_pos) {
+            case 0:
+                // offset stays 0.
+                break;
+                
+            case 1:
+                offset = (grid_size / 2) -1 ;
+                break;
+                
+        }
         
         for (int q=0; q<get<NUM_START_AGENTS>(ea,1); q++) {
             as.push_back(N); //grid_size, N); // my agents or networks
-            agent_pos[q] = q;
+            int pos = q + offset;
+            if (pos >=  grid_size) {
+                pos -= grid_size;
+            }
+            agent_pos[pos] = q;
             as[q].reset(rng.seed());
         }
         
@@ -173,6 +190,7 @@ public:
         add_option<NUM_START_AGENTS>(this);
         add_option<BODYPLAN>(this);
         add_option<APOP_THRESH>(this);
+        add_option<START_POS>(this);
         
         
     }
