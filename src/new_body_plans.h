@@ -578,12 +578,12 @@ double body_plan_k (int grid_size, int max_x, int max_y, std::vector<int>& agent
         }
         
         if (agent_y == 0) {
-            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
-                ++f_10;
-            }
-        } else if (agent_y == 5) {
             if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                 ++f_01;
+            }
+        } else if (agent_y == 5) {
+            if (((as[p]).output(0) == 0=1) &&  ((as[p]).output(1) == 0)){
+                ++f_10;
             }
         } else if (agent_x < 3) {
             if (agent_y < 3) {
