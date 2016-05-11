@@ -12,7 +12,7 @@
 #include <ea/datafiles/fitness.h>
 #include "markov_movie.h"
 #include "hourglass.h"
-#include "new_body_plans.h"
+#include "new_body_plans2.h"
 
 using namespace std;
 using namespace boost::accumulators;
@@ -41,8 +41,8 @@ struct new_body_plans : fitness_function<unary_fitness<double>, constantS, stoch
         typename EA::phenotype_type &N = ealib::phenotype(ind, ea);
         vector<typename EA::phenotype_type> as; //
         
+        
         int offset = get<START_POS>(ea,0);
-                
         for (int q=0; q<get<NUM_START_AGENTS>(ea,1); q++) {
             as.push_back(N); //grid_size, N); // my agents or networks
             int pos = q + offset;
@@ -64,76 +64,38 @@ struct new_body_plans : fitness_function<unary_fitness<double>, constantS, stoch
         
         int fit_func = get<BODYPLAN>(ea,0) ;
         switch(fit_func) {
-            case 0:
+            case 1:
                 f = body_plan_a(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 1:
+            case 2:
                 f = body_plan_b(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 2:
+            case 3:
                 f = body_plan_c(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 3:
+            case 4:
                 f = body_plan_d(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 4:
+            case 5:
                 f = body_plan_e(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 5:
+            case 6:
                 f = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 6:
+            case 7:
                 f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 7:
+            case 8:
                 f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 8:
+            case 9:
                 f = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 9:
+            case 10:
                 f = body_plan_j(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 10:
-                f = body_plan_k(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 11:
-                f = body_plan_l(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 12:
-                f = body_plan_m(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 13:
-                f = body_plan_n(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 14:
-                f = body_plan_o(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 15:
-                f = body_plan_p(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 16:
-                f = body_plan_q(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 17:
-                f = body_plan_r(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 18:
-                f = body_plan_s(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 19:
-                f = body_plan_t(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 20:
-                f = body_plan_u(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 21:
-                f = body_plan_v(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 22:
-                f = body_plan_w(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            }
+
+        }
         
         if (f == 0) {
             f = 1;

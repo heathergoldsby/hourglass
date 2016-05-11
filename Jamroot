@@ -224,6 +224,18 @@ install dist : new_body_plans : <location>$(HOME)/bin ;
 
 
 
+exe new_body_plans2 :
+src/new_body_plans2.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : new_body_plans2 : <location>$(HOME)/bin ;
+
+
+
 
 exe island :
 src/islandmodel.cpp

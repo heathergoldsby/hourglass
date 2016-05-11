@@ -14,7 +14,6 @@
 #include <ea/line_of_descent.h>
 #include <ea/analysis.h>
 #include "hourglass.h"
-#include "new_body_plans.h"
 using namespace std;
 using namespace boost::accumulators;
 
@@ -163,19 +162,8 @@ namespace ealib {
             
             // get the "prototype" phenotype (markov network):
             
-            int start_pos = get<START_POS>(ea,0);
-            int offset = 0;
+            int offset = get<START_POS>(ea,0);
             
-            switch (start_pos) {
-                case 0:
-                    // offset stays 0.
-                    break;
-                    
-                case 1:
-                    offset = (grid_size / 2) -1 ;
-                    break;
-                    
-            }
             
             for (int q=0; q<get<NUM_START_AGENTS>(ea,1); q++) {
                 as.push_back(N); //grid_size, N); // my agents or networks

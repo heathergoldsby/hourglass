@@ -17,12 +17,12 @@
 		<key>french_flag.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>17</integer>
 		</dict>
 		<key>french_flag_markov.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>21</integer>
 		</dict>
 		<key>island.xcscheme</key>
 		<dict>
@@ -33,6 +33,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>33</integer>
+		</dict>
+		<key>new_body_plans2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>34</integer>
 		</dict>
 		<key>nine_rectangles.xcscheme</key>
 		<dict>
@@ -67,12 +72,12 @@
 		<key>square.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>15</integer>
 		</dict>
 		<key>square_markov.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>19</integer>
 		</dict>
 		<key>steppingstones.xcscheme</key>
 		<dict>
@@ -82,7 +87,7 @@
 		<key>stripes_multi.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>13</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

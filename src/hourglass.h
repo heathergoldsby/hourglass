@@ -25,6 +25,9 @@ LIBEA_MD_DECL(CAPABILITIES_OFF, "ea.hourglass.capabilities_off", std::string); /
 LIBEA_MD_DECL(NUM_START_AGENTS, "ea.hourglass.num_start_agents", int); // number of agents to start with
 LIBEA_MD_DECL(APOP_THRESH, "ea.hourglass.apop_thresh", int); // number of times apop must be executed for agent to die
 
+LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
+LIBEA_MD_DECL(START_POS, "ea.hourglass.body_plans.start_pos", int); // 0 - 0,0, otherwise count of pos.
+
 
 // Run the world...
 

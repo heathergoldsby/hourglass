@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		42DC570C1940DCEB005044F1 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
+		480FEBCE1CE385DA00ECABDD /* new_body_plans2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 480FEBCD1CE3848A00ECABDD /* new_body_plans2.cpp */; };
 		481E14461C5FB89C00FF4F51 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		481E144C1C5FB8AE00FF4F51 /* islandmodel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 482C7A191C5BE6C400F3D7F7 /* islandmodel.cpp */; };
 		481F3C0D1C8DE3EE00325485 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
@@ -36,7 +37,6 @@
 		48E57B5F1B98C4F100E630CC /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
 		48E57B651B98C4FD00E630CC /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48E57B5A1B98C40900E630CC /* square.cpp */; };
 		48F6D1811CC2BD8E000BA5C1 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC570A1940C99D005044F1 /* libea.a */; };
-		48F6D1871CC2BD9F000BA5C1 /* new_body_plans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48F6D17C1CC2BBE5000BA5C1 /* new_body_plans.cpp */; };
 		48FF4C9319379E49001F0183 /* stripes_multi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48AC8AB11937639900DA6945 /* stripes_multi.cpp */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +196,8 @@
 		42DF06891945418600C9A364 /* subpopulation_propagule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subpopulation_propagule.h; sourceTree = "<group>"; };
 		4804D6071C4ACD8B005C67CE /* outline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = outline.cpp; sourceTree = "<group>"; };
 		480EE9CD1C0F45E300733AAE /* four_square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = four_square.cpp; sourceTree = "<group>"; };
+		480FEBCC1CE3835E00ECABDD /* new_body_plans2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = new_body_plans2.h; sourceTree = "<group>"; };
+		480FEBCD1CE3848A00ECABDD /* new_body_plans2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = new_body_plans2.cpp; sourceTree = "<group>"; };
 		481E144B1C5FB89C00FF4F51 /* island */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = island; sourceTree = BUILT_PRODUCTS_DIR; };
 		481F3C071C8DD4B600325485 /* body_plans.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = body_plans.cpp; sourceTree = "<group>"; };
 		481F3C081C8DD4CE00325485 /* body_plans.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = body_plans.h; sourceTree = "<group>"; };
@@ -446,7 +448,9 @@
 				481F3C071C8DD4B600325485 /* body_plans.cpp */,
 				481F3C081C8DD4CE00325485 /* body_plans.h */,
 				48F6D17B1CC2BBDD000BA5C1 /* new_body_plans.h */,
+				480FEBCC1CE3835E00ECABDD /* new_body_plans2.h */,
 				48F6D17C1CC2BBE5000BA5C1 /* new_body_plans.cpp */,
+				480FEBCD1CE3848A00ECABDD /* new_body_plans2.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -891,7 +895,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48F6D1871CC2BD9F000BA5C1 /* new_body_plans.cpp in Sources */,
+				480FEBCE1CE385DA00ECABDD /* new_body_plans2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
