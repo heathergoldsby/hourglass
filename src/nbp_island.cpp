@@ -139,6 +139,8 @@ public:
         add_option<METAPOPULATION_SIZE>(this);
         add_option<ISLAND_MIGRATION_PERIOD>(this);
         add_option<ISLAND_MIGRATION_RATE>(this);
+        add_option<START_POS>(this);
+
         
     }
     
