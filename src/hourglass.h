@@ -27,6 +27,7 @@ LIBEA_MD_DECL(APOP_THRESH, "ea.hourglass.apop_thresh", int); // number of times 
 
 LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
 LIBEA_MD_DECL(START_POS, "ea.hourglass.body_plans.start_pos", int); // 0 - 0,0, otherwise count of pos.
+LIBEA_MD_DECL(RAND_ORDER, "ea.hourglass.body_plans.rand_order", int); // 0 - in order, 1 random.
 
 
 // Run the world...
@@ -585,7 +586,9 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
     for(int t=0;t<n;t++){
         
         // Must randomize agent execution order...
-        std::random_shuffle ( exec_order.begin(), exec_order.end(), ea.rng() );
+        if (get<RAND_ORDER>(ea,0) ==1) {
+            std::random_shuffle ( exec_order.begin(), exec_order.end(), ea.rng() );
+        }
         
         // Brain update... there should be about 4-8 brain updates per agent per world update
         for (int j=0; j<exec_order.size(); ++j) {

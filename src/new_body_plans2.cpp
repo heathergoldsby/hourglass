@@ -141,6 +141,8 @@ public:
         add_option<BODYPLAN>(this);
         add_option<APOP_THRESH>(this);
         add_option<START_POS>(this);
+        add_option<RAND_ORDER>(this);
+
         
         
     }
