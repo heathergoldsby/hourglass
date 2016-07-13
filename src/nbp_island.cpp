@@ -89,6 +89,32 @@ struct island : fitness_function<unary_fitness<double>, constantS, stochasticS> 
             case 3:
                 f = body_plan_j(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
+    
+            case 4:
+                f = body_plan_a(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 5:
+                f = body_plan_b(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 6:
+                f = body_plan_c(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 7:
+                f = body_plan_d(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 8:
+                f = body_plan_e(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 9:
+                f = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 10:
+                f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 11:
+                f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+           
                 
         }
         
