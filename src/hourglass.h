@@ -20,6 +20,9 @@ LIBEA_MD_DECL(Y_SIZE, "ea.hourglass.y_size", int); // y dimension
 LIBEA_MD_DECL(BRAIN_UPDATES, "ea.hourglass.brain_updates", int); // number of brain updates per world update
 LIBEA_MD_DECL(WORLD_UPDATES, "ea.hourglass.world_updates", int); // number of world updates per fitness eval
 LIBEA_MD_DECL(INPUT_BIT_ERROR_PROB, "ea.hourglass.input_bit_error_prob", float); // probability of an input bit flipping (between 0 and 1).
+LIBEA_MD_DECL(OUTPUT_BIT_ERROR_PROB, "ea.hourglass.output_bit_error_prob", float); // probability of an output bit flipping (between 0 and 1).
+LIBEA_MD_DECL(HIDDEN_BIT_ERROR_PROB, "ea.hourglass.hidden_bit_error_prob", float); // probability of an hidden bit flipping (between 0 and 1).
+
 LIBEA_MD_DECL(AGENT_DEATH_PROB, "ea.hourglass.agent_death_prob", float); // probability of an agent dying.
 LIBEA_MD_DECL(CAPABILITIES_OFF, "ea.hourglass.capabilities_off", std::string); // which capabilities are we turning off? (Setting input bits to 0 or ignoring output.)
 LIBEA_MD_DECL(NUM_START_AGENTS, "ea.hourglass.num_start_agents", int); // number of agents to start with
@@ -794,7 +797,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
                 
             }
             
-            // apply errors if any.
+            // apply input errors if any.
             float error_prob = get<INPUT_BIT_ERROR_PROB>(ea,0);
             assert(0 <= error_prob <= 1.0);
             if (error_prob > 0) {
@@ -810,6 +813,32 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             // update brain_updates times.
             for (int i = 0; i<brain_updates; ++i) {
                 (as[p]).update();
+                
+                // apply hidden errors if any.
+                float h_error_prob = get<HIDDEN_BIT_ERROR_PROB>(ea,0);
+                assert(0 <= h_error_prob <= 1.0);
+                if (h_error_prob > 0) {
+                    for (int k = 0; k < get<MKV_HIDDEN_N>(ea,0); k++) {
+                        if (ea.rng().p(h_error_prob)) {
+                            as[p].hidden(k) = ea.rng().bit();
+                        }
+                    }
+                    
+                }
+
+                
+                // apply output errors if any.
+                float o_error_prob = get<OUTPUT_BIT_ERROR_PROB>(ea,0);
+                assert(0 <= o_error_prob <= 1.0);
+                if (o_error_prob > 0) {
+                    for (int k = 0; k < get<MKV_OUTPUT_N>(ea,0); k++) {
+                        if (ea.rng().p(o_error_prob)) {
+                            as[p].output(k) = ea.rng().bit();
+                        }
+                    }
+                    
+                }
+                
             }
             
         }

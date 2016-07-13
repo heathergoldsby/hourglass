@@ -135,6 +135,9 @@ public:
         add_option<BRAIN_UPDATES>(this);
         add_option<WORLD_UPDATES>(this);
         add_option<INPUT_BIT_ERROR_PROB>(this);
+        add_option<HIDDEN_BIT_ERROR_PROB>(this);
+        add_option<OUTPUT_BIT_ERROR_PROB>(this);
+
         add_option<CAPABILITIES_OFF>(this);
         add_option<AGENT_DEATH_PROB>(this);
         add_option<NUM_START_AGENTS>(this);
