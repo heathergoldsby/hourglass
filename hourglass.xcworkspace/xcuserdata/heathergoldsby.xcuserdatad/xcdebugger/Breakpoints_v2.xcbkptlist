@@ -412,11 +412,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "487707796.803317"
+            timestampString = "493048191.858248"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "623"
-            endingLineNumber = "623"
+            startingLineNumber = "624"
+            endingLineNumber = "624"
             landmarkName = "update_world_stigmergic_communication_N(int n, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "7">
             <Locations>
@@ -508,11 +508,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "487707802.656088"
+            timestampString = "493048239.201197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "589"
-            endingLineNumber = "589"
+            startingLineNumber = "771"
+            endingLineNumber = "771"
             landmarkName = "update_world_stigmergic_communication_N(int n, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "7">
             <Locations>
@@ -524,12 +524,12 @@
                   moduleName = "new_body_plans"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
-                  timestampString = "487707802.905517"
+                  timestampString = "493048335.904846"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "589"
-                  endingLineNumber = "589"
-                  offsetFromSymbolStart = "1253">
+                  startingLineNumber = "771"
+                  endingLineNumber = "771"
+                  offsetFromSymbolStart = "7997">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -539,12 +539,12 @@
                   moduleName = "new_body_plans"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
-                  timestampString = "487707802.905851"
+                  timestampString = "493048335.905101"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "589"
-                  endingLineNumber = "589"
-                  offsetFromSymbolStart = "1253">
+                  startingLineNumber = "771"
+                  endingLineNumber = "771"
+                  offsetFromSymbolStart = "8003">
                </Location>
             </Locations>
          </BreakpointContent>

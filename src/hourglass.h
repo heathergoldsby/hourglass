@@ -31,6 +31,7 @@ LIBEA_MD_DECL(APOP_THRESH, "ea.hourglass.apop_thresh", int); // number of times 
 LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
 LIBEA_MD_DECL(START_POS, "ea.hourglass.body_plans.start_pos", int); // 0 - 0,0, otherwise count of pos.
 LIBEA_MD_DECL(RAND_ORDER, "ea.hourglass.body_plans.rand_order", int); // 0 - in order, 1 random.
+LIBEA_MD_DECL(NO_REP_PERIOD, "ea.hourglass.body_plans.no_rep_period", int); // default: 0. time period where cellular replication is not allowed.
 
 
 // Run the world...
@@ -764,7 +765,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             }
             
             // reproduce
-            if (reproduce && as[p].output(5)) {
+            if ((t >= get<NO_REP_PERIOD>(ea,0)) && (reproduce && as[p].output(5))) {
                 
                 
                 if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
