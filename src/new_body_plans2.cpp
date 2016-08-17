@@ -146,7 +146,8 @@ public:
         add_option<START_POS>(this);
         add_option<RAND_ORDER>(this);
         add_option<NO_REP_PERIOD>(this);
-
+        add_option<GATE_EPSILON>(this);
+        
         
         
     }

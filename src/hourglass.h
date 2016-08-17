@@ -33,6 +33,7 @@ LIBEA_MD_DECL(START_POS, "ea.hourglass.body_plans.start_pos", int); // 0 - 0,0, 
 LIBEA_MD_DECL(RAND_ORDER, "ea.hourglass.body_plans.rand_order", int); // 0 - in order, 1 random.
 LIBEA_MD_DECL(NO_REP_PERIOD, "ea.hourglass.body_plans.no_rep_period", int); // default: 0. time period where cellular replication is not allowed.
 
+LIBEA_MD_DECL(GATE_EPSILON, "ea.hourglass.gate_epsilon", float); // probability of a gate flipping states
 
 // Run the world...
 
@@ -811,9 +812,12 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             }
             
             
+            float ep = get<GATE_EPSILON>(ea,0);
             // update brain_updates times.
             for (int i = 0; i<brain_updates; ++i) {
-                (as[p]).update();
+                
+                std::size_t up = 1;
+                (as[p]).update(up,ep);
                 
                 // apply hidden errors if any.
                 float h_error_prob = get<HIDDEN_BIT_ERROR_PROB>(ea,0);
