@@ -533,7 +533,7 @@ void update_world_stigmergic_N(int n, std::vector<int>& agent_pos, std::vector<i
 // Run the world... no coordinates; stigmergic and communication
 
 template <typename Individual, typename RNG, typename EA>
-void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos, std::vector<int>& exec_order, std::vector<typename EA::phenotype_type>& as, std::vector< std::vector<int> >& cell_color, Individual& ind, RNG& rng, EA& ea) {
+void update_world_stigmergic_communication_N(int n, int overall_time, std::vector<int>& agent_pos, std::vector<int>& exec_order, std::vector<typename EA::phenotype_type>& as, std::vector< std::vector<int> >& cell_color, Individual& ind, RNG& rng, EA& ea) {
     
     int max_x = get<X_SIZE>(ea,10);
     int max_y = get<Y_SIZE>(ea,10);
@@ -586,7 +586,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
     bool sense = (!boost::algorithm::icontains(capabilities_off, "neighbor"));
     
     
-    
+    int total_time = overall_time;
     // agent_pos, as, exec_order
     for(int t=0;t<n;t++){
         
@@ -766,7 +766,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             }
             
             // reproduce
-            if ((t >= get<NO_REP_PERIOD>(ea,0)) && (reproduce && as[p].output(5))) {
+            if ((total_time >= get<NO_REP_PERIOD>(ea,0)) && (reproduce && as[p].output(5))) {
                 
                 
                 if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
@@ -847,6 +847,7 @@ void update_world_stigmergic_communication_N(int n, std::vector<int>& agent_pos,
             }
             
         }
+        ++total_time;
     }
 }
 

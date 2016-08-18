@@ -191,7 +191,7 @@ namespace ealib {
             std::vector< std::vector<int> > cell_color(grid_size, std::vector<int>(2, 0));
             int world_updates = get<WORLD_UPDATES>(ea,10);
             for(int t=0;t<world_updates;t++){
-                update_world_stigmergic_communication_N(1, agent_pos, exec_order, as, cell_color, best, ea.rng(), ea);
+                update_world_stigmergic_communication_N(1, t, agent_pos, exec_order, as, cell_color, best, ea.rng(), ea);
                 
                 
                 df.write(t);
@@ -260,7 +260,7 @@ namespace ealib {
             std::vector< std::vector<int> > cell_color(grid_size, std::vector<int>(2, 0));
             int world_updates = get<WORLD_UPDATES>(ea,10);
             for(int t=0;t<world_updates;t++){
-                update_world_stigmergic_communication_N(1, agent_pos, exec_order, as, cell_color, best, ea.rng(), ea);
+                update_world_stigmergic_communication_N(1, t, agent_pos, exec_order, as, cell_color, best, ea.rng(), ea);
                 
                 
                 df.write(t);
