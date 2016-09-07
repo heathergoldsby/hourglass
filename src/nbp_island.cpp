@@ -31,7 +31,7 @@ using namespace ealib;
 using namespace mkv;
 
 LIBEA_MD_DECL(ISLAND, "ea.hourglass.islandmodel.island", int); //
-LIBEA_MD_DECL(NUM_ISLAND, "ea.hourglass.islandmodel.island", int); //
+LIBEA_MD_DECL(NUM_ISLAND, "ea.hourglass.islandmodel.num_island", int); //
 
 
 
