@@ -31,6 +31,7 @@ using namespace ealib;
 using namespace mkv;
 
 LIBEA_MD_DECL(ISLAND, "ea.hourglass.islandmodel.island", int); //
+LIBEA_MD_DECL(NUM_ISLAND, "ea.hourglass.islandmodel.island", int); //
 
 
 
@@ -72,22 +73,22 @@ struct island : fitness_function<unary_fitness<double>, constantS, stochasticS> 
         
         
         std::vector< std::vector<int> > cell_color(grid_size, std::vector<int>(2, 0));
-        update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), agent_pos, exec_order, as, cell_color, ind, rng, ea);
+        update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), 0, agent_pos, exec_order, as, cell_color, ind, rng, ea);
         int is = get<ISLAND>(ea);
 
         
         switch(is) {
             case 0:
-                f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
+                f = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
             case 1:
-                f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
+                f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
             case 2:
-                f = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
+                f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
             case 3:
-                f = body_plan_j(grid_size, max_x, max_y, agent_pos, as, ea);
+                f = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
     
             case 4:
@@ -105,16 +106,7 @@ struct island : fitness_function<unary_fitness<double>, constantS, stochasticS> 
             case 8:
                 f = body_plan_e(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 9:
-                f = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 10:
-                f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 11:
-                f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-           
+                
                 
         }
         
@@ -165,6 +157,7 @@ public:
         add_option<METAPOPULATION_SIZE>(this);
         add_option<ISLAND_MIGRATION_PERIOD>(this);
         add_option<ISLAND_MIGRATION_RATE>(this);
+        add_option<NUM_ISLAND>(this);
         add_option<START_POS>(this);
 
         
@@ -189,7 +182,7 @@ public:
         int count =0;
         for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
             put<ISLAND>(count, *i);
-            count = (count + 1) % 4;
+            count = (count + 1) % get<NUM_ISLAND>(*i);
             
         }
         
