@@ -422,7 +422,8 @@ namespace ealib {
                     }
                 }
                 
-                std::string f = "movie_" + std::to_string(count) + ".dat";
+                std::string c = std::to_string(count);
+                std::string f = "movie_" + c + ".dat";
                 generate_one_movie (f, best, *i);
                 ++count;
             }
