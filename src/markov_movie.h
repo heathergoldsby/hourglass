@@ -408,7 +408,7 @@ namespace ealib {
         LIBEA_ANALYSIS_TOOL(markov_movie_island) {
             double max_fit = 0;
             typename EA::individual_type::individual_type best;
-            
+            int count = 0;
             
             // recalc all fitness values
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
@@ -421,9 +421,10 @@ namespace ealib {
                         max_fit = tmp_fit;
                     }
                 }
-                std::string f = "movie.dat";
-                generate_one_movie (f, best, *i);
                 
+                std::string f = "movie_" + std::to_string(count) + ".dat";
+                generate_one_movie (f, best, *i);
+                ++count;
             }
         }
         
