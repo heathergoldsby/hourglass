@@ -156,6 +156,8 @@ public:
         add_tool<analysis::dominant_reduced_graph>(this);
         
         add_tool<ealib::analysis::markov_movie>(this);
+        add_tool<ealib::analysis::markov_movie_ko>(this);
+
         add_tool<ealib::analysis::recalc_fit>(this);
         
     }
