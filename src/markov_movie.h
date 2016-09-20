@@ -428,6 +428,7 @@ namespace ealib {
                 std::string f = "movie_" + c + ".dat";
                 generate_one_movie (f, best, *i);
                 ++count;
+                max_fit = 0;
             }
         }
         
