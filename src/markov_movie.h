@@ -266,6 +266,8 @@ namespace ealib {
                 df.write(t);
                 
                 recalculate_fitness(best, ea);
+                double tmp_fit = static_cast<int>(ealib::fitness(best,ea));
+                df.write(tmp_fit);
 
                 // output time point for movie...
                 for (int xy = 0; xy<grid_size; xy++) {
