@@ -9,8 +9,8 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "875F384A-10D8-4F15-AD8F-57F02071BB65",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "043FE3BFA590E887486C533E25FAC8FA804D8996" : "hourglass",
-    "F4E43731183036190F477CF4C99425A6516F08D2" : "ealib"
+    "043FE3BFA590E887486C533E25FAC8FA804D8996" : "hourglass\/",
+    "F4E43731183036190F477CF4C99425A6516F08D2" : "ealib\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "hourglass",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,

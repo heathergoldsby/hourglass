@@ -64,6 +64,10 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "-l checkpoint-island.xml.gz --analyze markov_movie_island"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-l checkpoint-200000.xml.gz --analyze markov_movie_island"
             isEnabled = "YES">
          </CommandLineArgument>
