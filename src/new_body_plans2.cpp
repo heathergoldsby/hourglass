@@ -159,6 +159,7 @@ public:
         add_tool<ealib::analysis::markov_movie_ko>(this);
 
         add_tool<ealib::analysis::recalc_fit>(this);
+        add_tool<ealib::analysis::ko>(this);
         
     }
     

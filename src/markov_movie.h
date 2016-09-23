@@ -265,9 +265,9 @@ namespace ealib {
                 
                 df.write(t);
                 
-                recalculate_fitness(best, ea);
-                double tmp_fit = static_cast<int>(ealib::fitness(best,ea));
-                df.write(tmp_fit);
+                //recalculate_fitness(best, ea);
+                //double tmp_fit = static_cast<int>(ealib::fitness(best,ea));
+                //df.write(tmp_fit);
 
                 // output time point for movie...
                 for (int xy = 0; xy<grid_size; xy++) {
@@ -296,11 +296,14 @@ namespace ealib {
                 
             }
         }
-        
+
+
         
         LIBEA_ANALYSIS_TOOL(markov_movie_ko) {
             double max_fit = 0;
             typename EA::individual_type best;
+            
+
             
             // recalc all fitness values
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
@@ -357,6 +360,8 @@ namespace ealib {
                     }
                 }
                 
+                
+                int island =  get<ISLAND>(*i);
                 stringstream ss;
                 ss << count;
                 std::string c = ss.str();
@@ -368,7 +373,86 @@ namespace ealib {
         }
         
 
-    
+        LIBEA_ANALYSIS_TOOL(ko) {
+            double max_fit = 0;
+            typename EA::individual_type best;
+            
+            // recalc all fitness values
+            for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
+                
+                recalculate_fitness(*i, ea);
+                double tmp_fit = static_cast<int>(ealib::fitness(*i,ea));
+                if (tmp_fit > max_fit) {
+                    best = *i;
+                    max_fit = tmp_fit;
+                }
+            }
+            
+            datafile df("ko.dat");
+            df.write("control")
+            .write("stigmergic")
+            .write("edge")
+            .write("communication")
+            .write("neighbor")
+            .write("origin")
+            .write("reproduce")
+            .write("migrate");
+            
+            df.endl();
+            
+            typename EA::individual_type control = best;
+            recalculate_fitness(control, ea);
+            double tmp_fit = static_cast<int>(ealib::fitness(control,ea));
+            df.write(tmp_fit);
+            
+            typename EA::individual_type ko_stigmergic = best;
+            put<CAPABILITIES_OFF>("stigmergic", ea);
+            recalculate_fitness(ko_stigmergic, ea);
+            tmp_fit = static_cast<int>(ealib::fitness(ko_stigmergic,ea));
+            df.write(tmp_fit);
+
+            typename EA::individual_type ko_edge = best;
+            put<CAPABILITIES_OFF>("edge", ea);
+            recalculate_fitness(ko_edge, ea);
+            tmp_fit = static_cast<int>(ealib::fitness(ko_edge,ea));
+            df.write(tmp_fit);
+
+            typename EA::individual_type ko_comm = best;
+            put<CAPABILITIES_OFF>("communication", ea);
+            recalculate_fitness(ko_comm, ea);
+            tmp_fit = static_cast<int>(ealib::fitness(ko_comm,ea));
+            df.write(tmp_fit);
+
+            
+            typename EA::individual_type ko_neighbor = best;
+            put<CAPABILITIES_OFF>("neighbor", ea);
+            recalculate_fitness(ko_neighbor, ea);
+            tmp_fit = static_cast<int>(ealib::fitness(ko_neighbor,ea));
+            df.write(tmp_fit);
+
+            typename EA::individual_type ko_origin = best;
+            put<CAPABILITIES_OFF>("origin", ea);
+            recalculate_fitness(ko_origin, ea);
+            tmp_fit = static_cast<int>(ealib::fitness(ko_origin,ea));
+            df.write(tmp_fit);
+            
+            typename EA::individual_type ko_reproduce = best;
+            put<CAPABILITIES_OFF>("reproduce", ea);
+            recalculate_fitness(ko_reproduce, ea);
+            tmp_fit = static_cast<int>(ealib::fitness(ko_reproduce,ea));
+            df.write(tmp_fit);
+            
+            typename EA::individual_type ko_migrate = best;
+            put<CAPABILITIES_OFF>("migrate", ea);
+            recalculate_fitness(ko_migrate, ea);
+            tmp_fit = static_cast<int>(ealib::fitness(ko_migrate,ea));
+            df.write(tmp_fit);
+
+            df.endl();
+
+        }
+        
+
 
 
     

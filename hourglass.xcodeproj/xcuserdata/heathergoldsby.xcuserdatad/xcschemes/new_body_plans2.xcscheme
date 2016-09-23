@@ -65,7 +65,15 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-c hourglass.cfg --ea.hourglass.body_plans.body_plan=1 --ea.hourglass.body_plans.no_rep_period=10 --ea.hourglass.gate_epsilon=0.01"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-l checkpoint-300000.xml.gz  --analyze ko"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = ""
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

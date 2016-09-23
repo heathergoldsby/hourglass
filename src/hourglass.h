@@ -35,6 +35,11 @@ LIBEA_MD_DECL(NO_REP_PERIOD, "ea.hourglass.body_plans.no_rep_period", int); // d
 
 LIBEA_MD_DECL(GATE_EPSILON, "ea.hourglass.gate_epsilon", float); // probability of a gate flipping states
 
+LIBEA_MD_DECL(ISLAND, "ea.hourglass.islandmodel.island", int); //
+LIBEA_MD_DECL(NUM_ISLAND, "ea.hourglass.islandmodel.num_island", int); //
+
+
+
 // Run the world...
 
 template <typename Individual, typename RNG, typename EA>
