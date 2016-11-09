@@ -28,4 +28,15 @@ src/nbp_island.cpp
 : <include>./include <link>static
 ;
 
-install dist : nbp_island.cpp : <location>$(HOME)/bin ;
+install dist : nbp_island : <location>$(HOME)/bin ;
+
+
+exe nbp_stepping_stones :
+src/nbp_stepping_stones.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : nbp_stepping_stones : <location>$(HOME)/bin ;
