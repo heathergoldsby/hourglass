@@ -222,6 +222,7 @@
 		480FEBCD1CE3848A00ECABDD /* new_body_plans2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = new_body_plans2.cpp; sourceTree = "<group>"; };
 		480FEBDC1CEA16C500ECABDD /* nbp_island.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nbp_island.cpp; sourceTree = "<group>"; };
 		480FEBE61CEA17A600ECABDD /* nbp_island */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = nbp_island; sourceTree = BUILT_PRODUCTS_DIR; };
+		4816AC031DDBA58700FEAAC3 /* stepping_stone_fitness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stepping_stone_fitness.h; sourceTree = "<group>"; };
 		481E144B1C5FB89C00FF4F51 /* island */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = island; sourceTree = BUILT_PRODUCTS_DIR; };
 		481F3C071C8DD4B600325485 /* body_plans.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = body_plans.cpp; sourceTree = "<group>"; };
 		481F3C081C8DD4CE00325485 /* body_plans.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = body_plans.h; sourceTree = "<group>"; };
@@ -260,6 +261,7 @@
 		48E1BFD31BB2EB9B00FA0BA3 /* french_flag_markov */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = french_flag_markov; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E57B5A1B98C40900E630CC /* square.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = square.cpp; sourceTree = "<group>"; };
 		48E57B641B98C4F100E630CC /* square */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = square; sourceTree = BUILT_PRODUCTS_DIR; };
+		48EA9CD71DDCBE76009FBB80 /* stepping_stones.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stepping_stones.h; sourceTree = "<group>"; };
 		48EDF70B1C4FD54400679023 /* outline_split2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = outline_split2.cpp; sourceTree = "<group>"; };
 		48F6D17B1CC2BBDD000BA5C1 /* new_body_plans.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = new_body_plans.h; sourceTree = "<group>"; };
 		48F6D17C1CC2BBE5000BA5C1 /* new_body_plans.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = new_body_plans.cpp; sourceTree = "<group>"; };
@@ -478,6 +480,8 @@
 				48525B801C43CE4700D3F315 /* scaffolding.cpp */,
 				48525B8D1C443E7300D3F315 /* skinny3.cpp */,
 				48525B8E1C443E9A00D3F315 /* skinny4.cpp */,
+				4816AC031DDBA58700FEAAC3 /* stepping_stone_fitness.h */,
+				48EA9CD71DDCBE76009FBB80 /* stepping_stones.h */,
 				48525B811C43CE6C00D3F315 /* steppingstones.cpp */,
 				482C7A191C5BE6C400F3D7F7 /* islandmodel.cpp */,
 				484A87171C4180D40029F05B /* six_rectangles.cpp */,

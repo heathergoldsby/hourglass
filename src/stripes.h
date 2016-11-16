@@ -42,6 +42,8 @@ LIBEA_MD_DECL(MULTICELL_REP_TIME, "ea.stripes.mc_rep_time", int);
 
 
 
+
+
 //! Stripe fitness.
 struct permute_stripes : public fitness_function<unary_fitness<double>, nonstationaryS> {
     template <typename EA>

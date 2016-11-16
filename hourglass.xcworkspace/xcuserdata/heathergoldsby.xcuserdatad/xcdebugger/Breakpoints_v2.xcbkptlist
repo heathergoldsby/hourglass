@@ -102,7 +102,7 @@
             startingLineNumber = "264"
             endingLineNumber = "264"
             landmarkName = "eval_french_flag(EA&amp; ea)"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -418,7 +418,7 @@
             startingLineNumber = "630"
             endingLineNumber = "630"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
-            landmarkType = "7">
+            landmarkType = "9">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -514,7 +514,7 @@
             startingLineNumber = "777"
             endingLineNumber = "777"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
-            landmarkType = "7">
+            landmarkType = "9">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -658,7 +658,7 @@
             startingLineNumber = "594"
             endingLineNumber = "594"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
-            landmarkType = "7">
+            landmarkType = "9">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -754,7 +754,7 @@
             startingLineNumber = "543"
             endingLineNumber = "543"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
-            landmarkType = "7">
+            landmarkType = "9">
             <Locations>
                <Location
                   shouldBeEnabled = "No"

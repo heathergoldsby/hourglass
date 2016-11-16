@@ -24,24 +24,13 @@
 #include "markov_movie.h"
 #include "hourglass.h"
 #include "new_body_plans2.h"
+#include "stepping_stones.h"
+#include "stepping_stone_fitness.h"
 
 using namespace std;
 using namespace boost::accumulators;
 using namespace ealib;
 using namespace mkv;
-
-
-LIBEA_MD_DECL(W1, "ea.hourglass.steppingstones.w1", double); //
-LIBEA_MD_DECL(W2, "ea.hourglass.steppingstones.w2", double); //
-LIBEA_MD_DECL(W3, "ea.hourglass.steppingstones.w3", double); //
-LIBEA_MD_DECL(W4, "ea.hourglass.steppingstones.w4", double); //
-LIBEA_MD_DECL(W5, "ea.hourglass.steppingstones.w5", double); //
-LIBEA_MD_DECL(W6, "ea.hourglass.steppingstones.w6", double); //
-LIBEA_MD_DECL(W7, "ea.hourglass.steppingstones.w7", double); //
-LIBEA_MD_DECL(W8, "ea.hourglass.steppingstones.w8", double); //
-LIBEA_MD_DECL(W9, "ea.hourglass.steppingstones.w9", double); //
-
-
 
 /*! Steppingstones...
  */
@@ -87,17 +76,41 @@ struct steppingstones : fitness_function<unary_fitness<double>, constantS, stoch
         
         
         // given the final state, evaluate on a variety of different patterns
+        double f1 = body_plan_a(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F1>(f1, ind);
+        fs(get<W1>(ea) * f1);
+        
+        double f2 = body_plan_b(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F2>(f2, ind);
+        fs(get<W2>(ea) * f2);
 
-        fs(get<W1>(ea) * body_plan_a(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W2>(ea) * body_plan_b(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W3>(ea) * body_plan_c(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W4>(ea) * body_plan_d(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W5>(ea) * body_plan_e(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W6>(ea) * body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W7>(ea) * body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W8>(ea) * body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea));
-        fs(get<W9>(ea) * body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea));
-
+        double f3 = body_plan_c(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F3>(f3, ind);
+        fs(get<W3>(ea) * f3);
+        
+        double f4 = body_plan_d(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F4>(f4, ind);
+        fs(get<W4>(ea) * f4);
+        
+        double f5 = body_plan_e(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F5>(f5, ind);
+        fs(get<W5>(ea) * f5);
+        
+        double f6 = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F6>(f6, ind);
+        fs(get<W6>(ea) * f6);
+        
+        double f7 = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F7>(f7, ind);
+        fs(get<W7>(ea) * f7);
+        
+        double f8 = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F8>(f8, ind);
+        fs(get<W8>(ea) * f8);
+        
+        double f9 = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
+        put<F9>(f9, ind);
+        fs(get<W9>(ea) * f9);
         
         f = boost::accumulators::max(fs);
         return (f);
@@ -179,6 +192,8 @@ public:
     
     virtual void gather_events(EA& ea) {
         add_event<datafiles::fitness_dat>(ea);
+        add_event<datafiles::stepping_stone_fitness_dat>(ea);
+
     };
 };
 LIBEA_CMDLINE_INSTANCE(ea_type, cli);
