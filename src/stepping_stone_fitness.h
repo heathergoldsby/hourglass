@@ -38,7 +38,7 @@ namespace ealib {
          */
         template <typename EA>
         struct stepping_stone_fitness_dat : record_statistics_event<EA> {
-            stepping_stone_fitness_dat(EA& ea) : record_statistics_event<EA>(ea), _df("fitness.dat") {
+            stepping_stone_fitness_dat(EA& ea) : record_statistics_event<EA>(ea), _df("stepping_stones_fitness.dat") {
                 _df.add_field("update")
                 .add_field("mean_fitness_1")
                 .add_field("max_fitness_1")
