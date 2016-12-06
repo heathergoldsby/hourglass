@@ -95,7 +95,7 @@ struct new_body_plans : fitness_function<unary_fitness<double>, constantS, stoch
                 f = body_plan_solid(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
             case 101:
-                f = body_plan_driftgi(grid_size, max_x, max_y, agent_pos, as, ea);
+                f = body_plan_drift(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
 
         }
