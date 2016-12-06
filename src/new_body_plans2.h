@@ -626,6 +626,75 @@ double body_plan_i (int grid_size, int max_x, int max_y, std::vector<int>& agent
 }
 
 
+/* i */
+template <typename EA>
+double body_plan_solid (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double f_00 = 0.0;
+
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            continue;
+        }
+        
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++f_00;
+            }
+        
+    }
+    
+    double e = f_00;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
+template <typename EA>
+double body_plan_drift (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double fit = 0.0;
+    
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // no agent
+        if (p == -1) {
+            continue;
+        }
+        
+        ++fit;
+        
+    }
+    
+    double e = fit;
+    double f = pow(1.5, e);
+    
+    return f;
+}
+
 
 
 
