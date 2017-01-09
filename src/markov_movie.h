@@ -397,23 +397,23 @@ namespace ealib {
                         std::string f = "movie_" + c + ".dat";
                         generate_one_movie (f, *j, *i);
                         
-                        get<CAPABILITIES_OFF>(ea, "") = "stigmergic";
+                        get<CAPABILITIES_OFF>(*i, "") = "stigmergic";
                         f = "movie_ko_stigmergic_" + c + ".dat";
                         generate_one_movie (f, *j, *i);
                         
-                        get<CAPABILITIES_OFF>(ea, "") = "edge";
+                        get<CAPABILITIES_OFF>(*i, "") = "edge";
                         f = "movie_ko_edge_" + c + ".dat" ;
                         generate_one_movie (f, *j, *i);
                         
-                        get<CAPABILITIES_OFF>(ea, "") = "communication";
+                        get<CAPABILITIES_OFF>(*i, "") = "communication";
                         f = "movie_ko_communication" + c + ".dat";
                         generate_one_movie (f, *j, *i);
                         
-                        get<CAPABILITIES_OFF>(ea, "") = "neighbor";
+                        get<CAPABILITIES_OFF>(*i, "") = "neighbor";
                         f = "movie_ko_neighbor" + c + ".dat";
                         generate_one_movie (f, *j, *i);
                         
-                        get<CAPABILITIES_OFF>(ea, "") = "origin";
+                        get<CAPABILITIES_OFF>(*i, "") = "origin";
                         f = "movie_ko_origin" + c + ".dat";
                         generate_one_movie (f, *j, *i);
                     }
