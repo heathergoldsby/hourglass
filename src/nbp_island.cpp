@@ -166,6 +166,7 @@ public:
         //
         //        add_tool<ealib::analysis::markov_movie>(this);
         add_tool<ealib::analysis::markov_movie_island>(this);
+        add_tool<ealib::analysis::markov_movie_island>(this);
         
     }
     

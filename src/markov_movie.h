@@ -376,6 +376,40 @@ namespace ealib {
             }
         }
         
+        LIBEA_ANALYSIS_TOOL(markov_ko_island) {
+            double max_fit = 0;
+            int count = 0;
+            typename EA::individual_type best;
+
+            // recalc all fitness values
+            for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
+                int z =  get<ISLAND>(*i);
+                int q = 0;
+                
+                int island =  get<ISLAND>(*i);
+                stringstream ss;
+                ss << count;
+                std::string c = ss.str();
+                std::string f = "movie_" + c + ".dat";
+                
+                for (typename EA::individual_type::iterator j=i->begin(); j!=i->end(); ++j) {
+                    
+                    
+                    recalculate_fitness(*j, *i);
+                    double tmp_fit = static_cast<int>(ealib::fitness(*j,*i));
+                    if (tmp_fit > max_fit) {
+                        max_fit = tmp_fit;
+                        best = *i;
+                    }
+                }
+                
+                
+                
+                ++count;
+                max_fit = 0;
+            }
+        }
+        
 
         LIBEA_ANALYSIS_TOOL(ko) {
             double max_fit = 0;
