@@ -383,27 +383,43 @@ namespace ealib {
 
             // recalc all fitness values
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
-                int z =  get<ISLAND>(*i);
-                int q = 0;
                 
                 int island =  get<ISLAND>(*i);
                 stringstream ss;
-                ss << count;
+                ss << island;
                 std::string c = ss.str();
-                std::string f = "movie_" + c + ".dat";
                 
                 for (typename EA::individual_type::iterator j=i->begin(); j!=i->end(); ++j) {
-                    
-                    
                     recalculate_fitness(*j, *i);
                     double tmp_fit = static_cast<int>(ealib::fitness(*j,*i));
                     if (tmp_fit > max_fit) {
                         max_fit = tmp_fit;
-                        best = *i;
+                        std::string f = "movie_" + c + ".dat";
+                        generate_one_movie (f, *j, *i);
+                        
+                        get<CAPABILITIES_OFF>(ea, "") = "stigmergic";
+                        f = "movie_ko_stigmergic_" + c + ".dat";
+                        generate_one_movie (f, *j, *i);
+                        
+                        get<CAPABILITIES_OFF>(ea, "") = "edge";
+                        f = "movie_ko_edge_" + c + ".dat" ;
+                        generate_one_movie (f, *j, *i);
+                        
+                        get<CAPABILITIES_OFF>(ea, "") = "communication";
+                        f = "movie_ko_communication" + c + ".dat";
+                        generate_one_movie (f, *j, *i);
+                        
+                        get<CAPABILITIES_OFF>(ea, "") = "neighbor";
+                        f = "movie_ko_neighbor" + c + ".dat";
+                        generate_one_movie (f, *j, *i);
+                        
+                        get<CAPABILITIES_OFF>(ea, "") = "origin";
+                        f = "movie_ko_origin" + c + ".dat";
+                        generate_one_movie (f, *j, *i);
                     }
                 }
                 
-                
+
                 
                 ++count;
                 max_fit = 0;
