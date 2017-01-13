@@ -427,82 +427,122 @@ namespace ealib {
         }
         
 
+        
+        /* how the full population of solutions uses these techniques.*/
         LIBEA_ANALYSIS_TOOL(ko) {
-            double max_fit = 0;
-            typename EA::individual_type best;
+            
+            accumulator_set<double, stats<tag::max, tag::mean> > control;
+            accumulator_set<double, stats<tag::max, tag::mean> > stig;
+            accumulator_set<double, stats<tag::max, tag::mean> > edge;
+            accumulator_set<double, stats<tag::max, tag::mean> > comm;
+            accumulator_set<double, stats<tag::max, tag::mean> > neigh;
+            accumulator_set<double, stats<tag::max, tag::mean> > ori;
+            accumulator_set<double, stats<tag::max, tag::mean> > repro;
+            accumulator_set<double, stats<tag::max, tag::mean> > mig;
+
+
+            
+            datafile df("ko.dat");
+            df.write("treatment")
+            .write("mean")
+            .write("max");
+            
+            df.endl();
             
             // recalc all fitness values
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
                 
                 recalculate_fitness(*i, ea);
                 double tmp_fit = static_cast<int>(ealib::fitness(*i,ea));
-                if (tmp_fit > max_fit) {
-                    best = *i;
-                    max_fit = tmp_fit;
-                }
+                control(tmp_fit);
+
+                
+                typename EA::individual_type ko_stigmergic = *i;
+                put<CAPABILITIES_OFF>("stigmergic", ea);
+                recalculate_fitness(ko_stigmergic, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_stigmergic,ea));
+                stig(tmp_fit);
+                
+                typename EA::individual_type ko_edge = *i;
+                put<CAPABILITIES_OFF>("edge", ea);
+                recalculate_fitness(ko_edge, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_edge,ea));
+                edge(tmp_fit);
+                
+                typename EA::individual_type ko_comm = *i;
+                put<CAPABILITIES_OFF>("communication", ea);
+                recalculate_fitness(ko_comm, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_comm,ea));
+                comm(tmp_fit);
+                
+                typename EA::individual_type ko_neighbor = *i;
+                put<CAPABILITIES_OFF>("neighbor", ea);
+                recalculate_fitness(ko_neighbor, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_neighbor,ea));
+                neigh(tmp_fit);
+                
+                typename EA::individual_type ko_origin = *i;
+                put<CAPABILITIES_OFF>("origin", ea);
+                recalculate_fitness(ko_origin, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_origin,ea));
+                ori(tmp_fit);
+                
+                typename EA::individual_type ko_reproduce = *i;
+                put<CAPABILITIES_OFF>("reproduce", ea);
+                recalculate_fitness(ko_reproduce, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_reproduce,ea));
+                repro(tmp_fit);
+                
+                typename EA::individual_type ko_migrate = *i;
+                put<CAPABILITIES_OFF>("migrate", ea);
+                recalculate_fitness(ko_migrate, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_migrate,ea));
+                mig(tmp_fit);
+                
+                
+
             }
             
-            datafile df("ko.dat");
-            df.write("control")
-            .write("stigmergic")
-            .write("edge")
-            .write("communication")
-            .write("neighbor")
-            .write("origin")
-            .write("reproduce")
-            .write("migrate");
-            
+
+            df.write("control");
+            df.write(boost::accumulators::mean(control));
+            df.write(boost::accumulators::max(control));
             df.endl();
             
-            typename EA::individual_type control = best;
-            recalculate_fitness(control, ea);
-            double tmp_fit = static_cast<int>(ealib::fitness(control,ea));
-            df.write(tmp_fit);
             
-            typename EA::individual_type ko_stigmergic = best;
-            put<CAPABILITIES_OFF>("stigmergic", ea);
-            recalculate_fitness(ko_stigmergic, ea);
-            tmp_fit = static_cast<int>(ealib::fitness(ko_stigmergic,ea));
-            df.write(tmp_fit);
-
-            typename EA::individual_type ko_edge = best;
-            put<CAPABILITIES_OFF>("edge", ea);
-            recalculate_fitness(ko_edge, ea);
-            tmp_fit = static_cast<int>(ealib::fitness(ko_edge,ea));
-            df.write(tmp_fit);
-
-            typename EA::individual_type ko_comm = best;
-            put<CAPABILITIES_OFF>("communication", ea);
-            recalculate_fitness(ko_comm, ea);
-            tmp_fit = static_cast<int>(ealib::fitness(ko_comm,ea));
-            df.write(tmp_fit);
-
-            
-            typename EA::individual_type ko_neighbor = best;
-            put<CAPABILITIES_OFF>("neighbor", ea);
-            recalculate_fitness(ko_neighbor, ea);
-            tmp_fit = static_cast<int>(ealib::fitness(ko_neighbor,ea));
-            df.write(tmp_fit);
-
-            typename EA::individual_type ko_origin = best;
-            put<CAPABILITIES_OFF>("origin", ea);
-            recalculate_fitness(ko_origin, ea);
-            tmp_fit = static_cast<int>(ealib::fitness(ko_origin,ea));
-            df.write(tmp_fit);
-            
-            typename EA::individual_type ko_reproduce = best;
-            put<CAPABILITIES_OFF>("reproduce", ea);
-            recalculate_fitness(ko_reproduce, ea);
-            tmp_fit = static_cast<int>(ealib::fitness(ko_reproduce,ea));
-            df.write(tmp_fit);
-            
-            typename EA::individual_type ko_migrate = best;
-            put<CAPABILITIES_OFF>("migrate", ea);
-            recalculate_fitness(ko_migrate, ea);
-            tmp_fit = static_cast<int>(ealib::fitness(ko_migrate,ea));
-            df.write(tmp_fit);
-
+            df.write("ko_stigmergic");
+            df.write(boost::accumulators::mean(stig));
+            df.write(boost::accumulators::max(stig));
             df.endl();
+            
+            df.write("ko_edge");
+            df.write(boost::accumulators::mean(edge));
+            df.write(boost::accumulators::max(edge));
+            df.endl();
+            
+            df.write("ko_neighbor");
+            df.write(boost::accumulators::mean(neigh));
+            df.write(boost::accumulators::max(neigh));
+            df.endl();
+            
+            df.write("ko_origin");
+            df.write(boost::accumulators::mean(ori));
+            df.write(boost::accumulators::max(ori));
+            df.endl();
+            
+            df.write("ko_reproduce");
+            df.write(boost::accumulators::mean(repro));
+            df.write(boost::accumulators::max(repro));
+            df.endl();
+            
+            df.write("ko_migrate");
+            df.write(boost::accumulators::mean(mig));
+            df.write(boost::accumulators::max(mig));
+            df.endl();
+            
+            
+            
+            
 
         }
         
