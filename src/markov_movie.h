@@ -14,6 +14,8 @@
 #include <ea/line_of_descent.h>
 #include <ea/analysis.h>
 #include "hourglass.h"
+#include "stepping_stones.h"
+
 using namespace std;
 using namespace boost::accumulators;
 
@@ -297,8 +299,7 @@ namespace ealib {
                 
             }
         }
-
-        
+    
         LIBEA_ANALYSIS_TOOL(markov_movie_ko) {
             double max_fit = 0;
             typename EA::individual_type best;
@@ -695,6 +696,246 @@ namespace ealib {
             
 
         }
+        
+        
+        
+       
+        
+        /* how the full population of solutions uses these techniques.*/
+        LIBEA_ANALYSIS_TOOL(ko_stepping_stones) {
+            
+            accumulator_set<double, stats<tag::max, tag::mean> > control6;
+            accumulator_set<double, stats<tag::max, tag::mean> > stig6;
+            accumulator_set<double, stats<tag::max, tag::mean> > edge6;
+            accumulator_set<double, stats<tag::max, tag::mean> > comm6;
+            accumulator_set<double, stats<tag::max, tag::mean> > neigh6;
+            accumulator_set<double, stats<tag::max, tag::mean> > ori6;
+            accumulator_set<double, stats<tag::max, tag::mean> > repro6;
+            accumulator_set<double, stats<tag::max, tag::mean> > mig6;
+            accumulator_set<double, stats<tag::max, tag::mean> > control7;
+            accumulator_set<double, stats<tag::max, tag::mean> > stig7;
+            accumulator_set<double, stats<tag::max, tag::mean> > edge7;
+            accumulator_set<double, stats<tag::max, tag::mean> > comm7;
+            accumulator_set<double, stats<tag::max, tag::mean> > neigh7;
+            accumulator_set<double, stats<tag::max, tag::mean> > ori7;
+            accumulator_set<double, stats<tag::max, tag::mean> > repro7;
+            accumulator_set<double, stats<tag::max, tag::mean> > mig7;
+            accumulator_set<double, stats<tag::max, tag::mean> > control8;
+            accumulator_set<double, stats<tag::max, tag::mean> > stig8;
+            accumulator_set<double, stats<tag::max, tag::mean> > edge8;
+            accumulator_set<double, stats<tag::max, tag::mean> > comm8;
+            accumulator_set<double, stats<tag::max, tag::mean> > neigh8;
+            accumulator_set<double, stats<tag::max, tag::mean> > ori8;
+            accumulator_set<double, stats<tag::max, tag::mean> > repro8;
+            accumulator_set<double, stats<tag::max, tag::mean> > mig8;
+            accumulator_set<double, stats<tag::max, tag::mean> > control9;
+            accumulator_set<double, stats<tag::max, tag::mean> > stig9;
+            accumulator_set<double, stats<tag::max, tag::mean> > edge9;
+            accumulator_set<double, stats<tag::max, tag::mean> > comm9;
+            accumulator_set<double, stats<tag::max, tag::mean> > neigh9;
+            accumulator_set<double, stats<tag::max, tag::mean> > ori9;
+            accumulator_set<double, stats<tag::max, tag::mean> > repro9;
+            accumulator_set<double, stats<tag::max, tag::mean> > mig9;
+
+
+            
+            datafile df("ko.dat");
+            df.write("treatment")
+            .write("mean")
+            .write("max");
+            
+            df.endl();
+            
+            // recalc all fitness values
+            for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
+                
+                recalculate_fitness(*i, ea);
+                double tmp_fit = static_cast<int>(ealib::fitness(*i,ea));
+                control6(get<F6>(*i));
+                control7(get<F7>(*i));
+                control8(get<F8>(*i));
+                control9(get<F9>(*i));
+                
+                typename EA::individual_type ko_stigmergic = *i;
+                put<CAPABILITIES_OFF>("stigmergic", ea);
+                recalculate_fitness(ko_stigmergic, ea);
+                stig6(get<F6>(*i));
+                stig7(get<F7>(*i));
+                stig8(get<F8>(*i));
+                stig9(get<F9>(*i));
+           
+                typename EA::individual_type ko_edge = *i;
+                put<CAPABILITIES_OFF>("edge", ea);
+                recalculate_fitness(ko_edge, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_edge,ea));
+                edge6(get<F6>(*i));
+                edge7(get<F7>(*i));
+                edge8(get<F8>(*i));
+                edge9(get<F9>(*i));
+                
+                typename EA::individual_type ko_comm = *i;
+                put<CAPABILITIES_OFF>("communication", ea);
+                recalculate_fitness(ko_comm, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_comm,ea));
+                comm6(get<F6>(*i));
+                comm7(get<F7>(*i));
+                comm8(get<F8>(*i));
+                comm9(get<F9>(*i));
+                
+                typename EA::individual_type ko_neighbor = *i;
+                put<CAPABILITIES_OFF>("neighbor", ea);
+                recalculate_fitness(ko_neighbor, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_neighbor,ea));
+                neigh6(get<F6>(*i));
+                neigh7(get<F7>(*i));
+                neigh8(get<F8>(*i));
+                neigh9(get<F9>(*i));
+                
+                typename EA::individual_type ko_origin = *i;
+                put<CAPABILITIES_OFF>("origin", ea);
+                recalculate_fitness(ko_origin, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_origin,ea));
+                ori6(get<F6>(*i));
+                ori7(get<F7>(*i));
+                ori8(get<F8>(*i));
+                ori9(get<F9>(*i));
+                
+                typename EA::individual_type ko_reproduce = *i;
+                put<CAPABILITIES_OFF>("reproduce", ea);
+                recalculate_fitness(ko_reproduce, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_reproduce,ea));
+                repro6(get<F6>(*i));
+                repro7(get<F7>(*i));
+                repro8(get<F8>(*i));
+                repro9(get<F9>(*i));
+                
+                typename EA::individual_type ko_migrate = *i;
+                put<CAPABILITIES_OFF>("migrate", ea);
+                recalculate_fitness(ko_migrate, ea);
+                tmp_fit = static_cast<double>(ealib::fitness(ko_migrate,ea));
+                mig6(get<F6>(*i));
+                mig7(get<F7>(*i));
+                mig8(get<F8>(*i));
+                mig9(get<F9>(*i));
+                
+                
+                
+            }
+            
+            
+            df.write("control").write("6").write("control_6");
+            df.write(boost::accumulators::mean(control6));
+            df.write(boost::accumulators::max(control6));
+            df.endl();
+
+            df.write("control").write("7").write("control_7");
+            df.write(boost::accumulators::mean(control7));
+            df.write(boost::accumulators::max(control7));
+            df.endl();
+            
+            df.write("control").write("8").write("control_8");
+            df.write(boost::accumulators::mean(control8));
+            df.write(boost::accumulators::max(control8));
+            df.endl();
+            
+            df.write("control").write("9").write("control_9");
+            df.write(boost::accumulators::mean(control9));
+            df.write(boost::accumulators::max(control9));
+            df.endl();
+            
+            df.write("ko_stigmergic").write("6").write("ko_stigmergic_6");
+            df.write(boost::accumulators::mean(stig6));
+            df.write(boost::accumulators::max(stig6));
+            df.endl();
+            
+            df.write("ko_stigmergic").write("7").write("ko_stigmergic_7");
+            df.write(boost::accumulators::mean(stig7));
+            df.write(boost::accumulators::max(stig7));
+            df.endl();
+            
+            df.write("ko_stigmergic").write("8").write("ko_stigmergic_8");
+            df.write(boost::accumulators::mean(stig8));
+            df.write(boost::accumulators::max(stig8));
+            df.endl();
+            
+            df.write("ko_stigmergic").write("9").write("ko_stigmergic_9");
+            df.write(boost::accumulators::mean(stig9));
+            df.write(boost::accumulators::max(stig9));
+            df.endl();
+            
+            df.write("ko_edge").write("7").write("ko_edge_6");
+            df.write(boost::accumulators::mean(edge6));
+            df.write(boost::accumulators::max(edge6)).endl();
+            
+            df.write("ko_edge").write("7").write("ko_edge_7");
+            df.write(boost::accumulators::mean(edge7));
+            df.write(boost::accumulators::max(edge7)).endl();
+            
+            df.write("ko_edge").write("8").write("ko_edge_8");
+            df.write(boost::accumulators::mean(edge8));
+            df.write(boost::accumulators::max(edge8)).endl();
+            
+            df.write("ko_edge").write("9").write("ko_edge_9");
+            df.write(boost::accumulators::mean(edge9));
+            df.write(boost::accumulators::max(edge9)).endl();
+            
+            df.write("ko_neighbor").write("6").write("ko_neighbor_6");
+            df.write(boost::accumulators::mean(neigh6));
+            df.write(boost::accumulators::max(neigh6)).endl();
+            df.write("ko_neighbor").write("7").write("ko_neighbor_7");
+            df.write(boost::accumulators::mean(neigh7));
+            df.write(boost::accumulators::max(neigh7)).endl();
+            df.write("ko_neighbor").write("8").write("ko_neighbor_8");
+            df.write(boost::accumulators::mean(neigh8));
+            df.write(boost::accumulators::max(neigh8)).endl();
+            df.write("ko_neighbor").write("9").write("ko_neighbor_9");
+            df.write(boost::accumulators::mean(neigh9));
+            df.write(boost::accumulators::max(neigh9)).endl();
+            
+            df.write("ko_origin").write("6").write("ko_origin_6");
+            df.write(boost::accumulators::mean(ori6));
+            df.write(boost::accumulators::max(ori6)).endl();
+            df.write("ko_origin").write("7").write("ko_origin_7");
+            df.write(boost::accumulators::mean(ori7));
+            df.write(boost::accumulators::max(ori7)).endl();
+            df.write("ko_origin").write("8").write("ko_origin_8");
+            df.write(boost::accumulators::mean(ori8));
+            df.write(boost::accumulators::max(ori8)).endl();
+            df.write("ko_origin").write("9").write("ko_origin_9");
+            df.write(boost::accumulators::mean(ori9));
+            df.write(boost::accumulators::max(ori9)).endl();
+            
+            df.write("ko_reproduce").write("6").write("ko_reproduce_6");
+            df.write(boost::accumulators::mean(repro6));
+            df.write(boost::accumulators::max(repro6)).endl();
+            df.write("ko_reproduce").write("7").write("ko_reproduce_7");
+            df.write(boost::accumulators::mean(repro7));
+            df.write(boost::accumulators::max(repro7)).endl();
+            df.write("ko_reproduce").write("8").write("ko_reproduce_8");
+            df.write(boost::accumulators::mean(repro8));
+            df.write(boost::accumulators::max(repro8)).endl();
+            df.write("ko_reproduce").write("9").write("ko_reproduce_9");
+            df.write(boost::accumulators::mean(repro9));
+            df.write(boost::accumulators::max(repro9)).endl();
+            
+            df.write("ko_migrate").write("6").write("ko_migrate_6");
+            df.write(boost::accumulators::mean(mig6));
+            df.write(boost::accumulators::max(mig6)).endl();
+            df.write("ko_migrate").write("7").write("ko_migrate_7");
+            df.write(boost::accumulators::mean(mig7));
+            df.write(boost::accumulators::max(mig7)).endl();
+            df.write("ko_migrate").write("8").write("ko_migrate_8");
+            df.write(boost::accumulators::mean(mig8));
+            df.write(boost::accumulators::max(mig8)).endl();
+            df.write("ko_migrate").write("9").write("ko_migrate_9");
+            df.write(boost::accumulators::mean(mig9));
+            df.write(boost::accumulators::max(mig9)).endl();
+            
+            
+            
+            
+        }
+        
         
 
 
