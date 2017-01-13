@@ -518,7 +518,8 @@ namespace ealib {
                 df.write("control_" + c);
                 df.write(boost::accumulators::mean(control));
                 df.write(boost::accumulators::max(control));
-                
+                df.endl();
+
                 
                 
                 df.write("ko_stigmergic");
