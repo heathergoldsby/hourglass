@@ -185,9 +185,9 @@ public:
         add_tool<ealib::analysis::markov_movie>(this);
         add_tool<ealib::analysis::markov_movie_ko>(this);
         
-        add_tool<ealib::analysis::recalc_fit>(this);
         add_tool<ealib::analysis::ko>(this);*/
-        
+        add_tool<ealib::analysis::ko_stepping_stones>(this);
+   
     }
     
     virtual void gather_events(EA& ea) {
