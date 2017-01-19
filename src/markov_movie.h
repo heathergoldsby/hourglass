@@ -457,8 +457,7 @@ namespace ealib {
                 accumulator_set<double, stats<tag::max, tag::mean> > comm;
                 accumulator_set<double, stats<tag::max, tag::mean> > neigh;
                 accumulator_set<double, stats<tag::max, tag::mean> > ori;
-                accumulator_set<double, stats<tag::max, tag::mean> > repro;
-                accumulator_set<double, stats<tag::max, tag::mean> > mig;
+
                 
                 
                 // recalc all fitness values
@@ -498,18 +497,6 @@ namespace ealib {
                     tmp_fit = static_cast<double>(ealib::fitness(ko_origin,*i));
                     ori(tmp_fit);
                     
-                    typename EA::individual_type::individual_type ko_reproduce = *j;
-                    put<CAPABILITIES_OFF>("reproduce", *i);
-                    recalculate_fitness(ko_reproduce, *i);
-                    tmp_fit = static_cast<double>(ealib::fitness(ko_reproduce,*i));
-                    repro(tmp_fit);
-                    
-                    typename EA::individual_type::individual_type ko_migrate = *j;
-                    put<CAPABILITIES_OFF>("migrate", *i);
-                    recalculate_fitness(ko_migrate, *i);
-                    tmp_fit = static_cast<double>(ealib::fitness(ko_migrate,*i));
-                    mig(tmp_fit);
-                    
                 }
                 
                 //                        f = "movie_ko_neighbor" + c + ".dat";
@@ -521,7 +508,12 @@ namespace ealib {
                 df.write(boost::accumulators::max(control));
                 df.endl();
 
-                
+                df.write("ko_communication");
+                df.write(c);
+                df.write("ko_communication_" + c);
+                df.write(boost::accumulators::mean(comm));
+                df.write(boost::accumulators::max(comm));
+                df.endl();
                 
                 df.write("ko_stigmergic");
                 df.write(c);
@@ -551,24 +543,6 @@ namespace ealib {
                 df.write(boost::accumulators::max(ori));
                 df.endl();
                 
-                df.write("ko_reproduce");
-                df.write(c);
-                df.write("ko_reproduce_" + c);
-                df.write(boost::accumulators::mean(repro));
-                df.write(boost::accumulators::max(repro));
-                df.endl();
-                
-                df.write("ko_migrate");
-                df.write(c);
-                df.write("ko_migrate_" + c);
-                df.write(boost::accumulators::mean(mig));
-                df.write(boost::accumulators::max(mig));
-                df.endl();
-                
-                
-                
-                
-                
             }
             
             
@@ -589,9 +563,6 @@ namespace ealib {
             accumulator_set<double, stats<tag::max, tag::mean> > comm;
             accumulator_set<double, stats<tag::max, tag::mean> > neigh;
             accumulator_set<double, stats<tag::max, tag::mean> > ori;
-            accumulator_set<double, stats<tag::max, tag::mean> > repro;
-            accumulator_set<double, stats<tag::max, tag::mean> > mig;
-
 
             
             datafile df("ko.dat");
@@ -638,19 +609,6 @@ namespace ealib {
                 tmp_fit = static_cast<double>(ealib::fitness(ko_origin,ea));
                 ori(tmp_fit);
                 
-                typename EA::individual_type ko_reproduce = *i;
-                put<CAPABILITIES_OFF>("reproduce", ea);
-                recalculate_fitness(ko_reproduce, ea);
-                tmp_fit = static_cast<double>(ealib::fitness(ko_reproduce,ea));
-                repro(tmp_fit);
-                
-                typename EA::individual_type ko_migrate = *i;
-                put<CAPABILITIES_OFF>("migrate", ea);
-                recalculate_fitness(ko_migrate, ea);
-                tmp_fit = static_cast<double>(ealib::fitness(ko_migrate,ea));
-                mig(tmp_fit);
-                
-                
 
             }
             
@@ -660,6 +618,10 @@ namespace ealib {
             df.write(boost::accumulators::max(control));
             df.endl();
             
+            df.write("ko_communication");
+            df.write(boost::accumulators::mean(comm));
+            df.write(boost::accumulators::max(comm));
+            df.endl();
             
             df.write("ko_stigmergic");
             df.write(boost::accumulators::mean(stig));
@@ -681,16 +643,6 @@ namespace ealib {
             df.write(boost::accumulators::max(ori));
             df.endl();
             
-            df.write("ko_reproduce");
-            df.write(boost::accumulators::mean(repro));
-            df.write(boost::accumulators::max(repro));
-            df.endl();
-            
-            df.write("ko_migrate");
-            df.write(boost::accumulators::mean(mig));
-            df.write(boost::accumulators::max(mig));
-            df.endl();
-            
             
             
             
@@ -710,33 +662,24 @@ namespace ealib {
             accumulator_set<double, stats<tag::max, tag::mean> > comm6;
             accumulator_set<double, stats<tag::max, tag::mean> > neigh6;
             accumulator_set<double, stats<tag::max, tag::mean> > ori6;
-            accumulator_set<double, stats<tag::max, tag::mean> > repro6;
-            accumulator_set<double, stats<tag::max, tag::mean> > mig6;
             accumulator_set<double, stats<tag::max, tag::mean> > control7;
             accumulator_set<double, stats<tag::max, tag::mean> > stig7;
             accumulator_set<double, stats<tag::max, tag::mean> > edge7;
             accumulator_set<double, stats<tag::max, tag::mean> > comm7;
             accumulator_set<double, stats<tag::max, tag::mean> > neigh7;
             accumulator_set<double, stats<tag::max, tag::mean> > ori7;
-            accumulator_set<double, stats<tag::max, tag::mean> > repro7;
-            accumulator_set<double, stats<tag::max, tag::mean> > mig7;
             accumulator_set<double, stats<tag::max, tag::mean> > control8;
             accumulator_set<double, stats<tag::max, tag::mean> > stig8;
             accumulator_set<double, stats<tag::max, tag::mean> > edge8;
             accumulator_set<double, stats<tag::max, tag::mean> > comm8;
             accumulator_set<double, stats<tag::max, tag::mean> > neigh8;
             accumulator_set<double, stats<tag::max, tag::mean> > ori8;
-            accumulator_set<double, stats<tag::max, tag::mean> > repro8;
-            accumulator_set<double, stats<tag::max, tag::mean> > mig8;
             accumulator_set<double, stats<tag::max, tag::mean> > control9;
             accumulator_set<double, stats<tag::max, tag::mean> > stig9;
             accumulator_set<double, stats<tag::max, tag::mean> > edge9;
             accumulator_set<double, stats<tag::max, tag::mean> > comm9;
             accumulator_set<double, stats<tag::max, tag::mean> > neigh9;
             accumulator_set<double, stats<tag::max, tag::mean> > ori9;
-            accumulator_set<double, stats<tag::max, tag::mean> > repro9;
-            accumulator_set<double, stats<tag::max, tag::mean> > mig9;
-
 
             
             datafile df("ko.dat");
@@ -799,25 +742,6 @@ namespace ealib {
                 ori7(get<F7>(*i));
                 ori8(get<F8>(*i));
                 ori9(get<F9>(*i));
-                
-                typename EA::individual_type ko_reproduce = *i;
-                put<CAPABILITIES_OFF>("reproduce", ea);
-                recalculate_fitness(ko_reproduce, ea);
-                tmp_fit = static_cast<double>(ealib::fitness(ko_reproduce,ea));
-                repro6(get<F6>(*i));
-                repro7(get<F7>(*i));
-                repro8(get<F8>(*i));
-                repro9(get<F9>(*i));
-                
-                typename EA::individual_type ko_migrate = *i;
-                put<CAPABILITIES_OFF>("migrate", ea);
-                recalculate_fitness(ko_migrate, ea);
-                tmp_fit = static_cast<double>(ealib::fitness(ko_migrate,ea));
-                mig6(get<F6>(*i));
-                mig7(get<F7>(*i));
-                mig8(get<F8>(*i));
-                mig9(get<F9>(*i));
-                
                 
                 
             }
@@ -905,32 +829,18 @@ namespace ealib {
             df.write(boost::accumulators::mean(ori9));
             df.write(boost::accumulators::max(ori9)).endl();
             
-            df.write("ko_reproduce").write("6").write("ko_reproduce_6");
-            df.write(boost::accumulators::mean(repro6));
-            df.write(boost::accumulators::max(repro6)).endl();
-            df.write("ko_reproduce").write("7").write("ko_reproduce_7");
-            df.write(boost::accumulators::mean(repro7));
-            df.write(boost::accumulators::max(repro7)).endl();
-            df.write("ko_reproduce").write("8").write("ko_reproduce_8");
-            df.write(boost::accumulators::mean(repro8));
-            df.write(boost::accumulators::max(repro8)).endl();
-            df.write("ko_reproduce").write("9").write("ko_reproduce_9");
-            df.write(boost::accumulators::mean(repro9));
-            df.write(boost::accumulators::max(repro9)).endl();
-            
-            df.write("ko_migrate").write("6").write("ko_migrate_6");
-            df.write(boost::accumulators::mean(mig6));
-            df.write(boost::accumulators::max(mig6)).endl();
-            df.write("ko_migrate").write("7").write("ko_migrate_7");
-            df.write(boost::accumulators::mean(mig7));
-            df.write(boost::accumulators::max(mig7)).endl();
-            df.write("ko_migrate").write("8").write("ko_migrate_8");
-            df.write(boost::accumulators::mean(mig8));
-            df.write(boost::accumulators::max(mig8)).endl();
-            df.write("ko_migrate").write("9").write("ko_migrate_9");
-            df.write(boost::accumulators::mean(mig9));
-            df.write(boost::accumulators::max(mig9)).endl();
-            
+            df.write("ko_communication").write("6").write("ko_communication_6");
+            df.write(boost::accumulators::mean(comm6));
+            df.write(boost::accumulators::max(comm6)).endl();
+            df.write("ko_communication").write("7").write("ko_communication_7");
+            df.write(boost::accumulators::mean(comm7));
+            df.write(boost::accumulators::max(comm7)).endl();
+            df.write("ko_communication").write("8").write("ko_communication_8");
+            df.write(boost::accumulators::mean(comm8));
+            df.write(boost::accumulators::max(comm8)).endl();
+            df.write("ko_communication").write("9").write("ko_communication_9");
+            df.write(boost::accumulators::mean(comm9));
+            df.write(boost::accumulators::max(comm9)).endl();
             
             
             
