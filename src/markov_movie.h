@@ -787,7 +787,7 @@ namespace ealib {
             df.write(boost::accumulators::max(stig9));
             df.endl();
             
-            df.write("ko_edge").write("7").write("ko_edge_6");
+            df.write("ko_edge").write("6").write("ko_edge_6");
             df.write(boost::accumulators::mean(edge6));
             df.write(boost::accumulators::max(edge6)).endl();
             
