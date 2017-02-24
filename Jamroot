@@ -40,3 +40,13 @@ src/nbp_stepping_stones.cpp
 ;
 
 install dist : nbp_stepping_stones : <location>$(HOME)/bin ;
+
+exe epoch_variation :
+src/epoch_variation.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : epoch_variation : <location>$(HOME)/bin ;
