@@ -23,6 +23,8 @@
 #include "markov_movie.h"
 #include "hourglass.h"
 #include "new_body_plans2.h"
+#include "new_body_plans.h"
+#include "body_plans.h"
 
 
 using namespace std;
@@ -37,16 +39,7 @@ using namespace mkv;
  */
 
 
-LIBEA_MD_DECL(FIT0, "ea.hourglass.epv.fit0", int); //
-LIBEA_MD_DECL(FIT1, "ea.hourglass.epv.fit1", int); //
-LIBEA_MD_DECL(FIT2, "ea.hourglass.epv.fit2", int); //
-LIBEA_MD_DECL(FIT3, "ea.hourglass.epv.fit3", int); //
-LIBEA_MD_DECL(FIT4, "ea.hourglass.epv.fit4", int); //
-LIBEA_MD_DECL(FIT5, "ea.hourglass.epv.fit5", int); //
-LIBEA_MD_DECL(FIT6, "ea.hourglass.epv.fit6", int); //
-LIBEA_MD_DECL(FIT7, "ea.hourglass.epv.fit7", int); //
-LIBEA_MD_DECL(FIT8, "ea.hourglass.epv.fit8", int); //
-LIBEA_MD_DECL(FIT9, "ea.hourglass.epv.fit9", int); //
+LIBEA_MD_DECL(FITPEREPOCH, "ea.hourglass.epv.fitperepoch", string); //
 
 
 
@@ -54,6 +47,24 @@ LIBEA_MD_DECL(FIT9, "ea.hourglass.epv.fit9", int); //
 struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stochasticS> {
     template <typename Individual, typename RNG, typename EA>
     double operator()(Individual& ind, RNG& rng, EA& ea) {
+        
+        std::vector<int> vect;
+        
+        std::stringstream ss(get<FITPEREPOCH>(ea));
+        
+        int i;
+        
+        while (ss >> i)
+        {
+            vect.push_back(i);
+            
+            if (ss.peek() == ',')
+                ss.ignore();
+        }
+        
+        for (i=0; i< vect.size(); i++)
+            std::cout << vect.at(i)<<std::endl;
+    
         
         int max_x = get<X_SIZE>(ea,10);
         int max_y = get<Y_SIZE>(ea,10);
@@ -93,42 +104,8 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
         // what epoch are we in?
         int run_length = get<RUN_UPDATES>(ea);
         int cur_update = ea.current_update();
-        int epoch = floor(cur_update / (run_length / 10));
-        int ffToUse;
-        
-        switch(epoch) {
-            case 0:
-                ffToUse = get<FIT0>(ea);
-                break;
-            case 1:
-                ffToUse = get<FIT1>(ea);
-                break;
-            case 2:
-                ffToUse = get<FIT2>(ea);
-                break;
-            case 3:
-                ffToUse = get<FIT3>(ea);
-                break;
-            case 4:
-                ffToUse = get<FIT4>(ea);
-                break;
-            case 5:
-                ffToUse = get<FIT5>(ea);
-                break;
-            case 6:
-                ffToUse = get<FIT6>(ea);
-                break;
-            case 7:
-                ffToUse = get<FIT7>(ea);
-                break;
-            case 8:
-                ffToUse = get<FIT8>(ea);
-                break;
-            case 9:
-                ffToUse = get<FIT9>(ea);
-                break;
-                
-        }
+        int epoch = floor(cur_update / (run_length / vect.size()));
+        int ffToUse = vect[epoch];
         
         switch(ffToUse) {
             case 1:
@@ -158,7 +135,135 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
             case 9:
                 f = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-                
+            case 10:
+                f = body_plan_a1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 11:
+                f = body_plan_b1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 12:
+                f = body_plan_c1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 13:
+                f = body_plan_d1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 14:
+                f = body_plan_e1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 15:
+                f = body_plan_f1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 16:
+                f = body_plan_g1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 17:
+                f = body_plan_h1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 18:
+                f = body_plan_i1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 19:
+                f = body_plan_j1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 20:
+                f = body_plan_k1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 21:
+                f = body_plan_l1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 22:
+                f = body_plan_m1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 23:
+                f = body_plan_n1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 24:
+                f = body_plan_o1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 25:
+                f = body_plan_p1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 26:
+                f = body_plan_q1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 27:
+                f = body_plan_r1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 28:
+                f = body_plan_s1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 29:
+                f = body_plan_t1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 30:
+                f = body_plan_u1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 31:
+                f = body_plan_v1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 32:
+                f = body_plan_w1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 33:
+                f = body_plan0(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 34:
+                f = body_plan1(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 35:
+                f = body_plan2(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 36:
+                f = body_plan3(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 37:
+                f = body_plan4(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 38:
+                f = body_plan5(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 39:
+                f = body_plan6(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 40:
+                f = body_plan7(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 41:
+                f = body_plan8(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 42:
+                f = body_plan9(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 43:
+                f = body_plan10(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 44:
+                f = body_plan11(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 45:
+                f = body_plan12(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 46:
+                f = body_plan13(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 47:
+                f = body_plan14(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 48:
+                f = body_plan15(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 49:
+                f = body_plan16(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 50:
+                f = body_plan17(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 52:
+                f = body_plan18(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
+            case 53:
+                f = body_plan19(grid_size, max_x, max_y, agent_pos, as, ea);
+                break;
         }
         
     
@@ -207,16 +312,8 @@ public:
         add_option<NO_REP_PERIOD>(this);
         add_option<GATE_EPSILON>(this);
 
-        add_option<FIT0>(this);
-        add_option<FIT1>(this);
-        add_option<FIT2>(this);
-        add_option<FIT3>(this);
-        add_option<FIT4>(this);
-        add_option<FIT5>(this);
-        add_option<FIT6>(this);
-        add_option<FIT7>(this);
-        add_option<FIT8>(this);
-        add_option<FIT9>(this);
+        add_option<FITPEREPOCH>(this);
+
         
         
         

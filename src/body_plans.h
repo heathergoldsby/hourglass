@@ -10,7 +10,7 @@
 #define body_plans_h
 
 
-LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
+//LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
 
 
 /* Note: These fitness functions assume a 6x6 grid. */

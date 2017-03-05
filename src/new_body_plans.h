@@ -8,16 +8,16 @@
 
 #ifndef new_body_plans_h
 #define new_body_plans_h
-
-
-LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
-LIBEA_MD_DECL(START_POS, "ea.hourglass.body_plans.start_pos", int); // 0 - 0,0, 1 - middle
-
-
+//
+//
+//LIBEA_MD_DECL(BODYPLAN, "ea.hourglass.body_plans.body_plan", double); //
+//LIBEA_MD_DECL(START_POS, "ea.hourglass.body_plans.start_pos", int); // 0 - 0,0, 1 - middle
+//
+//
 
 /* a - all blue */
 template <typename EA>
-double body_plan_a (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_a1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     assert(max_x == 6);
     assert(max_y == 6);
     
@@ -50,7 +50,7 @@ double body_plan_a (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* b - half blue / half green */
 template <typename EA>
-double body_plan_b (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_b1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -94,7 +94,7 @@ double body_plan_b (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* c - half blue / half green; right yellow */
 template <typename EA>
-double body_plan_c (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_c1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -144,7 +144,7 @@ double body_plan_c (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* d - half blue / half green; left yellow */
 template <typename EA>
-double body_plan_d (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_d1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -194,7 +194,7 @@ double body_plan_d (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* e - blue, red, yellow, green */
 template <typename EA>
-double body_plan_e (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_e1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -251,7 +251,7 @@ double body_plan_e (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* f - blue, yellow, red, green */
 template <typename EA>
-double body_plan_f (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_f1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -308,7 +308,7 @@ double body_plan_f (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* g - red, blue, green, yellow */
 template <typename EA>
-double body_plan_g (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_g1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -365,7 +365,7 @@ double body_plan_g (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* h - red, blue, green, yellow */
 template <typename EA>
-double body_plan_h (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_h1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -421,7 +421,7 @@ double body_plan_h (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* i */
 template <typename EA>
-double body_plan_i (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_i1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -488,7 +488,7 @@ double body_plan_i (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* j */
 template <typename EA>
-double body_plan_j (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_j1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -553,7 +553,7 @@ double body_plan_j (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* k  */
 template <typename EA>
-double body_plan_k (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_k1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -617,7 +617,7 @@ double body_plan_k (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* l  */
 template <typename EA>
-double body_plan_l (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_l1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -681,7 +681,7 @@ double body_plan_l (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* m */
 template <typename EA>
-double body_plan_m (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_m1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -746,7 +746,7 @@ double body_plan_m (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* n */
 template <typename EA>
-double body_plan_n (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_n1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -809,7 +809,7 @@ double body_plan_n (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* o */
 template <typename EA>
-double body_plan_o (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_o1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -877,7 +877,7 @@ double body_plan_o (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* p */
 template <typename EA>
-double body_plan_p (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_p1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -939,7 +939,7 @@ double body_plan_p (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* q */
 template <typename EA>
-double body_plan_q (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_q1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -986,7 +986,7 @@ double body_plan_q (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* r */
 template <typename EA>
-double body_plan_r (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_r1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -1038,7 +1038,7 @@ double body_plan_r (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* s */
 template <typename EA>
-double body_plan_s (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_s1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -1090,7 +1090,7 @@ double body_plan_s (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* t */
 template <typename EA>
-double body_plan_t (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_t1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -1147,7 +1147,7 @@ double body_plan_t (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* u */
 template <typename EA>
-double body_plan_u (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_u1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -1204,7 +1204,7 @@ double body_plan_u (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* v */
 template <typename EA>
-double body_plan_v (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_v1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);
@@ -1262,7 +1262,7 @@ double body_plan_v (int grid_size, int max_x, int max_y, std::vector<int>& agent
 
 /* w */
 template <typename EA>
-double body_plan_w (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+double body_plan_w1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
     
     assert(max_x == 6);
     assert(max_y == 6);

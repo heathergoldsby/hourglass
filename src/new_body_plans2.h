@@ -696,8 +696,207 @@ double body_plan_drift (int grid_size, int max_x, int max_y, std::vector<int>& a
 }
 
 
+/* a blue square in the top left corner */
+template <typename EA>
+double body_plan_start1 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double fit = 0.0;
+    
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // agent exists and is blue
+        if ((p != -1) && (agent_x == 0 || agent_x == 1) && (agent_y == 0 || agent_y == 1 )) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++fit;
+            }
+        } else { // agent does not exist
+            if (p == -1) {
+                ++fit;
+            }
+        }
+        
+    }
+    
+    double e = fit;
+    double f = pow(1.5, e);
+    
+    return f;
+    
+}
 
 
+/* a line in the upper right corner */
+template <typename EA>
+double body_plan_start2 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double fit = 0.0;
+    
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // agent exists and is the right color
+        if ((p != -1) && (agent_x >= 2 ) && (agent_y == 0)) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+                ++fit;
+            }
+        } else { // agent does not exist
+            if (p == -1) {
+                ++fit;
+            }
+        }
+        
+    }
+    
+    double e = fit;
+    double f = pow(1.5, e);
+    
+    return f;
+    
+}
+
+
+
+
+/* a plus in the middle */
+template <typename EA>
+double body_plan_start3 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double fit = 0.0;
+    
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // agent exists and is the right color
+        if ((p != -1) && ((xy == 15) || (xy == 20) || (xy == 21) || (xy == 22) || (xy == 27))) {
+            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+                ++fit;
+            }
+        } else { // agent does not exist
+            if (p == -1) {
+                ++fit;
+            }
+        }
+        
+    }
+    
+    double e = fit;
+    double f = pow(1.5, e);
+    
+    return f;
+    
+}
+
+
+
+/* a rectangle in the bottom left */
+template <typename EA>
+double body_plan_start4 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double fit = 0.0;
+    
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // agent exists and is the right color
+        if ((p != -1) && (agent_x < 3) && (agent_y > 3)) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+                ++fit;
+            }
+        } else { // agent does not exist
+            if (p == -1) {
+                ++fit;
+            }
+        }
+        
+    }
+    
+    double e = fit;
+    double f = pow(1.5, e);
+    
+    return f;
+    
+}
+
+
+
+
+/* a vertical line in the bottom right */
+template <typename EA>
+double body_plan_start5 (int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    assert(max_x == 6);
+    assert(max_y == 6);
+    
+    double fit = 0.0;
+    
+    
+    // Compute fitness. All 00
+    for (int xy = 0; xy<grid_size; xy++) {
+        
+        // set the input states...
+        int agent_x = floor(xy / max_x);
+        int agent_y = xy % max_x;
+        
+        int p = agent_pos[xy];
+        
+        // agent exists and is the right color
+        if ((p != -1) && (agent_x == 5) && (agent_y > 2)) {
+            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+                ++fit;
+            }
+        } else { // agent does not exist
+            if (p == -1) {
+                ++fit;
+            }
+        }
+        
+    }
+    
+    double e = fit;
+    double f = pow(1.5, e);
+    
+    return f;
+    
+}
+
+
+        
 
 
 #endif /* new_body_plans_h */
