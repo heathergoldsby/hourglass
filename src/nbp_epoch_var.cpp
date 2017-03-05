@@ -62,9 +62,7 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
                 ss.ignore();
         }
         
-        for (i=0; i< vect.size(); i++)
-            std::cout << vect.at(i)<<std::endl;
-    
+        
         
         int max_x = get<X_SIZE>(ea,10);
         int max_y = get<Y_SIZE>(ea,10);
