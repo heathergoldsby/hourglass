@@ -87,11 +87,15 @@ struct big_world : fitness_function<unary_fitness<double>, constantS, stochastic
         for (int j=0; j<dt_max_y; j++){
             for (int i=0; i<dt_max_x; i++) {
                 int xy = upper_left + i + (j*max_y);
+                if (xy > grid_size) {break;}
                 agent_pos_small[count] = agent_pos[xy];
+                int z = agent_pos[xy];
                 count++;
             }
         }
         
+        
+
         
         
         

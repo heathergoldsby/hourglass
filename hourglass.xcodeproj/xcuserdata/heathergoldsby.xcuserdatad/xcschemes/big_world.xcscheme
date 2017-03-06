@@ -64,7 +64,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-c hourglass2.cfg  --ea.hourglass.body_plans.body_plan  10"
+            argument = "-c hourglass2.cfg  --ea.rng.seed 1 --ea.hourglass.body_plans.body_plan  9"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
