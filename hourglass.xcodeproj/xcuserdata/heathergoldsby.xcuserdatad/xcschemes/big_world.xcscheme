@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "48DDA5611E6082F7009A9C81"
-               BuildableName = "epoch_variation"
-               BlueprintName = "epoch_variation"
+               BlueprintIdentifier = "48AB359B1E6DC82A00DD1B8C"
+               BuildableName = "big_world"
+               BlueprintName = "big_world"
                ReferencedContainer = "container:hourglass.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "48DDA5611E6082F7009A9C81"
-            BuildableName = "epoch_variation"
-            BlueprintName = "epoch_variation"
+            BlueprintIdentifier = "48AB359B1E6DC82A00DD1B8C"
+            BuildableName = "big_world"
+            BlueprintName = "big_world"
             ReferencedContainer = "container:hourglass.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,15 +56,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "48DDA5611E6082F7009A9C81"
-            BuildableName = "epoch_variation"
-            BlueprintName = "epoch_variation"
+            BlueprintIdentifier = "48AB359B1E6DC82A00DD1B8C"
+            BuildableName = "big_world"
+            BlueprintName = "big_world"
             ReferencedContainer = "container:hourglass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-s 1 -c hourglass2.cfg  --ea.hourglass.body_plans.body_plan  10"
+            argument = "-c hourglass2.cfg  --ea.hourglass.body_plans.body_plan  10"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -81,9 +81,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "48DDA5611E6082F7009A9C81"
-            BuildableName = "epoch_variation"
-            BlueprintName = "epoch_variation"
+            BlueprintIdentifier = "48AB359B1E6DC82A00DD1B8C"
+            BuildableName = "big_world"
+            BlueprintName = "big_world"
             ReferencedContainer = "container:hourglass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

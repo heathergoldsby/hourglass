@@ -50,3 +50,13 @@ src/nbp_epoch_var.cpp
 ;
 
 install dist : epoch_variation : <location>$(HOME)/bin ;
+
+exe big_world :
+src/big_world.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : big_world : <location>$(HOME)/bin ;
