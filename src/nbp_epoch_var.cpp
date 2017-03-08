@@ -256,10 +256,10 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
             case 50:
                 f = body_plan17(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 52:
+            case 51:
                 f = body_plan18(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
-            case 53:
+            case 52:
                 f = body_plan19(grid_size, max_x, max_y, agent_pos, as, ea);
                 break;
         }

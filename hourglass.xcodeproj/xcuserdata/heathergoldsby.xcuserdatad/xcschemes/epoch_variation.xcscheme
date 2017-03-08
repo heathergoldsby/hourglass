@@ -64,7 +64,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-s 1 -c hourglass2.cfg  --ea.hourglass.body_plans.body_plan  10"
+            argument = " -c hourglass2.cfg  --ea.hourglass.epv.fitperepoch 51,4,39,50,11,45,20,14,37,37"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
