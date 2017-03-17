@@ -1284,36 +1284,44 @@ void update_big_world_N(int n, int overall_time, std::vector<int>& agent_pos, st
             if (migrate && as[p].output(4)) {
                 
                 if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
-                    if ((agent_pos[north] == -1) && ((dist_y < dt_max_y) || ((agent_y-1) > min_agent_y))){
+                    if ((agent_pos[north] == -1) && ((dist_y < dt_max_y) || ((agent_y) > min_agent_y))){
                         agent_pos[north] = p; // move agent
                         agent_pos[xy] = -1;
                         xy = north;
-                        min_agent_y = agent_y - 1;
-                        dist_y++;
+                        if ((agent_y-1) < min_agent_y) {
+                            min_agent_y = agent_y - 1;
+                            dist_y++;
+                        }
                     }
                 } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 1))) {  // 01 east
-                    if ((agent_pos[east] == -1) && ((dist_x < dt_max_x) || ((agent_x+1)< max_agent_x))) {
+                    if ((agent_pos[east] == -1) && ((dist_x < dt_max_x) || ((agent_x)< max_agent_x))) {
                         agent_pos[east] = p; // move agent
                         agent_pos[xy] = -1;
                         xy = east;
-                        max_agent_x = agent_x + 1;
-                        dist_x++;
+                        if ((agent_x+1) > max_agent_x){
+                            max_agent_x = agent_x + 1;
+                            dist_x++;
+                        }
                     }
                 } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 1))) { // 11 south
-                    if ((agent_pos[south] == -1) && ((dist_y < dt_max_y) || ((agent_y+1) < max_agent_y))){
+                    if ((agent_pos[south] == -1) && ((dist_y < dt_max_y) || ((agent_y) < max_agent_y))){
                         agent_pos[south] = p; // move agent
                         agent_pos[xy] = -1;
                         xy = south;
-                        max_agent_y = agent_y + 1;
-                        dist_y++;
+                        if ((agent_y+1) > max_agent_y) {
+                            max_agent_y = agent_y + 1;
+                            dist_y++;
+                        }
                     }
                 } else if ((as[p].output(2) == 1) && (as[p].output(3)== 0) && (agent_x > 0)) { // 10 west
-                    if ((agent_pos[west] == -1) && ((dist_x < dt_max_x) || ((agent_x-1) > min_agent_x))){
+                    if ((agent_pos[west] == -1) && ((dist_x < dt_max_x) || ((agent_x) > min_agent_x))){
                         agent_pos[west] = p; // move agent
                         agent_pos[xy] = -1;
                         xy = west;
-                        min_agent_x = agent_x - 1;
-                        dist_x++;
+                        if ((agent_x-1) < min_agent_x) {
+                            min_agent_x = agent_x - 1;
+                            dist_x++;
+                        }
                     }
                 }
                 
@@ -1424,37 +1432,53 @@ void update_big_world_N(int n, int overall_time, std::vector<int>& agent_pos, st
                 as[p].input(12) = cell_color[xy][2];
             }
             
+            if ((total_time == 50)) {
+                if (agent_y ==50){
+                    int z= 12;
+                }
+            }
+            
             // reproduce
             if ((total_time >= get<NO_REP_PERIOD>(ea,0)) && (reproduce && as[p].output(5))) {
                 
+                int o1 = as[p].output(2);
+                int o2 = as[p].output(3);
                 
                 if ((as[p].output(2) == 0) && (as[p].output(3)== 0) && (agent_y > 0)) { // 00 north
-                    if ((agent_pos[north] == -1) && ((dist_y < dt_max_y) || ((agent_y-1) > min_agent_y))){
+                    if ((agent_pos[north] == -1) && ((dist_y < dt_max_y) || (agent_y > min_agent_y))){
                         as.push_back(N); // Add a new agent.
                         agent_pos[north] = (as.size() -1); // This agent is at the end...
-                        min_agent_y = agent_y - 1;
-                        dist_y++;
+                        if ((agent_y-1) < min_agent_y) {
+                            min_agent_y = agent_y - 1;
+                            dist_y++;
+                        }
                     }
                 } else if ((as[p].output(2) == 0) && (as[p].output(3)== 1) && (agent_x < (max_x - 1))) {  // 01 east
-                    if ((agent_pos[east] == -1) && ((dist_x < dt_max_x) || ((agent_x+1)< max_agent_x))) {
+                    if ((agent_pos[east] == -1) && ((dist_x < dt_max_x) || (agent_x < max_agent_x))) {
                         as.push_back(N); // Add a new agent.
                         agent_pos[east] = (as.size() -1); // This agent is at the end...
-                        max_agent_x = agent_x + 1;
-                        dist_x++;
+                        if ((agent_x+1) > max_agent_x){
+                            max_agent_x = agent_x + 1;
+                            dist_x++;
+                        }
                     }
                 } else if ((as[p].output(2) == 1) && (as[p].output(3)== 1) && (agent_y < (max_y - 1))) { // 11 south
-                    if ((agent_pos[south] == -1) && ((dist_y < dt_max_y) || ((agent_y+1) < max_agent_y))){
+                    if ((agent_pos[south] == -1) && ((dist_y < dt_max_y) || (agent_y < max_agent_y))){
                         as.push_back(N); // Add a new agent.
                         agent_pos[south] = (as.size() -1); // This agent is at the end...
-                        max_agent_y = agent_y + 1;
-                        dist_y++;
+                        if ((agent_y+1) > max_agent_y) {
+                            max_agent_y = agent_y + 1;
+                            dist_y++;
+                        }
                     }
                 } else if ((as[p].output(2) == 1) && (as[p].output(3)== 0) && (agent_x > 0)) { // 10 west
-                    if ((agent_pos[west] == -1) && ((dist_x < dt_max_x) || ((agent_x-1) > min_agent_x))){
+                    if ((agent_pos[west] == -1) && ((dist_x < dt_max_x) || (agent_x > min_agent_x))){
                         as.push_back(N); // Add a new agent.
                         agent_pos[west] = (as.size() -1); // This agent is at the end...
-                        min_agent_x = agent_x - 1;
-                        dist_x++;
+                        if ((agent_x-1) < min_agent_x) {
+                            min_agent_x = agent_x - 1;
+                            dist_x++;
+                        }
                     }
                 }
             }

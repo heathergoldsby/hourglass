@@ -859,22 +859,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/markov_movie.h"
-            timestampString = "511365556.273127"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
-            landmarkName = "LIBEA_ANALYSIS_TOOL(markov_movie_big_world)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
             timestampString = "511365844.116366"
             startingColumnNumber = "9223372036854775807"
@@ -924,11 +908,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "511365977.035207"
+            timestampString = "511451578.607092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1431"
-            endingLineNumber = "1431"
+            startingLineNumber = "1255"
+            endingLineNumber = "1255"
             landmarkName = "update_big_world_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -940,12 +924,12 @@
                   moduleName = "big_world"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
-                  timestampString = "511366424.787949"
+                  timestampString = "511452144.40077"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1431"
-                  endingLineNumber = "1431"
-                  offsetFromSymbolStart = "8387">
+                  startingLineNumber = "1256"
+                  endingLineNumber = "1256"
+                  offsetFromSymbolStart = "1695">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -955,12 +939,108 @@
                   moduleName = "big_world"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
-                  timestampString = "511366424.791805"
+                  timestampString = "511452144.404531"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1431"
-                  endingLineNumber = "1431"
-                  offsetFromSymbolStart = "8390">
+                  startingLineNumber = "1256"
+                  endingLineNumber = "1256"
+                  offsetFromSymbolStart = "1695">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/hourglass.h"
+            timestampString = "511453532.622813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1437"
+            endingLineNumber = "1437"
+            landmarkName = "update_big_world_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void update_big_world_N&lt;ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;, ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt;(int, int, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type, std::__1::allocator&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type&gt; &gt;&amp;, std::__1::vector&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;, std::__1::allocator&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt; &gt; &gt;&amp;, ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;&amp;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;&amp;, ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;&amp;)"
+                  moduleName = "big_world"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
+                  timestampString = "511453926.130127"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1437"
+                  endingLineNumber = "1437"
+                  offsetFromSymbolStart = "8469">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void update_big_world_N&lt;ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;, ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt;(int, int, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type, std::__1::allocator&lt;ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type&gt; &gt;&amp;, std::__1::vector&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;, std::__1::allocator&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt; &gt; &gt;&amp;, ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;&amp;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;&amp;, ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;&amp;)"
+                  moduleName = "big_world"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
+                  timestampString = "511453926.133988"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1437"
+                  endingLineNumber = "1437"
+                  offsetFromSymbolStart = "8472">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "src/hourglass.h"
+            timestampString = "511453727.595213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1447"
+            endingLineNumber = "1447"
+            landmarkName = "update_big_world_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void update_big_world_N&lt;ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;, ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt;(int, int, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type, std::__1::allocator&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type&gt; &gt;&amp;, std::__1::vector&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;, std::__1::allocator&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt; &gt; &gt;&amp;, ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;&amp;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;&amp;, ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;&amp;)"
+                  moduleName = "big_world"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
+                  timestampString = "511453926.142546"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1447"
+                  endingLineNumber = "1447"
+                  offsetFromSymbolStart = "8778">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "void update_big_world_N&lt;ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;, ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt;(int, int, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;&amp;, std::__1::vector&lt;ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type, std::__1::allocator&lt;ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;::phenotype_type&gt; &gt;&amp;, std::__1::vector&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt;, std::__1::allocator&lt;std::__1::vector&lt;int, std::__1::allocator&lt;int&gt; &gt; &gt; &gt;&amp;, ealib::individual&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, ealib::fitness_trait&lt;ealib::evolutionary_algorithm&lt;ealib::indirect&lt;ealib::circular_genome&lt;int&gt;, mkv::markov_network&lt;int, ealib::binary_or&lt;int&gt;, ealib::non_zero&lt;int&gt;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt; &gt;, ealib::translators::call_markov_network_translator&gt;, big_world, ealib::mutation::operators::indel&lt;ealib::mutation::operators::per_site&lt;ealib::mutation::site::uniform_integer&gt; &gt;, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::ancestors::markov_network_ancestor, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt; &gt; &gt;&amp;, ealib::rng&lt;boost::random::mersenne_twister_engine&lt;unsigned int, 32ul, 624ul, 397ul, 31ul, 2567483615u, 11ul, 4294967295u, 7ul, 2636928640u, 15ul, 4022730752u, 18ul, 1812433253u&gt; &gt;&amp;, ealib::markov_network_evolution&lt;big_world, ealib::recombination::asexual, ealib::generational_models::moran_process&lt;ealib::selection::proportionate&lt;ealib::access::fitness&gt;, ealib::selection::random&lt;ealib::without_replacementS&gt; &gt;, ealib::dont_stop, ealib::fill_population, ealib::lifecycles::markov_network_lifecycle, ealib::fitness_trait&gt;&amp;)"
+                  moduleName = "big_world"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/heathergoldsby/Desktop/research/code/hourglass/src/hourglass.h"
+                  timestampString = "511453926.146379"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1447"
+                  endingLineNumber = "1447"
+                  offsetFromSymbolStart = "8781">
                </Location>
             </Locations>
          </BreakpointContent>
