@@ -60,3 +60,14 @@ src/big_world.cpp
 ;
 
 install dist : big_world : <location>$(HOME)/bin ;
+
+
+exe start_and_end :
+src/start_and_end.cpp
+/libea//libea
+/libea//libea_runner
+/libmkv//libmkv
+: <include>./include <link>static
+;
+
+install dist : start_and_end : <location>$(HOME)/bin ;
