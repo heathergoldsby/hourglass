@@ -63,7 +63,8 @@ struct start_and_end : fitness_function<unary_fitness<double>, constantS, stocha
         // Run for a bit. Save off the state
         update_big_world_N(get<START_EVAL_UPDATE>(ea,10), 0, agent_pos, exec_order, as, cell_color, ind, rng, ea);
         vector<typename EA::phenotype_type> as_start = as;
-        
+        vector<int> agent_pos_start = agent_pos;
+
         // Finish running
         update_big_world_N(get<START_EVAL_UPDATE>(ea,10), get<START_EVAL_UPDATE>(ea,10), agent_pos, exec_order, as, cell_color, ind, rng, ea);
         
@@ -88,6 +89,7 @@ struct start_and_end : fitness_function<unary_fitness<double>, constantS, stocha
         int dt_grid = dt_max_x * dt_max_y;
         
         vector<int> agent_pos_small (dt_grid, -1);
+        vector<int> agent_pos_small_start (dt_grid, -1);
         
         
         int count = 0;
@@ -96,7 +98,7 @@ struct start_and_end : fitness_function<unary_fitness<double>, constantS, stocha
                 int xy = upper_left + i + (j*max_y);
                 if (xy > grid_size) {break;}
                 agent_pos_small[count] = agent_pos[xy];
-                int z = agent_pos[xy];
+                agent_pos_small_start[count] = agent_pos_start[xy];
                 count++;
             }
         }
@@ -105,19 +107,19 @@ struct start_and_end : fitness_function<unary_fitness<double>, constantS, stocha
         double early_f = 0;
         switch(start_fit_func) {
             case 1:
-                early_f = body_plan_start1(dt_grid, dt_max_x, dt_max_y, agent_pos_small, as_start, ea);
+                early_f = body_plan_start1(dt_grid, dt_max_x, dt_max_y, agent_pos_small_start, as_start, ea);
                 break;
             case 2:
-                early_f = body_plan_start2(dt_grid, dt_max_x, dt_max_y, agent_pos_small, as_start, ea);
+                early_f = body_plan_start2(dt_grid, dt_max_x, dt_max_y, agent_pos_small_start, as_start, ea);
                 break;
             case 3:
-                early_f = body_plan_start3(dt_grid, dt_max_x, dt_max_y, agent_pos_small, as_start, ea);
+                early_f = body_plan_start3(dt_grid, dt_max_x, dt_max_y, agent_pos_small_start, as_start, ea);
                 break;
             case 4:
-                early_f = body_plan_start4(dt_grid, dt_max_x, dt_max_y, agent_pos_small, as_start, ea);
+                early_f = body_plan_start4(dt_grid, dt_max_x, dt_max_y, agent_pos_small_start, as_start, ea);
                 break;
             case 5:
-                early_f = body_plan_start5(dt_grid, dt_max_x, dt_max_y, agent_pos_small, as_start, ea);
+                early_f = body_plan_start5(dt_grid, dt_max_x, dt_max_y, agent_pos_small_start, as_start, ea);
                 break;
         }
         

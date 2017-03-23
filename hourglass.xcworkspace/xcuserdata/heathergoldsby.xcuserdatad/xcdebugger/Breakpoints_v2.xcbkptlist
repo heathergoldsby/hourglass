@@ -412,11 +412,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "496258468.64985"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "630"
-            endingLineNumber = "630"
+            startingLineNumber = "633"
+            endingLineNumber = "633"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -508,11 +508,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "496258468.64985"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "777"
-            endingLineNumber = "777"
+            startingLineNumber = "780"
+            endingLineNumber = "780"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -652,11 +652,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "496319625.18833"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
+            startingLineNumber = "597"
+            endingLineNumber = "597"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -748,11 +748,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "496320286.754594"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
             landmarkName = "update_world_stigmergic_communication_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -860,11 +860,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "511365844.116366"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1207"
-            endingLineNumber = "1207"
+            startingLineNumber = "1210"
+            endingLineNumber = "1210"
             landmarkName = "update_big_world_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -908,11 +908,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "511451578.607092"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1255"
-            endingLineNumber = "1255"
+            startingLineNumber = "1258"
+            endingLineNumber = "1258"
             landmarkName = "update_big_world_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -956,11 +956,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "511453532.622813"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1437"
-            endingLineNumber = "1437"
+            startingLineNumber = "1440"
+            endingLineNumber = "1440"
             landmarkName = "update_big_world_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
@@ -1004,11 +1004,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "src/hourglass.h"
-            timestampString = "511453727.595213"
+            timestampString = "511971640.698347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1447"
-            endingLineNumber = "1447"
+            startingLineNumber = "1450"
+            endingLineNumber = "1450"
             landmarkName = "update_big_world_N(int n, int overall_time, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;int&gt;&amp; exec_order, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, std::vector&lt; std::vector&lt;int&gt; &gt;&amp; cell_color, Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
             landmarkType = "9">
             <Locations>
