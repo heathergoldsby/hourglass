@@ -39,6 +39,9 @@ LIBEA_MD_DECL(ISLAND, "ea.hourglass.islandmodel.island", int); //
 LIBEA_MD_DECL(NUM_ISLAND, "ea.hourglass.islandmodel.num_island", int); //
 
 
+LIBEA_MD_DECL(START_EVAL_UPDATE, "ea.hourglass.start_eval_update", int); //
+LIBEA_MD_DECL(START_BODYPLAN, "ea.hourglass.start_eval_body_plan", int); //
+
 
 // Run the world...
 

@@ -92,12 +92,17 @@
 		<key>square.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>7</integer>
 		</dict>
 		<key>square_markov.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>17</integer>
+		</dict>
+		<key>start_and_end.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>39</integer>
 		</dict>
 		<key>steppingstones.xcscheme</key>
 		<dict>
@@ -318,6 +323,11 @@
 			<true/>
 		</dict>
 		<key>488DA3F51A6B4D6F00BF0B0B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48A91DDC1E84066800B14305</key>
 		<dict>
 			<key>primary</key>
 			<true/>
