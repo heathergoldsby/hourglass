@@ -715,8 +715,9 @@ double body_plan_start1 (int grid_size, int max_x, int max_y, std::vector<int>& 
         int p = agent_pos[xy];
         
         // agent exists and is blue
-        if ((p != -1) && (agent_x == 0 || agent_x == 1) && (agent_y == 0 || agent_y == 1 )) {
-            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+        if ((agent_x == 0 || agent_x == 1) && (agent_y == 0 || agent_y == 1 )) {
+            
+            if ((p != -1) &&  ((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
                 ++fit;
             }
         } else { // agent does not exist
@@ -728,7 +729,7 @@ double body_plan_start1 (int grid_size, int max_x, int max_y, std::vector<int>& 
     }
     
     double e = fit;
-    double f = pow(1.5, e);
+    double f = pow(1.1, e);
     
     return f;
     
