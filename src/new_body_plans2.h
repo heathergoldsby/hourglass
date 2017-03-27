@@ -729,7 +729,7 @@ double body_plan_start1 (int grid_size, int max_x, int max_y, std::vector<int>& 
     }
     
     double e = fit;
-    double f = pow(1.1, e);
+    double f = pow(1.5, e);
     
     return f;
     
@@ -755,8 +755,8 @@ double body_plan_start2 (int grid_size, int max_x, int max_y, std::vector<int>& 
         int p = agent_pos[xy];
         
         // agent exists and is the right color
-        if ((p != -1) && (agent_x >= 2 ) && (agent_y == 0)) {
-            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
+        if ((agent_x >= 2 ) && (agent_y == 0)) {
+            if ((p != -1) && ((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 1)){
                 ++fit;
             }
         } else { // agent does not exist
@@ -796,8 +796,8 @@ double body_plan_start3 (int grid_size, int max_x, int max_y, std::vector<int>& 
         int p = agent_pos[xy];
         
         // agent exists and is the right color
-        if ((p != -1) && ((xy == 15) || (xy == 20) || (xy == 21) || (xy == 22) || (xy == 27))) {
-            if (((as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
+        if (((xy == 15) || (xy == 20) || (xy == 21) || (xy == 22) || (xy == 27))) {
+            if (((p != -1) && (as[p]).output(0) == 1) &&  ((as[p]).output(1) == 0)){
                 ++fit;
             }
         } else { // agent does not exist
@@ -836,8 +836,8 @@ double body_plan_start4 (int grid_size, int max_x, int max_y, std::vector<int>& 
         int p = agent_pos[xy];
         
         // agent exists and is the right color
-        if ((p != -1) && (agent_x < 3) && (agent_y > 3)) {
-            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
+        if ((agent_x < 3) && (agent_y > 3)) {
+            if ((p != -1) && ((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 1)){
                 ++fit;
             }
         } else { // agent does not exist
@@ -877,8 +877,8 @@ double body_plan_start5 (int grid_size, int max_x, int max_y, std::vector<int>& 
         int p = agent_pos[xy];
         
         // agent exists and is the right color
-        if ((p != -1) && (agent_x == 5) && (agent_y > 2)) {
-            if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
+        if ((agent_x == 5) && (agent_y > 2)) {
+            if ((p != -1) && ((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)){
                 ++fit;
             }
         } else { // agent does not exist
