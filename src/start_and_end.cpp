@@ -66,7 +66,7 @@ struct start_and_end : fitness_function<unary_fitness<double>, constantS, stocha
         vector<int> agent_pos_start = agent_pos;
 
         // Finish running
-        update_big_world_N(get<START_EVAL_UPDATE>(ea,10), get<START_EVAL_UPDATE>(ea,10), agent_pos, exec_order, as, cell_color, ind, rng, ea);
+        update_big_world_N(get<WORLD_UPDATES>(ea,10), get<START_EVAL_UPDATE>(ea,10), agent_pos, exec_order, as, cell_color, ind, rng, ea);
         
         
         /* translate agent positions... */
