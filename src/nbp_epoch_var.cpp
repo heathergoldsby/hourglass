@@ -40,8 +40,258 @@ using namespace mkv;
 
 
 LIBEA_MD_DECL(FITPEREPOCH, "ea.hourglass.epv.fitperepoch", string); //
+LIBEA_MD_DECL(TRANSUPDATES, "ea.hourglass.epv.transupdates", int); //
 
 
+template <typename EA>
+double eval_body_plan (int ffToUse, int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    double f = 0.0;
+    
+    switch(ffToUse) {
+        case 1:
+            f = body_plan_a(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 2:
+            f = body_plan_b(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 3:
+            f = body_plan_c(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 4:
+            f = body_plan_d(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 5:
+            f = body_plan_e(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 6:
+            f = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 7:
+            f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 8:
+            f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 9:
+            f = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 10:
+            f = body_plan_a1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 11:
+            f = body_plan_b1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 12:
+            f = body_plan_c1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 13:
+            f = body_plan_d1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 14:
+            f = body_plan_e1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 15:
+            f = body_plan_f1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 16:
+            f = body_plan_g1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 17:
+            f = body_plan_h1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 18:
+            f = body_plan_i1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 19:
+            f = body_plan_j1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 20:
+            f = body_plan_k1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 21:
+            f = body_plan_l1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 22:
+            f = body_plan_m1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 23:
+            f = body_plan_n1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 24:
+            f = body_plan_o1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 25:
+            f = body_plan_p1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 26:
+            f = body_plan_q1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 27:
+            f = body_plan_r1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 28:
+            f = body_plan_s1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 29:
+            f = body_plan_t1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 30:
+            f = body_plan_u1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 31:
+            f = body_plan_v1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 32:
+            f = body_plan_w1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 33:
+            f = body_plan0(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 34:
+            f = body_plan1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 35:
+            f = body_plan2(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 36:
+            f = body_plan3(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 37:
+            f = body_plan4(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 38:
+            f = body_plan5(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 39:
+            f = body_plan6(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 40:
+            f = body_plan7(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 41:
+            f = body_plan8(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 42:
+            f = body_plan9(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 43:
+            f = body_plan10(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 44:
+            f = body_plan11(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 45:
+            f = body_plan12(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 46:
+            f = body_plan13(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 47:
+            f = body_plan14(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 48:
+            f = body_plan15(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 49:
+            f = body_plan16(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 50:
+            f = body_plan17(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 51:
+            f = body_plan18(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 52:
+            f = body_plan19(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+    }
+
+    return f;
+   
+}
+
+struct epoch_variation_gradual : fitness_function<unary_fitness<double>, constantS, stochasticS> {
+    template <typename Individual, typename RNG, typename EA>
+    double operator()(Individual& ind, RNG& rng, EA& ea) {
+        
+        std::vector<int> vect;
+        
+        std::stringstream ss(get<FITPEREPOCH>(ea));
+        
+        int i;
+        
+        while (ss >> i)
+        {
+            vect.push_back(i);
+            
+            if (ss.peek() == ',')
+                ss.ignore();
+        }
+        
+        
+        
+        int max_x = get<X_SIZE>(ea,10);
+        int max_y = get<Y_SIZE>(ea,10);
+        int grid_size = max_x * max_y;
+        vector<int> agent_pos (grid_size, -1);
+        vector<int> exec_order (grid_size);
+        double f=0.0;
+        
+        
+        // get the "prototype" phenotype (markov network):
+        typename EA::phenotype_type &N = ealib::phenotype(ind, ea);
+        vector<typename EA::phenotype_type> as; //
+        
+        
+        int offset = get<START_POS>(ea,0);
+        for (int q=0; q<get<NUM_START_AGENTS>(ea,1); q++) {
+            as.push_back(N); //grid_size, N); // my agents or networks
+            int pos = q + offset;
+            if (pos >=  grid_size) {
+                pos -= grid_size;
+            }
+            agent_pos[pos] = q;
+            as[q].reset(rng.seed());
+        }
+        
+        for (int i=0; i<grid_size; ++i) {
+            exec_order[i] = i;
+        }
+        
+        
+        std::vector< std::vector<int> > cell_color(grid_size, std::vector<int>(2, 0));
+        update_world_stigmergic_communication_N(get<WORLD_UPDATES>(ea,10), 0, agent_pos, exec_order, as, cell_color, ind, rng, ea);
+        
+        
+        accumulator_set<double, stats<tag::max> > fs;
+        
+        // what epoch are we in?
+        int run_length = get<RUN_UPDATES>(ea);
+        int cur_update = ea.current_update();
+        int epoch = floor(cur_update / (run_length / vect.size()));
+        int ffToUse = vect[epoch];
+        int epoch_steps = cur_update - (epoch * (run_length/vect.size()));
+        int transupdates = get<TRANSUPDATES>(ea,0);
+        
+        if ((epoch_steps < transupdates) && (epoch > 0)) {
+            double w2 = double(epoch_steps) / double(transupdates);
+            double w1 = 1 - (w2);
+            
+            int prevff = vect[epoch-1];
+            double f1 = eval_body_plan(prevff, grid_size, max_x, max_y, agent_pos, as, ea);
+            double f2 = eval_body_plan(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
+            
+            f = w1 * f1 + w2 * f2;
+            
+        } else {
+            f = eval_body_plan(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
+        }
+        
+        
+        return (f);
+        
+    }
+};
 
 
 struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stochasticS> {
@@ -105,164 +355,7 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
         int epoch = floor(cur_update / (run_length / vect.size()));
         int ffToUse = vect[epoch];
         
-        switch(ffToUse) {
-            case 1:
-                f = body_plan_a(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 2:
-                f = body_plan_b(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 3:
-                f = body_plan_c(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 4:
-                f = body_plan_d(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 5:
-                f = body_plan_e(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 6:
-                f = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 7:
-                f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 8:
-                f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 9:
-                f = body_plan_i(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 10:
-                f = body_plan_a1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 11:
-                f = body_plan_b1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 12:
-                f = body_plan_c1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 13:
-                f = body_plan_d1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 14:
-                f = body_plan_e1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 15:
-                f = body_plan_f1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 16:
-                f = body_plan_g1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 17:
-                f = body_plan_h1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 18:
-                f = body_plan_i1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 19:
-                f = body_plan_j1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 20:
-                f = body_plan_k1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 21:
-                f = body_plan_l1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 22:
-                f = body_plan_m1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 23:
-                f = body_plan_n1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 24:
-                f = body_plan_o1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 25:
-                f = body_plan_p1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 26:
-                f = body_plan_q1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 27:
-                f = body_plan_r1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 28:
-                f = body_plan_s1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 29:
-                f = body_plan_t1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 30:
-                f = body_plan_u1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 31:
-                f = body_plan_v1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 32:
-                f = body_plan_w1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 33:
-                f = body_plan0(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 34:
-                f = body_plan1(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 35:
-                f = body_plan2(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 36:
-                f = body_plan3(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 37:
-                f = body_plan4(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 38:
-                f = body_plan5(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 39:
-                f = body_plan6(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 40:
-                f = body_plan7(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 41:
-                f = body_plan8(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 42:
-                f = body_plan9(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 43:
-                f = body_plan10(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 44:
-                f = body_plan11(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 45:
-                f = body_plan12(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 46:
-                f = body_plan13(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 47:
-                f = body_plan14(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 48:
-                f = body_plan15(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 49:
-                f = body_plan16(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 50:
-                f = body_plan17(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 51:
-                f = body_plan18(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-            case 52:
-                f = body_plan19(grid_size, max_x, max_y, agent_pos, as, ea);
-                break;
-        }
+        f = eval_body_plan(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
         
     
         return (f);
@@ -272,7 +365,7 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
 
 // Evolutionary algorithm definition.
 typedef markov_network_evolution
-< epoch_variation
+< epoch_variation_gradual
 , recombination::asexual
 , generational_models::moran_process< >
 > ea_type;
@@ -311,6 +404,7 @@ public:
         add_option<GATE_EPSILON>(this);
 
         add_option<FITPEREPOCH>(this);
+        add_option<TRANSUPDATES>(this);
 
         
         

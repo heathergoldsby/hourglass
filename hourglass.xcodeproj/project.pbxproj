@@ -286,6 +286,7 @@
 		4875B50A1C5997F1003C955D /* steppingstones */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = steppingstones; sourceTree = BUILT_PRODUCTS_DIR; };
 		487ACE231934F7C60016340B /* movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = movie.h; sourceTree = "<group>"; };
 		487E25F21C590BF700B6B896 /* outline_quad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = outline_quad.cpp; sourceTree = "<group>"; };
+		489542A81E9BF1E700265380 /* nbp_epoch_var.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nbp_epoch_var.h; sourceTree = "<group>"; };
 		48A1E129183F8ED70023C478 /* stripes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stripes.h; sourceTree = "<group>"; };
 		48A5B7781BB94D9400E4E515 /* markov_movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = markov_movie.h; sourceTree = "<group>"; };
 		48A904F11BBAA07700A1532C /* hourglass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hourglass.h; sourceTree = "<group>"; };
@@ -569,6 +570,7 @@
 				48A91DDB1E84032E00B14305 /* start_and_end.cpp */,
 				4870E9AC1DD3968B00336FC5 /* nbp_stepping_stones.cpp */,
 				48DDA5601E607F33009A9C81 /* nbp_epoch_var.cpp */,
+				489542A81E9BF1E700265380 /* nbp_epoch_var.h */,
 				480FEBDC1CEA16C500ECABDD /* nbp_island.cpp */,
 			);
 			path = src;
