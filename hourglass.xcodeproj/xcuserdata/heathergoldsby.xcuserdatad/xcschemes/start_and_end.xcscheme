@@ -65,6 +65,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--config hourglass.cfg --ea.hourglass.body_plans.body_plan 2  --ea.hourglass.start_eval_body_plan 1 --ea.hourglass.start_eval_update 5"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-l checkpoint-200000.xml.gz  --analyze markov_movie_big_world"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

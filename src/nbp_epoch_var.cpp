@@ -42,6 +42,63 @@ using namespace mkv;
 LIBEA_MD_DECL(FITPEREPOCH, "ea.hourglass.epv.fitperepoch", string); //
 LIBEA_MD_DECL(TRANSUPDATES, "ea.hourglass.epv.transupdates", int); //
 
+template <typename EA>
+double eval_body_med (int ffToUse, int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
+    double f = 0.0;
+    
+    switch(ffToUse) {
+
+        case 1: // case 2:
+            f = body_plan_b(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 2: //case 6:
+            f = body_plan_f(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 3: //case 7:
+            f = body_plan_g(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 4: //case 8:
+            f = body_plan_h(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 5: //case 13:
+            f = body_plan_d1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 6: // case 14:
+            f = body_plan_e1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 7: //case 17:
+            f = body_plan_h1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 8: //case 23:
+            f = body_plan_n1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 9: //case 24:
+            f = body_plan_o1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 10: //case 25:
+            f = body_plan_p1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 11: // case 31:
+            f = body_plan_v1(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 12: //case 35:
+            f = body_plan2(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 13: //case 40:
+            f = body_plan7(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 14: //case 45:
+            f = body_plan12(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+        case 15: //case 50:
+            f = body_plan17(grid_size, max_x, max_y, agent_pos, as, ea);
+            break;
+    }
+    
+    return f;
+    
+}
+
 
 template <typename EA>
 double eval_body_plan (int ffToUse, int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
@@ -278,13 +335,13 @@ struct epoch_variation_gradual : fitness_function<unary_fitness<double>, constan
             double w1 = 1 - (w2);
             
             int prevff = vect[epoch-1];
-            double f1 = eval_body_plan(prevff, grid_size, max_x, max_y, agent_pos, as, ea);
-            double f2 = eval_body_plan(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
+            double f1 = eval_body_med(prevff, grid_size, max_x, max_y, agent_pos, as, ea);
+            double f2 = eval_body_med(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
             
             f = w1 * f1 + w2 * f2;
             
         } else {
-            f = eval_body_plan(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
+            f = eval_body_med(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
         }
         
         
@@ -355,7 +412,7 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
         int epoch = floor(cur_update / (run_length / vect.size()));
         int ffToUse = vect[epoch];
         
-        f = eval_body_plan(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
+        f = eval_body_med(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);
         
     
         return (f);

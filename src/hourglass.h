@@ -1435,10 +1435,12 @@ void update_big_world_N(int n, int overall_time, std::vector<int>& agent_pos, st
                 as[p].input(12) = cell_color[xy][2];
             }
             
-            if ((total_time == 50)) {
-                if (agent_y ==50){
-                    int z= 12;
-                }
+            
+            
+            int z =as[p].output(5);
+            if (z == 1) {
+                
+                int q = 0; 
             }
             
             // reproduce
