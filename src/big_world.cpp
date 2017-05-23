@@ -10,6 +10,8 @@
 #include <ea/fitness_function.h>
 #include <ea/cmdline_interface.h>
 #include <ea/datafiles/fitness.h>
+#include <ea/line_of_descent.h>
+
 #include "markov_movie.h"
 #include "hourglass.h"
 #include "new_body_plans2.h"
@@ -153,6 +155,10 @@ typedef markov_network_evolution
 < big_world
 , recombination::asexual
 , generational_models::moran_process< >
+, dont_stop
+, fill_population
+, lifecycles::markov_network_lifecycle
+, lod_with_fitness_trait
 > ea_type;
 
 /*! Define the EA's command-line interface.
@@ -207,6 +213,8 @@ public:
     
     virtual void gather_events(EA& ea) {
         add_event<datafiles::fitness_dat>(ea);
+        add_event<lod_event>(ea);
+        add_event<datafiles::mrca_lineage>(ea);
     };
 };
 LIBEA_CMDLINE_INSTANCE(ea_type, cli);
