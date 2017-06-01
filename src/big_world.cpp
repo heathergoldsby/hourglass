@@ -193,7 +193,7 @@ public:
         add_option<RAND_ORDER>(this);
         add_option<NO_REP_PERIOD>(this);
         add_option<GATE_EPSILON>(this);
-        
+        add_option<ANALYSIS_INPUT>(this);
         
         
     }
@@ -205,7 +205,7 @@ public:
         add_tool<analysis::dominant_reduced_graph>(this);
         
         add_tool<ealib::analysis::markov_movie_big_world>(this);
-        
+        add_tool<ealib::analysis::lod_movie>(this);
         add_tool<ealib::analysis::recalc_fit>(this);
         add_tool<ealib::analysis::ko>(this);
         

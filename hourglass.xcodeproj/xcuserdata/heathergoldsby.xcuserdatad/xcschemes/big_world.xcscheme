@@ -68,7 +68,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-l checkpoint-200000.xml.gz --analyze markov_movie_big_world "
+            argument = "-l checkpoint-200000.xml.gz "
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--analyze lod_movie --ea.analysis.input.filename lod-200000.xml.gz "
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

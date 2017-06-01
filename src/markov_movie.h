@@ -9,9 +9,11 @@
 #include <boost/accumulators/statistics/stats.hpp>
 #include <boost/accumulators/statistics/mean.hpp>
 #include <boost/accumulators/statistics/max.hpp>
+#include <ea/mkv/markov_network_evolution.h>
 
 #include <ea/datafile.h>
 #include <ea/line_of_descent.h>
+
 #include <ea/analysis.h>
 #include "hourglass.h"
 #include "stepping_stones.h"
@@ -19,14 +21,15 @@
 using namespace std;
 using namespace boost::accumulators;
 
+using namespace mkv;
 
 namespace ealib {
     namespace analysis {
-
-
+        
+        
         LIBEA_ANALYSIS_TOOL(recalc_fit) {
             accumulator_set<double, stats<tag::max, tag::mean> > fs;
-
+            
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
                 
                 recalculate_fitness(*i, ea);
@@ -43,7 +46,7 @@ namespace ealib {
             df.write(boost::accumulators::mean(fs));
             df.write(boost::accumulators::max(fs));
             df.endl();
-
+            
         }
         
         LIBEA_ANALYSIS_TOOL(movie_markov_growth_migration) {
@@ -110,7 +113,7 @@ namespace ealib {
                         df.write("-1");
                         continue;
                     }
-
+                    
                     
                     if (((as[p]).output(0) == 0) &&  ((as[p]).output(1) == 0)) {
                         df.write("0");
@@ -128,7 +131,7 @@ namespace ealib {
                 
             }
         }
-    
+        
         
         template <typename Individual, typename EA>
         void generate_one_movie(std::string file_name, Individual& best, EA& ea) {
@@ -171,7 +174,7 @@ namespace ealib {
                 
                 df.write(t);
                 
-
+                
                 // output time point for movie...
                 for (int xy = 0; xy<grid_size; xy++) {
                     
@@ -199,30 +202,10 @@ namespace ealib {
                 
             }
         }
-
         
-        LIBEA_ANALYSIS_TOOL(markov_movie_big_world) {
-            double max_fit = 0;
-            typename EA::individual_type best;
-            
-            // recalc all fitness values
-            for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
-                
-                recalculate_fitness(*i, ea);
-                double tmp_fit = static_cast<int>(ealib::fitness(*i,ea));
-                if (tmp_fit > max_fit) {
-                    best = *i;
-                    max_fit = tmp_fit;
-                    
-                }
-            }
-            
-            
-            // double check ind...
-            typename EA::individual_type best2 = best;
-            recalculate_fitness(best2, ea);
-            double tmp_fit2 =static_cast<int>(ealib::fitness(best2,ea));
-            
+        
+        template <typename Individual, typename EA>
+        void generate_one_movie_big_world(std::string file_name, Individual& best, EA& ea) {
             // For the best create a movie...
             int max_x = 100;
             int max_y = 100;
@@ -255,7 +238,7 @@ namespace ealib {
             }
             
             
-            datafile df("movie.dat");
+            datafile df(file_name);
             df.write(max_x);
             df.write(max_y);
             df.endl();
@@ -271,7 +254,7 @@ namespace ealib {
             int world_updates = get<WORLD_UPDATES>(ea,10);
             for(int t=0;t<world_updates;t++){
                 update_big_world_N(1, t, agent_pos, exec_order, as, cell_color, best, ea.rng(), ea);
-
+                
                 
                 
                 df.write(t);
@@ -301,6 +284,35 @@ namespace ealib {
                 df.endl();
                 
             }
+            
+        }
+        
+        
+        
+        
+        LIBEA_ANALYSIS_TOOL(markov_movie_big_world) {
+            double max_fit = 0;
+            typename EA::individual_type best;
+            
+            // recalc all fitness values
+            for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
+                
+                recalculate_fitness(*i, ea);
+                double tmp_fit = static_cast<int>(ealib::fitness(*i,ea));
+                if (tmp_fit > max_fit) {
+                    best = *i;
+                    max_fit = tmp_fit;
+                    
+                }
+            }
+            
+            
+            std::string f = "movie.dat";
+             generate_one_movie_big_world(f, best, ea);
+            //generate_one_movie(f, best, ea);
+
+            
+            
         }
         
         
@@ -316,8 +328,8 @@ namespace ealib {
                 if (tmp_fit > max_fit) {
                     best = *i;
                     max_fit = tmp_fit;
-//                    std::string f = "movie_blah.dat";
-//                    generate_one_movie (f, *i, ea);
+                    //                    std::string f = "movie_blah.dat";
+                    //                    generate_one_movie (f, *i, ea);
                     
                 }
             }
@@ -401,12 +413,12 @@ namespace ealib {
                 
             }
         }
-    
+        
         LIBEA_ANALYSIS_TOOL(markov_movie_ko) {
             double max_fit = 0;
             typename EA::individual_type best;
             
-
+            
             
             // recalc all fitness values
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
@@ -425,7 +437,7 @@ namespace ealib {
             get<CAPABILITIES_OFF>(ea, "") = "stigmergic";
             f = "movie_ko_stigmergic.dat";
             generate_one_movie (f, best, ea);
-
+            
             get<CAPABILITIES_OFF>(ea, "") = "edge";
             f = "movie_ko_edge.dat";
             generate_one_movie (f, best, ea);
@@ -441,8 +453,8 @@ namespace ealib {
             get<CAPABILITIES_OFF>(ea, "") = "origin";
             f = "movie_ko_origin.dat";
             generate_one_movie (f, best, ea);
-
-
+            
+            
         }
         
         
@@ -462,8 +474,8 @@ namespace ealib {
                 std::string f = "movie_" + c + ".dat";
                 
                 for (typename EA::individual_type::iterator j=i->begin(); j!=i->end(); ++j) {
-                
-
+                    
+                    
                     recalculate_fitness(*j, *i);
                     double tmp_fit = static_cast<int>(ealib::fitness(*j,*i));
                     if (tmp_fit > max_fit) {
@@ -472,8 +484,8 @@ namespace ealib {
                     }
                 }
                 
-
-
+                
+                
                 ++count;
                 max_fit = 0;
             }
@@ -483,7 +495,7 @@ namespace ealib {
             double max_fit = 0;
             int count = 0;
             typename EA::individual_type best;
-
+            
             // recalc all fitness values
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
                 
@@ -522,7 +534,7 @@ namespace ealib {
                     }
                 }
                 
-
+                
                 
                 ++count;
                 max_fit = 0;
@@ -559,12 +571,12 @@ namespace ealib {
                 accumulator_set<double, stats<tag::max, tag::mean> > comm;
                 accumulator_set<double, stats<tag::max, tag::mean> > neigh;
                 accumulator_set<double, stats<tag::max, tag::mean> > ori;
-
+                
                 
                 
                 // recalc all fitness values
                 for (typename EA::individual_type::iterator j=i->begin(); j!=i->end(); ++j) {
-
+                    
                     recalculate_fitness(*j, *i);
                     double tmp_fit = static_cast<int>(ealib::fitness(*j,*i));
                     control(tmp_fit);
@@ -602,14 +614,14 @@ namespace ealib {
                 }
                 
                 //                        f = "movie_ko_neighbor" + c + ".dat";
-
+                
                 df.write("control");
                 df.write(c);
                 df.write("control_" + c);
                 df.write(boost::accumulators::mean(control));
                 df.write(boost::accumulators::max(control));
                 df.endl();
-
+                
                 df.write("ko_communication");
                 df.write(c);
                 df.write("ko_communication_" + c);
@@ -648,13 +660,13 @@ namespace ealib {
             }
             
             
-                
-                ++count;
+            
+            ++count;
         }
-    
         
-
-
+        
+        
+        
         
         /* how the full population of solutions uses these techniques.*/
         LIBEA_ANALYSIS_TOOL(ko) {
@@ -665,7 +677,7 @@ namespace ealib {
             accumulator_set<double, stats<tag::max, tag::mean> > comm;
             accumulator_set<double, stats<tag::max, tag::mean> > neigh;
             accumulator_set<double, stats<tag::max, tag::mean> > ori;
-
+            
             
             datafile df("ko.dat");
             df.write("treatment")
@@ -711,10 +723,10 @@ namespace ealib {
                 tmp_fit = static_cast<double>(ealib::fitness(ko_origin,ea));
                 ori(tmp_fit);
                 
-
+                
             }
             
-
+            
             df.write("control");
             df.write(boost::accumulators::mean(control));
             df.write(boost::accumulators::max(control));
@@ -746,14 +758,11 @@ namespace ealib {
             df.endl();
             
             
-            
-            
-
         }
         
         
         
-       
+        
         
         /* how the full population of solutions uses these techniques.*/
         LIBEA_ANALYSIS_TOOL(ko_stepping_stones) {
@@ -782,7 +791,7 @@ namespace ealib {
             accumulator_set<double, stats<tag::max, tag::mean> > comm9;
             accumulator_set<double, stats<tag::max, tag::mean> > neigh9;
             accumulator_set<double, stats<tag::max, tag::mean> > ori9;
-
+            
             
             datafile df("ko.dat");
             df.write("treatment")
@@ -808,7 +817,7 @@ namespace ealib {
                 stig7(get<F7>(*i));
                 stig8(get<F8>(*i));
                 stig9(get<F9>(*i));
-           
+                
                 typename EA::individual_type ko_edge = *i;
                 put<CAPABILITIES_OFF>("edge", ea);
                 recalculate_fitness(ko_edge, ea);
@@ -853,7 +862,7 @@ namespace ealib {
             df.write(boost::accumulators::mean(control6));
             df.write(boost::accumulators::max(control6));
             df.endl();
-
+            
             df.write("control").write("7").write("control_7");
             df.write(boost::accumulators::mean(control7));
             df.write(boost::accumulators::max(control7));
@@ -949,10 +958,62 @@ namespace ealib {
         }
         
         
-
-
-
-    
+        
+        LIBEA_ANALYSIS_TOOL(lod_movie) {
+            using namespace ealib;
+            
+            
+            line_of_descent<EA> lod = lod_load(get<ANALYSIS_INPUT>(ea), ea);
+            
+            typename line_of_descent<EA>::iterator i=lod.begin(); ++i;
+            
+            
+            //            datafile df("lod_shannon_tasks_orgs.dat");
+            //            df.add_field("lod_depth")
+            //            .add_field("shannon")
+            //            .add_field("shannon_norm")
+            //            .add_field("active_pop")
+            //            .add_field("total_pop");
+            
+            
+            
+            int lod_depth = 0;
+            int lod_save_points = floor(lod.size() / 6);
+            
+            int lod_save_pt = 0;
+            
+            // skip def ancestor (that's what the +1 does)
+            
+            
+            for( ; i!=lod.end(); ++i) {
+                
+                if ((lod_depth % lod_save_points) != 0) {
+                    lod_depth++;
+                    continue;
+                }
+                
+                // **i is the EA, AS OF THE TIME THAT IT DIED!
+                
+                // To replay, need to create a new ea
+                // setup the population (really, an ea):
+                //                    typename EA::individual_ptr_type p = ea.copy_individual(*i);
+                //p->rng().reset(get<RNG_SEED>(**i));
+                
+                stringstream ss;
+                ss << lod_save_pt;
+                std::string c = ss.str();
+                lod_depth++;
+                lod_save_pt++;
+                std::string f = "lod_" + c +".dat";
+                generate_one_movie_big_world(f, *i, ea);
+                
+                
+                
+                
+            }
+        }
+        
+        
     }
 }
 #endif
