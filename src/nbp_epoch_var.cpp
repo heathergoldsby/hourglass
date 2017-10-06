@@ -465,7 +465,9 @@ public:
         add_option<FITPEREPOCH>(this);
         add_option<TRANSUPDATES>(this);
         add_option<ARCHIVE_OUTPUT>(this);
-        
+        add_option<ARCHIVE_INPUT>(this);
+        add_option<ANALYSIS_IND_NAME>(this);
+
         
         
     }
