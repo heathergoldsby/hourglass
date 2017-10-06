@@ -19,6 +19,8 @@
 #include <ea/datafiles/fitness.h>
 #include <ea/metapopulation.h>
 #include <ea/datafiles/metapopulation_fitness.h>
+#include <ea/analysis/archive.h>
+
 
 #include "markov_movie.h"
 #include "hourglass.h"
@@ -480,6 +482,11 @@ public:
          
          add_tool<ealib::analysis::ko>(this);
         add_tool<ealib::analysis::ko_stepping_stones>(this);*/
+        add_tool<ealib::analysis::archive_dominant>(this);
+        add_tool<ealib::analysis::copy_individual>(this);
+        add_tool<ealib::analysis::merge_archives>(this);
+
+
         
     }
     
