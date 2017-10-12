@@ -62,7 +62,13 @@ struct mark_event : inheritance_event<EA> {
                             EA& ea) {
         for(typename EA::population_type::iterator i=parents.begin(); i!=parents.end(); ++i) {
             //offspring.traits().lod_parents().push_back(*i);
-            get<MARK>(offspring,-1) = get<MARK>(**i,-1);
+            if (get<MARK>(**i, 0) == 0) {
+                get<MARK>(offspring,0) = get<MARK>(ea, 0);
+                get<MARK>(**i, 0) = get<MARK>(ea, 0);
+                
+            } else {
+                get<MARK>(offspring,0) = get<MARK>(**i, 0);
+            }
 
         }
     }
