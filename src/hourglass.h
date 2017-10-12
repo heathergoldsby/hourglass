@@ -9,6 +9,8 @@
 #ifndef _HOURGLASS_H_
 #define _HOURGLASS_H_
 #include <ea/cmdline_interface.h>
+#include <ea/events.h>
+
 #include <boost/algorithm/string/predicate.hpp>
 
 
@@ -41,6 +43,8 @@ LIBEA_MD_DECL(NUM_ISLAND, "ea.hourglass.islandmodel.num_island", int); //
 
 LIBEA_MD_DECL(START_EVAL_UPDATE, "ea.hourglass.start_eval_update", int); //
 LIBEA_MD_DECL(START_BODYPLAN, "ea.hourglass.start_eval_body_plan", int); //
+
+
 
 
 // Run the world...

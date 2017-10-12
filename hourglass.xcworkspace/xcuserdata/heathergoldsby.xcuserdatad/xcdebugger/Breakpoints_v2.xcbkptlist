@@ -785,7 +785,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "277"
             endingLineNumber = "277"
-            landmarkName = "operator()(Individual&amp; ind, RNG&amp; rng, EA&amp; ea)"
+            landmarkName = "eval_body_plan (int ffToUse, int grid_size, int max_x, int max_y, std::vector&lt;int&gt;&amp; agent_pos, std::vector&lt;typename EA::phenotype_type&gt;&amp; as, EA&amp; ea)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

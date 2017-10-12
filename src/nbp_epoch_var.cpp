@@ -20,6 +20,7 @@
 #include <ea/metapopulation.h>
 #include <ea/datafiles/metapopulation_fitness.h>
 #include <ea/analysis/archive.h>
+#include <ea/events.h>
 
 
 #include "markov_movie.h"
@@ -43,6 +44,57 @@ using namespace mkv;
 
 LIBEA_MD_DECL(FITPEREPOCH, "ea.hourglass.epv.fitperepoch", string); //
 LIBEA_MD_DECL(TRANSUPDATES, "ea.hourglass.epv.transupdates", int); //
+LIBEA_MD_DECL(MARK, "ea.hourglass.mark", int); //
+
+template <typename EA>
+struct mark_event : inheritance_event<EA> {
+    //! Constructor.
+    mark_event(EA& ea) : inheritance_event<EA>(ea) {
+    }
+    
+    //! Destructor.
+    virtual ~mark_event() {
+    }
+    
+    //! Called for every inheritance event.
+    virtual void operator()(typename EA::population_type& parents,
+                            typename EA::individual_type& offspring,
+                            EA& ea) {
+        for(typename EA::population_type::iterator i=parents.begin(); i!=parents.end(); ++i) {
+            //offspring.traits().lod_parents().push_back(*i);
+            get<MARK>(offspring,-1) = get<MARK>(**i,-1);
+
+        }
+    }
+};
+
+///*! An organism rotates to face its parent....
+// */
+//template <typename EA>
+//struct mark_birth_event : birth_event<EA> {
+//    
+//    //! Constructor.
+//    mark_birth_event(EA& ea) : birth_event<EA>(ea) {
+//    }
+//    
+//    //! Destructor.
+//    virtual ~mark_birth_event() {
+//    }
+//    
+//    /*! Called for every inheritance event. We are using the orientation of the first parent...
+//     */
+//    virtual void operator()(typename EA::individual_type& offspring, // individual offspring
+//                            typename EA::individual_type& parent, // individual parent
+//                            EA& ea) {
+//        //ea.env().face_org(parent, offspring);
+//        //get<GERM_STATUS>(offspring, true) = get<GERM_STATUS>(ind(parents.begin(),ea), true);
+//        get<MARK>(offspring) = get<MARK>(parent,0);
+//        
+//    }
+//};
+//
+
+
 
 template <typename EA>
 double eval_body_med (int ffToUse, int grid_size, int max_x, int max_y, std::vector<int>& agent_pos, std::vector<typename EA::phenotype_type>& as, EA& ea) {
@@ -467,7 +519,7 @@ public:
         add_option<ARCHIVE_OUTPUT>(this);
         add_option<ARCHIVE_INPUT>(this);
         add_option<ANALYSIS_IND_NAME>(this);
-
+        add_option<MARK>(this);
         
         
     }
@@ -494,6 +546,7 @@ public:
     
     virtual void gather_events(EA& ea) {
         add_event<datafiles::fitness_dat>(ea);
+        add_event<mark_event>(ea);
         
     };
 };
