@@ -550,6 +550,7 @@ public:
         add_tool<ealib::analysis::copy_individual>(this);
         add_tool<ealib::analysis::merge_archives>(this);
         add_tool<ealib::analysis::recalculate_fitnesses>(this);
+        add_tool<ealib::analysis::rename_individuals>(this);
 
         
     }
