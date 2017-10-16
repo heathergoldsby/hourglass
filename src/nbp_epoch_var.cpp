@@ -65,9 +65,13 @@ struct mark_event : inheritance_event<EA> {
             if (get<MARK>(**i, 0) == 0) {
                 get<MARK>(offspring,0) = get<MARK>(ea, 0);
                 get<MARK>(**i, 0) = get<MARK>(ea, 0);
+                int z =get<MARK>(**i, 0);
+                int q = 0;
                 
             } else {
                 get<MARK>(offspring,0) = get<MARK>(**i, 0);
+                int z =get<MARK>(offspring, 0);
+                int q = 0;
             }
 
         }
@@ -545,7 +549,7 @@ public:
         add_tool<ealib::analysis::archive_dominant>(this);
         add_tool<ealib::analysis::copy_individual>(this);
         add_tool<ealib::analysis::merge_archives>(this);
-
+        add_tool<ealib::analysis::recalculate_fitnesses>(this);
 
         
     }
