@@ -486,7 +486,7 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
 
 // Evolutionary algorithm definition.
 typedef markov_network_evolution
-< epoch_variation_gradual
+< epoch_variation
 , recombination::asexual
 , generational_models::moran_process< >
 > ea_type;
