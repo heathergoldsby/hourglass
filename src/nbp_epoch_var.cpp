@@ -473,7 +473,7 @@ struct epoch_variation : fitness_function<unary_fitness<double>, constantS, stoc
         // what epoch are we in?
         int run_length = get<RUN_UPDATES>(ea);
         int cur_update = ea.current_update();
-        int epoch = floor(cur_update / (run_length / vect.size()));
+        int epoch = floor((cur_update % run_length) / (run_length / vect.size()));
         int ffToUse = vect[epoch];
         
         f = eval_body_med(ffToUse, grid_size, max_x, max_y, agent_pos, as, ea);

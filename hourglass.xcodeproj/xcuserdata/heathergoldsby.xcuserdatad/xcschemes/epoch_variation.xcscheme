@@ -68,7 +68,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-c epoch.cfg   --ea.hourglass.epv.fitperepoch 4 -l archive3 --ea.rng.seed 1"
+            argument = "-c epoch.cfg   --ea.hourglass.epv.fitperepoch 1 -l archive_1 --ea.rng.seed 1"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
