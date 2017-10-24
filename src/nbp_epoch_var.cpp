@@ -541,7 +541,6 @@ public:
          add_tool<analysis::dominant_causal_graph>(this);
          add_tool<analysis::dominant_reduced_graph>(this);
          
-         add_tool<ealib::analysis::markov_movie>(this);
          add_tool<ealib::analysis::markov_movie_ko>(this);
          
          add_tool<ealib::analysis::ko>(this);
@@ -552,7 +551,8 @@ public:
         add_tool<ealib::analysis::recalculate_fitnesses>(this);
         add_tool<ealib::analysis::rename_individuals>(this);
 
-        
+        add_tool<ealib::analysis::markov_movie>(this);
+
     }
     
     virtual void gather_events(EA& ea) {
