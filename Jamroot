@@ -7,67 +7,77 @@ use-project /libmkv : ../ealib/libmkv ;
 
 
 
-exe new_body_plans2 :
-src/new_body_plans2.cpp
+# exe new_body_plans2 :
+# src/new_body_plans2.cpp
+# /libea//libea
+# /libea//libea_runner
+# /libmkv//libmkv
+# : <include>./include <link>static
+# ;
+
+# install dist : new_body_plans2 : <location>$(HOME)/bin ;
+
+
+
+
+# exe nbp_island :
+# src/nbp_island.cpp
+# /libea//libea
+# /libea//libea_runner
+# /libmkv//libmkv
+# : <include>./include <link>static
+# ;
+
+# install dist : nbp_island : <location>$(HOME)/bin ;
+
+
+# exe nbp_stepping_stones :
+# src/nbp_stepping_stones.cpp
+# /libea//libea
+# /libea//libea_runner
+# /libmkv//libmkv
+# : <include>./include <link>static
+# ;
+
+# install dist : nbp_stepping_stones : <location>$(HOME)/bin ;
+
+# exe epoch_variation :
+# src/nbp_epoch_var.cpp
+# /libea//libea
+# /libea//libea_runner
+# /libmkv//libmkv
+# : <include>./include <link>static
+# ;
+
+# install dist : epoch_variation : <location>$(HOME)/bin ;
+
+# exe big_world :
+# src/big_world.cpp
+# /libea//libea
+# /libea//libea_runner
+# /libmkv//libmkv
+# : <include>./include <link>static
+# ;
+
+# install dist : big_world : <location>$(HOME)/bin ;
+
+
+# exe start_and_end :
+# src/start_and_end.cpp
+# /libea//libea
+# /libea//libea_runner
+# /libmkv//libmkv
+# : <include>./include <link>static
+# ;
+
+# install dist : start_and_end : <location>$(HOME)/bin ;
+
+exe stripes :
+src/stripes_multi.cpp
 /libea//libea
 /libea//libea_runner
 /libmkv//libmkv
 : <include>./include <link>static
 ;
 
-install dist : new_body_plans2 : <location>$(HOME)/bin ;
-
-
-
-
-exe nbp_island :
-src/nbp_island.cpp
-/libea//libea
-/libea//libea_runner
-/libmkv//libmkv
-: <include>./include <link>static
-;
-
-install dist : nbp_island : <location>$(HOME)/bin ;
-
-
-exe nbp_stepping_stones :
-src/nbp_stepping_stones.cpp
-/libea//libea
-/libea//libea_runner
-/libmkv//libmkv
-: <include>./include <link>static
-;
-
-install dist : nbp_stepping_stones : <location>$(HOME)/bin ;
-
-exe epoch_variation :
-src/nbp_epoch_var.cpp
-/libea//libea
-/libea//libea_runner
-/libmkv//libmkv
-: <include>./include <link>static
-;
-
-install dist : epoch_variation : <location>$(HOME)/bin ;
-
-exe big_world :
-src/big_world.cpp
-/libea//libea
-/libea//libea_runner
-/libmkv//libmkv
-: <include>./include <link>static
-;
-
-install dist : big_world : <location>$(HOME)/bin ;
-
-
-exe start_and_end :
-src/start_and_end.cpp
-/libea//libea
-/libea//libea_runner
-/libmkv//libmkv
-: <include>./include <link>static
-;
-
-install dist : start_and_end : <location>$(HOME)/bin ;
+install dist : stripes : <location>$(HOME)/bin ;

@@ -139,7 +139,131 @@ std::string get_last_task(int x, int y, EA& ea) {
     return lt;
 }
 
+struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    // Is point inside polygon with 3 points (trigon)?
+    // https://stackoverflow.com/a/9755252
+    inline bool is_point_inside_trigon(const int sx, const int sy,
+                                       const int ax, const int ay,
+                                       const int bx, const int by,
+                                       const int cx, const int cy)
+    {
+        const int as_x = sx-ax;
+        const int as_y = sy-ay;
 
+        const bool s_ab = (bx-ax)*as_y-(by-ay)*as_x > 0;
+
+        if ((cx-ax)*as_y-(cy-ay)*as_x > 0 == s_ab) return false;
+
+        if ((cx-bx)*(sy-by)-(cy-by)*(sx-bx) > 0 != s_ab) return false;
+
+        return true;
+    }
+
+    template <typename EA>
+    int eval_triangles(EA& ea) {
+        // Orange : and
+        // Blue   : not
+
+        const int max_x = get<SPATIAL_X>(ea);
+        const int max_y = get<SPATIAL_Y>(ea);
+
+        int blue_lower_left = 0;
+        int orange_upper_right = 0;
+
+        int orange_lower_left = 0;
+        int blue_upper_right = 0;
+
+        int orange_upper_left = 0;
+        int blue_lower_right = 0;
+
+        int blue_upper_left = 0;
+        int orange_lower_right = 0;
+
+        for (int x = 0; x < max_x; ++x) {
+            for (int y = 0; y < max_y; ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                const std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
+
+                if (is_point_inside_trigon(x, y, 
+                                           0, 0,
+                                           0, max_y,
+                                           max_x, max_y))
+                {
+                    // Lower left
+                    if (lt == "and")
+                    {
+                        ++orange_lower_left;
+                    }
+                    else
+                    {
+                        ++blue_lower_left;
+                    }
+                }
+                else if (is_point_inside_trigon(x, y, 
+                                                0, 0,
+                                                max_x, 0,
+                                                max_x, max_y))
+                {
+                    // Uppper right
+                    if (lt == "and")
+                    {
+                        ++orange_upper_right;
+                    }
+                    else
+                    {
+                        ++blue_upper_right;
+                    }
+                }
+                else if (is_point_inside_trigon(x, y, 
+                                                0, 0,
+                                                max_x, 0,
+                                                0, max_y))
+                {
+                    // Uppper left
+                    if (lt == "and")
+                    {
+                        ++orange_upper_left;
+                    }
+                    else
+                    {
+                        ++blue_upper_left;
+                    }
+                }
+                else
+                {
+                    // Lower right
+                    if (lt == "and")
+                    {
+                        ++orange_lower_right;
+                    }
+                    else
+                    {
+                        ++blue_lower_right;
+                    }
+                }
+            }
+        }
+        
+
+        int fit = (blue_lower_left * orange_upper_right);
+        fit = std::max(fit, orange_lower_left * blue_upper_right);
+        fit = std::max(fit, orange_upper_left * blue_lower_right);
+        fit = std::max(fit, blue_upper_left * orange_lower_right);
+        
+        return fit;
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_triangles(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+};
 
 // Can we do this without repeating code?
 template <typename EA>
