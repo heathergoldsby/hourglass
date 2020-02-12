@@ -194,7 +194,7 @@ struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS
                                            max_x, max_y))
                 {
                     // Lower left
-                    if (lt == "and")
+                    if (lt == "nand")
                     {
                         ++orange_lower_left;
                     }
@@ -209,7 +209,7 @@ struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS
                                                 max_x, max_y))
                 {
                     // Uppper right
-                    if (lt == "and")
+                    if (lt == "nand")
                     {
                         ++orange_upper_right;
                     }
@@ -224,7 +224,7 @@ struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS
                                                 0, max_y))
                 {
                     // Uppper left
-                    if (lt == "and")
+                    if (lt == "nand")
                     {
                         ++orange_upper_left;
                     }
@@ -236,7 +236,7 @@ struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS
                 else
                 {
                     // Lower right
-                    if (lt == "and")
+                    if (lt == "nand")
                     {
                         ++orange_lower_right;
                     }
