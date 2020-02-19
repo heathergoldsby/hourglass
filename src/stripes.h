@@ -63,7 +63,6 @@ struct permute_stripes : public fitness_function<unary_fitness<double>, nonstati
         double five_fit_nand = 0;
         double six_fit_not = 0;
         double six_fit_nand = 0;
-        int num_org = 0;
         
         for (int x=0; x < get<SPATIAL_X>(ea); ++x) {
             for (int y=0; y<get<SPATIAL_Y>(ea); ++y){
@@ -122,6 +121,11 @@ struct permute_stripes : public fitness_function<unary_fitness<double>, nonstati
         double f = static_cast<double>(eval_permute_stripes(sea));
         put<PATTERN_FIT>(f,sea);
         return f;
+    }
+
+    template <typename SubpopulationEA>
+    double operator()(SubpopulationEA& sea) {
+        return static_cast<double>(eval_permute_stripes(sea));
     }
 };
 
@@ -263,6 +267,11 @@ struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS
         put<PATTERN_FIT>(f,sea);
         return f;
     }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_triangles(sea);
+    }
 };
 
 // Can we do this without repeating code?
@@ -270,7 +279,6 @@ template <typename EA>
 void eval_square(EA& ea) {
     double tmp_fit = 0;
     
-    int num_org = 0;
     int max_x = get<SPATIAL_X>(ea) - 1; // minus one because SPATIAL_X is the size
     int max_y = get<SPATIAL_Y>(ea) - 1;
     
@@ -311,7 +319,6 @@ struct square : public fitness_function<unary_fitness<double>, nonstationaryS> {
     int eval_square(EA& ea) {
         double tmp_fit = 0;
       
-        int num_org = 0;
         int max_x = get<SPATIAL_X>(ea) - 1; // minus one because SPATIAL_X is the size
         int max_y = get<SPATIAL_Y>(ea) - 1;
         
@@ -358,7 +365,6 @@ template <typename EA>
 void eval_french_flag(EA& ea) {
     double tmp_fit = 0;
     
-    int num_org = 0;
     int max_x = get<SPATIAL_X>(ea);
     int max_y = get<SPATIAL_Y>(ea);
     
@@ -395,7 +401,6 @@ struct french_flag : public fitness_function<unary_fitness<double>, nonstationar
     int eval_french_flag(EA& ea) {
         double tmp_fit = 0;
         
-        int num_org = 0;
         int max_x = get<SPATIAL_X>(ea);
         int max_y = get<SPATIAL_Y>(ea);
         
