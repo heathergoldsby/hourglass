@@ -8,7 +8,7 @@
 #include <ea/datafiles/fitness.h>
 #include <ea/analysis/archive.h>
 #include <ea/digital_evolution/extra_instruction_sets/matrix.h>
-#include "progression_event.h"
+#include "progression.h"
 
 using namespace ealib;
 
@@ -117,7 +117,7 @@ typedef digital_evolution
 // Populations of organisms
 typedef metapopulation
 < sea_type
-, permute_stripes
+, progression_fitness
 , mutation::operators::no_mutation
 , subpopulation_propagule
 , generational_models::periodic_competition< >
