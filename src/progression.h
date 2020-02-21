@@ -1,6 +1,16 @@
+#ifndef _PROGRESSION_TRACKING_
+#define _PROGRESSION_TRACKING_
+
 #include <ea/digital_evolution.h>
 #include <ea/events.h>
 #include <numeric>
+
+#include <boost/accumulators/accumulators.hpp>
+#include <boost/accumulators/statistics/stats.hpp>
+#include <boost/accumulators/statistics/mean.hpp>
+#include <boost/accumulators/statistics/max.hpp>
+#include <boost/accumulators/statistics/min.hpp>
+#include <ea/traits.h>
 
 using namespace ealib;
 
@@ -19,7 +29,6 @@ template
 , typename JuvenileFitnessFunction
 , typename AdultFitnessFunction
 > struct progression_event : end_of_update_event<EA> {
-
     progression_event(EA& ea) : end_of_update_event<EA>(ea) { }
 
     virtual ~progression_event() { }
@@ -59,3 +68,56 @@ struct progression_fitness : public fitness_function<unary_fitness<double>, nons
         return f;
     }
 };
+
+template <typename EA>
+struct progression_dat : record_statistics_event<EA> {
+    progression_dat(EA& ea) : record_statistics_event<EA>(ea), _df("prog_fitness.dat") {
+        _df.add_field("update")
+        .add_field("min_juvenile_fitness")
+        .add_field("min_adult_fitness")
+        .add_field("min_overall_fitness")
+
+        .add_field("max_juvenile_fitness")
+        .add_field("max_adult_fitness")
+        .add_field("max_overall_fitness")
+
+        .add_field("avg_juvenile_fitness")
+        .add_field("avg_adult_fitness")
+        .add_field("avg_overall_fitness");
+    }
+    
+    virtual ~progression_dat() {
+    }
+    
+    virtual void operator()(EA& ea) {
+        using namespace boost::accumulators;
+        accumulator_set<double, stats<tag::min, tag::mean, tag::max> > juvenile_fit;
+        accumulator_set<double, stats<tag::min, tag::mean, tag::max> > adult_fit;
+        accumulator_set<double, stats<tag::min, tag::mean, tag::max> > overall_fit;
+        
+        for(typename EA::iterator i = ea.begin(); i != ea.end(); ++i) {
+            juvenile_fit(get<JUVENILE_FITNESS_MAX>(*i));
+            adult_fit(get<ADULT_FITNESS_MAX>(*i));
+            overall_fit(get<OVERALL_FITNESS>(*i));
+        }
+        
+        _df.write(ea.current_update())
+        .write(min(juvenile_fit))
+        .write(min(adult_fit))
+        .write(min(overall_fit))
+
+        .write(max(juvenile_fit))
+        .write(max(adult_fit))
+        .write(max(overall_fit))
+
+        .write(mean(juvenile_fit))
+        .write(mean(adult_fit))
+        .write(mean(overall_fit))
+        .endl();
+    }
+    
+    datafile _df;
+};
+
+
+#endif

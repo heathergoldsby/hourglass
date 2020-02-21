@@ -181,6 +181,9 @@ public:
 
         add_event<task_performed_tracking>(ea);
         add_event<task_switch_tracking>(ea);
+
+        // Progression tracking
+        add_event<progression_dat>(ea);
     }
 };
 LIBEA_CMDLINE_INSTANCE(mea_type, cli);
