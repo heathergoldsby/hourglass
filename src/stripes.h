@@ -274,6 +274,25 @@ struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS
     }
 };
 
+struct no_fitness : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    double eval_no_fitness(EA& ea) {
+        return 0;
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_no_fitness(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_no_fitness(sea);
+    }
+};
+
 // Can we do this without repeating code?
 template <typename EA>
 void eval_square(EA& ea) {

@@ -27,7 +27,7 @@ struct lifecycle : public default_lifecycle {
      */
 
     template<typename EA>
-    using prog_event = progression_event<EA, permute_stripes, triangles>;
+    using prog_event = progression_event<EA, no_fitness, triangles>;
 
     template <typename EA>
     void after_initialization(EA& ea) {
