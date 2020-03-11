@@ -129,8 +129,53 @@ struct permute_stripes : public fitness_function<unary_fitness<double>, nonstati
     }
 };
 
+struct permute_stripes_simple : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    int eval_permute_stripes(EA& ea) {
+        // horizontal stripes
+        double three_fit_not = 0;
+        double three_fit_nand = 0;
+        double four_fit_not = 0;
+        double four_fit_nand = 0;
+        
+        for (int x=0; x < get<SPATIAL_X>(ea); ++x) {
+            for (int y=0; y<get<SPATIAL_Y>(ea); ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
 
+                // Horizontal stripes
+                if ((x % 2) == 0) {
+                    if (lt == "nand") { ++three_fit_nand; }
+                    if (lt == "not") { ++four_fit_not; }
+                } else {
+                    if(lt == "not") { ++three_fit_not; }
+                    if (lt == "nand") { ++four_fit_nand; }
+                }
+            }
+        }
 
+        double tmp_three_fit = (three_fit_not + 1)  * (three_fit_nand + 1);
+        double tmp_four_fit = (four_fit_not + 1)  * (four_fit_nand + 1);
+
+        return std::max(tmp_three_fit, tmp_four_fit);
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    double operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        double f = static_cast<double>(eval_permute_stripes(sea));
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    double operator()(SubpopulationEA& sea) {
+        return static_cast<double>(eval_permute_stripes(sea));
+    }
+};
 
 
 template <typename EA>
