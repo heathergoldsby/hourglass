@@ -1,16 +1,18 @@
 #ifndef _PROGRESSION_TRACKING_
 #define _PROGRESSION_TRACKING_
 
+#include <numeric>
+
 #include <ea/digital_evolution.h>
 #include <ea/events.h>
-#include <numeric>
+#include <ea/digital_evolution/utils/task_switching.h>
+#include <ea/traits.h>
 
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/stats.hpp>
 #include <boost/accumulators/statistics/mean.hpp>
 #include <boost/accumulators/statistics/max.hpp>
 #include <boost/accumulators/statistics/min.hpp>
-#include <ea/traits.h>
 
 using namespace ealib;
 
@@ -118,6 +120,59 @@ struct progression_dat : record_statistics_event<EA> {
     
     datafile _df;
 };
+
+LIBEA_ANALYSIS_TOOL(movie_progression) {
+
+    double max_fit = 0;
+
+    typename EA::individual_type best;
+    
+    for(typename EA::iterator i = ea.begin(); i != ea.end(); ++i) {
+        const double curr_fitness = get<OVERALL_FITNESS>(*i);
+        
+        if (curr_fitness > max_fit) {
+            max_fit = curr_fitness;
+            best = *i;
+        }
+    }
+
+    datafile df("movie.dat");
+    df.write(get<SPATIAL_X>(ea));
+    df.write(get<SPATIAL_Y>(ea));
+    df.endl();
+
+    int update_max = get<METAPOP_COMPETITION_PERIOD>(ea);
+    typename EA::individual_type best_founder(*best.traits().founder());
+
+    for (int j = 0; j <= update_max; ++j) {
+        best_founder.update();
+        df.write(j);
+
+        for (int x = 0; x < get<SPATIAL_X>(ea); ++x) {
+            for (int y = 0; y < get<SPATIAL_Y>(ea); ++y){
+                typename EA::individual_type::environment_type::location_type* l = &best_founder.env().location(x,y);
+
+                if (l->occupied()) {
+                    const std::string lt = get<LAST_TASK>(*l->inhabitant(),"");
+                    
+                    if (lt == "not") {
+                        df.write("1");
+                    }
+                    else if (lt == "nand") {
+                        df.write("2");
+                    }
+                    else if (lt == "") {
+                        df.write("0");
+                    }
+                } else {
+                    df.write("-1");
+                }
+            }
+        }
+        df.endl();
+    }
+    df.endl();
+}
 
 
 #endif

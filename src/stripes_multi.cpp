@@ -171,8 +171,10 @@ public:
     }
     
     virtual void gather_tools() {
-//        add_tool<ealib::analysis::movie_for_competitions>(this);
         add_tool<get_dominant>(this);
+
+        // Progression movie
+        add_tool<movie_progression>(this);
     }
 
     virtual void gather_events(EA& ea) {
