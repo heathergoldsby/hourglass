@@ -210,9 +210,6 @@ struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS
 
     template <typename EA>
     int eval_triangles(EA& ea) {
-        // Orange : and
-        // Blue   : not
-
         const int max_x = get<SPATIAL_X>(ea);
         const int max_y = get<SPATIAL_Y>(ea);
 
@@ -335,6 +332,156 @@ struct no_fitness : public fitness_function<unary_fitness<double>, nonstationary
     template <typename SubpopulationEA>
     auto operator()(SubpopulationEA& sea) {
         return eval_no_fitness(sea);
+    }
+};
+
+struct solid : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    double eval_solid(EA& ea) {
+        const int max_x = get<SPATIAL_X>(ea);
+        const int max_y = get<SPATIAL_Y>(ea);
+
+        int blue = 0;
+        int orange = 0;
+
+        for (int x = 0; x < max_x; ++x) {
+            for (int y = 0; y < max_y; ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                const std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
+
+                if (lt == "nand")
+                {
+                    ++blue;
+                }
+                else
+                {
+                    ++orange;
+                }
+
+            }
+        }
+
+        return std::max(blue, orange);
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_solid(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_solid(sea);
+    }
+};
+
+struct halves : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    int eval_halves(EA& ea) {
+        const int max_x = get<SPATIAL_X>(ea);
+        const int max_y = get<SPATIAL_Y>(ea);
+
+        const int half_x = max_x / 2;
+        const int half_y = max_y / 2;
+
+        int blue_left = 0;
+        int orange_left = 0;
+
+        int orange_right = 0;
+        int blue_right = 0;
+
+        int blue_top = 0;
+        int orange_top = 0;
+        
+        int orange_bottom = 0;
+        int blue_bottom = 0;
+
+        for (int x = 0; x < max_x; ++x) {
+            for (int y = 0; y < max_y; ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                const std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
+
+                if (x < half_x)
+                {
+                    // Blue left
+                    if (lt == "nand")
+                    {
+                        ++blue_left;
+                    }
+                    else
+                    {
+                        ++orange_left;
+                    }
+                }
+                else
+                {
+                    // Blue right
+                    if (lt == "nand")
+                    {
+                        ++blue_right;
+                    }
+                    else
+                    {
+                        ++orange_right;
+                    }
+                }
+
+                if (y < half_y)
+                {
+                    // Blue top
+                    if (lt == "nand")
+                    {
+                        ++blue_top;
+                    }
+                    else
+                    {
+                        ++orange_top;
+                    }
+                }
+                else
+                {
+                    // Blue bottom
+                    if (lt == "nand")
+                    {
+                        ++blue_bottom;
+                    }
+                    else
+                    {
+                        ++orange_bottom;
+                    }
+                }
+            }
+        }
+        
+
+        int fit = (blue_left * orange_left);
+        fit = std::max(fit, orange_right * blue_right);
+        fit = std::max(fit, blue_top * orange_top);
+        fit = std::max(fit, orange_bottom * blue_bottom);
+        
+        return fit;
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_halves(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_halves(sea);
     }
 };
 
