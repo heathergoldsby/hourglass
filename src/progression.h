@@ -16,6 +16,8 @@
 
 using namespace ealib;
 
+LIBEA_MD_DECL(FITNESS_MULTIPLIER, "ea.prog.fitness_multiplier", double);
+
 LIBEA_MD_DECL(JUVENILE_EVAL_PERIOD, "ea.prog.adult_evalution_period", unsigned int);
 LIBEA_MD_DECL(ADULT_EVAL_PERIOD, "ea.prog.juvenile_evaluation_period", unsigned int);
 
@@ -60,14 +62,16 @@ template
 struct progression_fitness : public fitness_function<unary_fitness<double>, nonstationaryS> {
     template <typename EA>
     double eval_progression(EA& ea) {
-        return get<JUVENILE_FITNESS_MAX>(ea, 0.0) + std::pow(get<ADULT_FITNESS_MAX>(ea, 0.0), 2);
+        const auto original_fitness = std::pow(get<JUVENILE_FITNESS_MAX>(ea, 0.0), 1.5) + std::pow(get<ADULT_FITNESS_MAX>(ea, 0.0), 2);
+        const auto weighted_fitness = original_fitness + (get<FITNESS_MULTIPLIER>(ea, 0.0) * get<OVERALL_FITNESS>(ea, 0.0));
+
+        put<OVERALL_FITNESS>(weighted_fitness, ea);
+        return weighted_fitness;
     }
     
     template <typename SubpopulationEA, typename MetapopulationEA>
     double operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
-        const auto f = eval_progression(sea);
-        put<OVERALL_FITNESS>(f, sea);
-        return f;
+        return eval_progression(sea);
     }
 };
 
