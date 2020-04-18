@@ -43,16 +43,22 @@ template
 
         if (age >= get<JUVENILE_EVAL_PERIOD>(ea)) {
             const auto juvenile_val = JuvenileFitnessFunction()(ea);
+            const auto weighted_juvenile_val = juvenile_val + (get<FITNESS_MULTIPLIER>(ea, 0.0) * get<JUVENILE_FITNESS>(ea, 0.0));
 
-            if (juvenile_val > get<JUVENILE_FITNESS_MAX>(ea, 0.0)) {
-                put<JUVENILE_FITNESS_MAX>(juvenile_val, ea);
+            put<JUVENILE_FITNESS>(weighted_juvenile_val, ea);
+
+            if (weighted_juvenile_val > get<JUVENILE_FITNESS_MAX>(ea, 0.0)) {
+                put<JUVENILE_FITNESS_MAX>(weighted_juvenile_val, ea);
             }
             
             if (age >= get<ADULT_EVAL_PERIOD>(ea)) {
                 const auto adult_val = AdultFitnessFunction()(ea);
+                const auto weighted_adult_val = adult_val + (get<FITNESS_MULTIPLIER>(ea, 0.0) * get<ADULT_FITNESS>(ea, 0.0));
 
+                put<ADULT_FITNESS>(weighted_adult_val, ea);
+                
                 if (adult_val > get<ADULT_FITNESS_MAX>(ea, 0.0)) {
-                    put<ADULT_FITNESS_MAX>(adult_val, ea);
+                    put<ADULT_FITNESS_MAX>(weighted_adult_val, ea);
                 }
             }
         }
@@ -63,10 +69,9 @@ struct progression_fitness : public fitness_function<unary_fitness<double>, nons
     template <typename EA>
     double eval_progression(EA& ea) {
         const auto original_fitness = std::pow(get<JUVENILE_FITNESS_MAX>(ea, 0.0), 1.5) + std::pow(get<ADULT_FITNESS_MAX>(ea, 0.0), 2);
-        const auto weighted_fitness = original_fitness + (get<FITNESS_MULTIPLIER>(ea, 0.0) * get<OVERALL_FITNESS>(ea, 0.0));
 
-        put<OVERALL_FITNESS>(weighted_fitness, ea);
-        return weighted_fitness;
+        put<OVERALL_FITNESS>(original_fitness, ea);
+        return original_fitness;
     }
     
     template <typename SubpopulationEA, typename MetapopulationEA>
