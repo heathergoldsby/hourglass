@@ -168,6 +168,7 @@ public:
         // juvenile & adult pattern evaluation
         add_option<JUVENILE_EVAL_PERIOD>(this);
         add_option<ADULT_EVAL_PERIOD>(this);
+        add_option<FITNESS_MULTIPLIER>(this);
     }
     
     virtual void gather_tools() {
