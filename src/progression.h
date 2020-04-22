@@ -68,7 +68,23 @@ template
 struct progression_fitness : public fitness_function<unary_fitness<double>, nonstationaryS> {
     template <typename EA>
     double eval_progression(EA& ea) {
-        const auto original_fitness = std::pow(get<JUVENILE_FITNESS_MAX>(ea, 0.0), 1.5) + std::pow(get<ADULT_FITNESS_MAX>(ea, 0.0), 2);
+        const auto original_fitness = get<JUVENILE_FITNESS_MAX>(ea, 0.0) * get<ADULT_FITNESS_MAX>(ea, 0.0);
+
+        put<OVERALL_FITNESS>(original_fitness, ea);
+        return original_fitness;
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    double operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        return eval_progression(sea);
+    }
+};
+
+struct progression_fitness_phased : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    double eval_progression(EA& ea) {
+        const auto age = ea.current_update();
+        const auto original_fitness = age >= get<ADULT_EVAL_PERIOD>(ea) ? get<ADULT_FITNESS_MAX>(ea, 0.0) : get<JUVENILE_FITNESS_MAX>(ea, 0.0);
 
         put<OVERALL_FITNESS>(original_fitness, ea);
         return original_fitness;
