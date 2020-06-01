@@ -8,8 +8,7 @@
 #include <ea/datafiles/fitness.h>
 #include <ea/analysis/archive.h>
 #include <ea/digital_evolution/extra_instruction_sets/matrix.h>
-
-
+#include "progression.h"
 
 using namespace ealib;
 
@@ -26,6 +25,10 @@ struct lifecycle : public default_lifecycle {
      instructions to a digital evolution ISA, loading external data files,
      and the like.
      */
+
+    template<typename EA>
+    using prog_event = progression_event<EA, no_fitness, triangles>;
+
     template <typename EA>
     void after_initialization(EA& ea) {
         using namespace instructions;
@@ -64,11 +67,11 @@ struct lifecycle : public default_lifecycle {
         append_isa<get_xy>(ea);
         append_isa<on_edge_matrix>(ea);
 
-
-        
         add_event<task_resource_consumption>(ea);
         add_event<task_switching_cost>(ea);
         add_event<ts_birth_event>(ea);
+
+        add_event<prog_event>(ea);
         
         typedef typename EA::task_library_type::task_ptr_type task_ptr_type;
         typedef typename EA::resource_ptr_type resource_ptr_type;
@@ -98,7 +101,9 @@ struct subpop_trait : subpopulation_founder_trait<T>, fitness_trait<T> {
     }
 };
 
+// Each cell doing task (determine color)
 
+// Organism (subpopulation of cells)
 typedef digital_evolution
 < lifecycle
 , recombination::asexual
@@ -109,9 +114,10 @@ typedef digital_evolution
 , generate_single_ancestor
 > sea_type;
 
+// Populations of organisms
 typedef metapopulation
 < sea_type
-, permute_stripes
+, progression_fitness
 , mutation::operators::no_mutation
 , subpopulation_propagule
 , generational_models::periodic_competition< >
@@ -158,14 +164,20 @@ public:
         add_option<METAPOP_COMPETITION_PERIOD>(this);
         add_option<TOURNAMENT_SELECTION_N>(this);
         add_option<TOURNAMENT_SELECTION_K>(this);
-        
+
+        // juvenile & adult pattern evaluation
+        add_option<JUVENILE_EVAL_PERIOD>(this);
+        add_option<ADULT_EVAL_PERIOD>(this);
+        add_option<FITNESS_MULTIPLIER>(this);
     }
     
     virtual void gather_tools() {
-//        add_tool<ealib::analysis::movie_for_competitions>(this);
         add_tool<get_dominant>(this);
+
+        // Progression movie
+        add_tool<movie_progression>(this);
     }
-    
+
     virtual void gather_events(EA& ea) {
         add_event<subpopulation_founder_event>(ea);
         add_event<datafiles::fitness_dat>(ea);
@@ -173,6 +185,8 @@ public:
         add_event<task_performed_tracking>(ea);
         add_event<task_switch_tracking>(ea);
 
+        // Progression tracking
+        add_event<progression_dat>(ea);
     }
 };
 LIBEA_CMDLINE_INSTANCE(mea_type, cli);

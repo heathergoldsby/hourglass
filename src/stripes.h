@@ -63,7 +63,6 @@ struct permute_stripes : public fitness_function<unary_fitness<double>, nonstati
         double five_fit_nand = 0;
         double six_fit_not = 0;
         double six_fit_nand = 0;
-        int num_org = 0;
         
         for (int x=0; x < get<SPATIAL_X>(ea); ++x) {
             for (int y=0; y<get<SPATIAL_Y>(ea); ++y){
@@ -123,10 +122,60 @@ struct permute_stripes : public fitness_function<unary_fitness<double>, nonstati
         put<PATTERN_FIT>(f,sea);
         return f;
     }
+
+    template <typename SubpopulationEA>
+    double operator()(SubpopulationEA& sea) {
+        return static_cast<double>(eval_permute_stripes(sea));
+    }
 };
 
+struct permute_stripes_simple : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    int eval_permute_stripes(EA& ea) {
+        // horizontal stripes
+        double three_fit_not = 0;
+        double three_fit_nand = 0;
+        double four_fit_not = 0;
+        double four_fit_nand = 0;
+        
+        for (int x=0; x < get<SPATIAL_X>(ea); ++x) {
+            for (int y=0; y<get<SPATIAL_Y>(ea); ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
 
+                // Horizontal stripes
+                if ((x % 2) == 0) {
+                    if (lt == "nand") { ++three_fit_nand; }
+                    if (lt == "not") { ++four_fit_not; }
+                } else {
+                    if(lt == "not") { ++three_fit_not; }
+                    if (lt == "nand") { ++four_fit_nand; }
+                }
+            }
+        }
 
+        double tmp_three_fit = (three_fit_not + 1)  * (three_fit_nand + 1);
+        double tmp_four_fit = (four_fit_not + 1)  * (four_fit_nand + 1);
+
+        return std::max(tmp_three_fit, tmp_four_fit);
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    double operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        double f = static_cast<double>(eval_permute_stripes(sea));
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    double operator()(SubpopulationEA& sea) {
+        return static_cast<double>(eval_permute_stripes(sea));
+    }
+};
 
 
 template <typename EA>
@@ -139,14 +188,308 @@ std::string get_last_task(int x, int y, EA& ea) {
     return lt;
 }
 
+struct triangles : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    // Is point inside polygon with 3 points (trigon)?
+    // https://stackoverflow.com/a/9755252
+    inline bool is_point_inside_trigon(const int sx, const int sy,
+                                       const int ax, const int ay,
+                                       const int bx, const int by,
+                                       const int cx, const int cy)
+    {
+        const int as_x = sx-ax;
+        const int as_y = sy-ay;
 
+        const bool s_ab = (bx-ax)*as_y-(by-ay)*as_x > 0;
+
+        if ((cx-ax)*as_y-(cy-ay)*as_x > 0 == s_ab) return false;
+
+        if ((cx-bx)*(sy-by)-(cy-by)*(sx-bx) > 0 != s_ab) return false;
+
+        return true;
+    }
+
+    template <typename EA>
+    int eval_triangles(EA& ea) {
+        const int max_x = get<SPATIAL_X>(ea);
+        const int max_y = get<SPATIAL_Y>(ea);
+
+        int blue_lower_left = 0;
+        int orange_upper_right = 0;
+
+        int orange_lower_left = 0;
+        int blue_upper_right = 0;
+
+        int orange_upper_left = 0;
+        int blue_lower_right = 0;
+
+        int blue_upper_left = 0;
+        int orange_lower_right = 0;
+
+        for (int x = 0; x < max_x; ++x) {
+            for (int y = 0; y < max_y; ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                const std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
+
+                if (is_point_inside_trigon(x, y, 
+                                           0, 0,
+                                           0, max_y,
+                                           max_x, max_y))
+                {
+                    // Lower left
+                    if (lt == "nand")
+                    {
+                        ++orange_lower_left;
+                    }
+                    else
+                    {
+                        ++blue_lower_left;
+                    }
+                }
+                else if (is_point_inside_trigon(x, y, 
+                                                0, 0,
+                                                max_x, 0,
+                                                max_x, max_y))
+                {
+                    // Uppper right
+                    if (lt == "nand")
+                    {
+                        ++orange_upper_right;
+                    }
+                    else
+                    {
+                        ++blue_upper_right;
+                    }
+                }
+                else if (is_point_inside_trigon(x, y, 
+                                                0, 0,
+                                                max_x, 0,
+                                                0, max_y))
+                {
+                    // Uppper left
+                    if (lt == "nand")
+                    {
+                        ++orange_upper_left;
+                    }
+                    else
+                    {
+                        ++blue_upper_left;
+                    }
+                }
+                else
+                {
+                    // Lower right
+                    if (lt == "nand")
+                    {
+                        ++orange_lower_right;
+                    }
+                    else
+                    {
+                        ++blue_lower_right;
+                    }
+                }
+            }
+        }
+        
+
+        int fit = (blue_lower_left * orange_upper_right);
+        fit = std::max(fit, orange_lower_left * blue_upper_right);
+        fit = std::max(fit, orange_upper_left * blue_lower_right);
+        fit = std::max(fit, blue_upper_left * orange_lower_right);
+        
+        return fit;
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_triangles(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_triangles(sea);
+    }
+};
+
+struct no_fitness : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    double eval_no_fitness(EA& ea) {
+        return 0;
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_no_fitness(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_no_fitness(sea);
+    }
+};
+
+struct solid : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    double eval_solid(EA& ea) {
+        const int max_x = get<SPATIAL_X>(ea);
+        const int max_y = get<SPATIAL_Y>(ea);
+
+        int blue = 0;
+        int orange = 0;
+
+        for (int x = 0; x < max_x; ++x) {
+            for (int y = 0; y < max_y; ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                const std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
+
+                if (lt == "nand")
+                {
+                    ++blue;
+                }
+                else
+                {
+                    ++orange;
+                }
+
+            }
+        }
+
+        return std::max(blue, orange);
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_solid(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_solid(sea);
+    }
+};
+
+struct halves : public fitness_function<unary_fitness<double>, nonstationaryS> {
+    template <typename EA>
+    int eval_halves(EA& ea) {
+        const int max_x = get<SPATIAL_X>(ea);
+        const int max_y = get<SPATIAL_Y>(ea);
+
+        const int half_x = max_x / 2;
+        const int half_y = max_y / 2;
+
+        int blue_left = 0;
+        int orange_left = 0;
+
+        int orange_right = 0;
+        int blue_right = 0;
+
+        int blue_top = 0;
+        int orange_top = 0;
+        
+        int orange_bottom = 0;
+        int blue_bottom = 0;
+
+        for (int x = 0; x < max_x; ++x) {
+            for (int y = 0; y < max_y; ++y){
+                typename EA::location_type& l = ea.env().location(x,y);
+                if (!l.occupied()) {
+                    continue;
+                }
+                
+                const std::string lt = get<LAST_TASK>(*l.inhabitant(),"");
+
+                if (x < half_x)
+                {
+                    // Blue left
+                    if (lt == "nand")
+                    {
+                        ++blue_left;
+                    }
+                    else
+                    {
+                        ++orange_left;
+                    }
+                }
+                else
+                {
+                    // Blue right
+                    if (lt == "nand")
+                    {
+                        ++blue_right;
+                    }
+                    else
+                    {
+                        ++orange_right;
+                    }
+                }
+
+                if (y < half_y)
+                {
+                    // Blue top
+                    if (lt == "nand")
+                    {
+                        ++blue_top;
+                    }
+                    else
+                    {
+                        ++orange_top;
+                    }
+                }
+                else
+                {
+                    // Blue bottom
+                    if (lt == "nand")
+                    {
+                        ++blue_bottom;
+                    }
+                    else
+                    {
+                        ++orange_bottom;
+                    }
+                }
+            }
+        }
+        
+
+        int fit = (blue_left * orange_left);
+        fit = std::max(fit, orange_right * blue_right);
+        fit = std::max(fit, blue_top * orange_top);
+        fit = std::max(fit, orange_bottom * blue_bottom);
+        
+        return fit;
+    }
+    
+    template <typename SubpopulationEA, typename MetapopulationEA>
+    auto operator()(SubpopulationEA& sea, MetapopulationEA& mea) {
+        const auto f = eval_halves(sea);
+        put<PATTERN_FIT>(f,sea);
+        return f;
+    }
+
+    template <typename SubpopulationEA>
+    auto operator()(SubpopulationEA& sea) {
+        return eval_halves(sea);
+    }
+};
 
 // Can we do this without repeating code?
 template <typename EA>
 void eval_square(EA& ea) {
     double tmp_fit = 0;
     
-    int num_org = 0;
     int max_x = get<SPATIAL_X>(ea) - 1; // minus one because SPATIAL_X is the size
     int max_y = get<SPATIAL_Y>(ea) - 1;
     
@@ -187,7 +530,6 @@ struct square : public fitness_function<unary_fitness<double>, nonstationaryS> {
     int eval_square(EA& ea) {
         double tmp_fit = 0;
       
-        int num_org = 0;
         int max_x = get<SPATIAL_X>(ea) - 1; // minus one because SPATIAL_X is the size
         int max_y = get<SPATIAL_Y>(ea) - 1;
         
@@ -234,7 +576,6 @@ template <typename EA>
 void eval_french_flag(EA& ea) {
     double tmp_fit = 0;
     
-    int num_org = 0;
     int max_x = get<SPATIAL_X>(ea);
     int max_y = get<SPATIAL_Y>(ea);
     
@@ -271,7 +612,6 @@ struct french_flag : public fitness_function<unary_fitness<double>, nonstationar
     int eval_french_flag(EA& ea) {
         double tmp_fit = 0;
         
-        int num_org = 0;
         int max_x = get<SPATIAL_X>(ea);
         int max_y = get<SPATIAL_Y>(ea);
         
